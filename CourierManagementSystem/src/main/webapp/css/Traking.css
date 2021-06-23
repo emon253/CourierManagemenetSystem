@@ -1,0 +1,177 @@
+html{
+    scroll-behavior: smooth;
+
+}
+
+
+.smlnav{
+    padding:1% 10%;
+    height:min-content;
+    background: #00656D;
+    color: rgb(255, 207, 144);
+}
+.is{
+ 
+    
+}
+.x{
+    list-style-type:none;
+    margin-left: 80px;
+    overflow: hidden;
+}
+.xx{
+    list-style-type:circle;
+    
+}
+.x li{
+    float: left;
+    
+}
+.x li a{
+
+    display:block;
+    color: rgb(255, 207, 144);
+    
+
+   /* padding: 8px;*/
+}
+.x li a:hover{
+    text-decoration: none;
+    color: bisque;
+}
+
+
+
+@media (max-width:767px)
+{
+    .nav-link{
+        background: #17A2B8;
+        margin: 10px;
+        color: white;
+    }
+    .banner-container h1{
+        font-size: 2.5rem;
+    }
+
+
+
+
+
+    
+}
+
+body{
+
+}
+h1,h2,h3,h4,h5,h6{
+
+
+}
+
+
+
+.nav-icon{
+    color: orange;
+}
+
+.navbar{
+    padding:1% 10%;
+    /*background-color: rgba(0,0,0,0.3);*/
+    /*background: tomato;*/
+    background: white;
+
+}
+.nav-link{
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    transition:.4s;
+}
+.nav-link:hover{
+    background:tomato;
+    transform: scale(1.1);
+    color: white;
+}
+
+.icon-style{
+    background:#F8A555;
+    color:white;
+    margin-left: 20px;
+    margin-right: 10px;
+
+}
+.bg{
+    background-image: url("https://images.pexels.com/photos/193667/pexels-photo-193667.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    background-repeat: no-repeat;
+
+    background-size: cover;
+    
+
+}
+.contain{
+    padding: 200px 50px;
+    width: 100%;
+    background-color: rgba(19, 5, 5, 0);
+}
+.contain2{
+    padding: 20px;
+    width: 100%;
+    background-color:rgba(0, 0, 0, 0.664);
+    /*box-shadow: 0px 0.1px 10px rgba(184, 202, 177, 0.401);*/
+    
+}
+.bgst{
+    /*background-color: #17A2B8;*/
+    background-color: coral;
+    border-radius: 38px;
+    color: antiquewhite;
+    text-align: center;
+    padding: 8px;
+}
+.ta{
+    resize: none;
+}
+#search-menu{
+    width: 25px;
+    outline: 0;
+    margin-top: 30px;
+    padding: 15px 60px;
+    border:coral 2px solid;
+    border-radius: 50px;
+    /*border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;*/
+    background-image: url("search.png");
+    width: 100%;
+
+}
+#search-menu:focus{
+    background-color:white;
+    color: black;
+
+}
+.btn{
+    background-color: coral;
+    color: white;
+    border-radius: 40px;
+    height: 50px;
+
+}
+
+@media (min-width:1100px)
+{
+    .smlnav{
+        height: 50px;
+
+    }
+    .sg{
+        height:80px;
+    }
+    .contain2{
+        width: 1000px;
+    }
+
+
+
+}

@@ -66,15 +66,15 @@
 						<hr class="mb-2"
 							style="height: 2px; background-color: red; width: 20%; margin: 0px;">
 						<h5>Tracking No:</h5>
-						<p>show tracking number</p>
+						<p> ${parcel.parcelID}</p>
 						<h5>Customer Name:</h5>
-						<p>Here customer name will be shown</p>
+						<p> ${parcel.name}</p>
 						<h5>Pickup Point:</h5>
-						<p>show pickup Point</p>
+						<p> ${parcel.pickupAddress}</p>
 						<h5>Order date:</h5>
-						<p>show order date</p>
+						<p>${parcel.requestedTime}</p>
 						<h5>Destination Point:</h5>
-						<p>show destination point</p>
+						<p> ${parcel.deliveryAddress}</p>
 					</div>
 				</div>
 			</div>

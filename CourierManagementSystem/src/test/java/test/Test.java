@@ -4,6 +4,8 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 import javax.mail.MessagingException;
@@ -19,7 +21,8 @@ import service.UserServiceImpl;
 
 public class Test {
 
-	public static void main(String[] args) throws ClassNotFoundException, SQLException, MessagingException, NoSuchAlgorithmException {
+	public static void main(String[] args)
+			throws ClassNotFoundException, SQLException, MessagingException, NoSuchAlgorithmException {
 
 //		java.sql.Connection con = DBConnection.getConnection();
 //		if(con != null) {
@@ -49,15 +52,16 @@ public class Test {
 //		String to = "emonchowdhury253@gmail.com";
 //		
 //		Email.getInstance().sendEmail(message, subject, to);
-		
-		UserRepository ur = new UserRepositoryImpl();
-		UserService us = new UserServiceImpl(ur);
-		
+//
+//		UserRepository ur = new UserRepositoryImpl();
+//		UserService us = new UserServiceImpl(ur);
+
 //		System.out.println(ur.findUserbyEmail("emonchowdhury253@gmail.com"));
 //		
 //		System.out.println(ur.findUserByUserName("ddd"));
-		
-		System.out.println(us.isUniqueUserName("emonchowdhury253@gm ail.com"));
+
+	
+
 	}
 
 }

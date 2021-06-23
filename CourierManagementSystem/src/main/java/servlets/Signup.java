@@ -21,7 +21,6 @@ import service.ValidationUtil;
 
 @WebServlet("/signup")
 public class Signup extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 	private UserService userService = new UserServiceImpl(new UserRepositoryImpl());
 
 

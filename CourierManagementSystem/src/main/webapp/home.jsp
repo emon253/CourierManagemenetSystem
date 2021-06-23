@@ -57,8 +57,8 @@ session.removeAttribute("msg");
 					<a href="parcelrequest.jsp"
 						class="ml-5 mt-2 btn btn-lg btn-outline-primary mr-1"> Send
 						parcel</a>
-					<button class="ml-5 mt-2 btn btn-lg btn-outline-info mr-1">Track
-						order</button>
+					<a href = "trackingSearch.jsp" class="ml-5 mt-2 btn btn-lg btn-outline-info mr-1">Track
+						order</a>
 
 				</div>
 

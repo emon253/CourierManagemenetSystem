@@ -1,12 +1,16 @@
 package domain;
 
+import java.time.LocalDateTime;
+
 public class ParcelRequest {
+	String parcelID;
 	String name;
 	String email;
 	long phone;
 	double parcelWeight;
 	String pickupAddress;
 	String deliveryAddress;
+	LocalDateTime requestedTime;
 	public ParcelRequest(String name, String email, long phone, double parcelWeight, String pickupAddress,
 			String deliveryAddress) {
 
@@ -16,6 +20,9 @@ public class ParcelRequest {
 		this.parcelWeight = parcelWeight;
 		this.pickupAddress = pickupAddress;
 		this.deliveryAddress = deliveryAddress;
+	}
+	public ParcelRequest() {
+		// TODO Auto-generated constructor stub
 	}
 	@Override
 	public String toString() {
@@ -58,4 +65,17 @@ public class ParcelRequest {
 	public void setDeliveryAddress(String deliveryAddress) {
 		this.deliveryAddress = deliveryAddress;
 	}
+	public String getParcelID() {
+		return parcelID;
+	}
+	public void setParcelID(String parcelID) {
+		this.parcelID = parcelID;
+	}
+	public LocalDateTime getRequestedTime() {
+		return requestedTime;
+	}
+	public void setRequestedTime(LocalDateTime requestedTime) {
+		this.requestedTime = requestedTime;
+	}
+	
 }

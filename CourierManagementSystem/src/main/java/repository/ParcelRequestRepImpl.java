@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+
 import dbconnection.DBConnection;
 import domain.ParcelRequest;
 import dto.ParcelRequestDTO;
@@ -41,6 +43,19 @@ public class ParcelRequestRepImpl implements ParcelRequestRep {
 			return false;
 		}
 
+	}
+
+	@Override
+	public ParcelRequest fetchParcelInfoByid(String pid) {
+		ParcelRequest pr = new ParcelRequest();
+		pr.setParcelID("CMS200727950");
+		pr.setName("Yasin Chowdhury");
+		pr.setPickupAddress("Dhaka, Bangladesh");
+		pr.setDeliveryAddress("Cumilla,Chittagonj");
+		pr.setRequestedTime(LocalDateTime.now());
+		return pr;
+		
+		
 	}
 
 }
