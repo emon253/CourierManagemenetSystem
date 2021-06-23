@@ -1,0 +1,103 @@
+html{
+    scroll-behavior: smooth;
+
+}
+
+
+.smlnav{
+    padding:1% 10%;
+    height:min-content;
+    background: #00656D;
+    color: rgb(255, 207, 144);
+}
+.is{
+ 
+    
+}
+.x{
+    list-style-type:none;
+    margin-left: 80px;
+    overflow: hidden;
+}
+.xx{
+    list-style-type:circle;
+    
+}
+.x li{
+    float: left;
+    
+}
+.x li a{
+
+    display:block;
+    color: rgb(255, 207, 144);
+    
+
+   /* padding: 8px;*/
+}
+.x li a:hover{
+    text-decoration: none;
+    color: bisque;
+}
+
+
+
+@media (max-width:767px)
+{
+    .nav-link{
+        background: #17A2B8;
+        margin: 10px;
+        color: white;
+    }
+    .banner-container h1{
+        font-size: 2.5rem;
+    }
+
+
+
+
+
+    
+}
+.nav-icon{
+    color: orange;
+}
+
+.navbar{
+    padding:1% 10%;
+    /*background-color: rgba(0,0,0,0.3);*/
+    /*background: tomato;*/
+    background: white;
+
+}
+.nav-link{
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    transition:.4s;
+}
+.nav-link:hover{
+    background:tomato;
+    transform: scale(1.1);
+    color: white;
+}
+
+.Main_body {
+    background-image: url("https://images.pexels.com/photos/4498142/pexels-photo-4498142.jpeg?cs=srgb&dl=pexels-karolina-grabowska-4498142.jpg&fm=jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+hr {
+    color: dark;
+    height: 2px;
+    background-color: grey;
+}
+
+.container-fluid {
+    background-color: rgba(255, 255, 255, 0.678);
+}
+.container {
+    background-color:rgba(255, 255, 255, 0.795);
+    box-shadow: 0px 0.1px 10px rgba(184, 202, 177, 0.401);
+}

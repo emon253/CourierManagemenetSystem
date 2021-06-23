@@ -1,0 +1,183 @@
+body{
+
+    
+}
+.bg{
+   /* background-image: url("https://images.pexels.com/photos/4256976/pexels-photo-4256976.jpeg?cs=srgb&dl=pexels-rafael-de-campos-4256976.jpg&fm=jpg");*/
+    /*background-color: thistle;*/
+    background-color: #ffa07aa2;
+    /*background-color: #C0C0C0;*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+.contain{
+    padding:67.5px;
+    width:100%;
+    
+}
+.contain2{
+    margin-top: 60px;
+    border-radius: 5px;
+    height: 500px;
+    width: 40%;
+    background-color:white;
+    box-shadow: 0px 0.1px 10px rgba(255, 255, 255, 0.445);
+    
+}
+.fc{
+    color:#ff4800 ;
+}
+.one{
+    width: 100%;
+    height: 200px;
+    color: white;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+}
+.two{
+    height: 470px;
+    background-color: rgba(9, 157, 255, 0.411);
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.ab{
+    background:rgba(255, 255, 255, 0.041);
+    color: black;
+    height: 20px;
+}
+.m{
+    color: black;
+    margin-left: 150px;
+
+}
+.cnt{
+
+    text-align: center;
+
+}
+.hi{
+    height: 110px;
+}
+.bgc{
+    height: 40px;
+    width: 60%;
+
+    color: white;
+
+}
+.bgc :hover{
+    background: white;
+    color: black;
+}
+.btn{
+    color: white;
+    background-color: black;
+    width: 100%;
+}
+.icon{
+    color: rgb(255, 68, 0);
+    background-color: darkslateblue;
+}
+.bs{
+    background-color: rgba(255, 255, 255, 0.096);
+    border-color: rgba(255, 255, 255, 0);
+}
+.bs:focus{
+    border-color: 0px solid white;
+}
+.wi{
+    width: 100%;
+    background-color: black;
+}
+.fpsu {
+    margin-top: 10px;
+    line-height: 2.5;
+}
+p{
+    line-height: 0.5;
+}
+h6{
+    line-height: 0.5;
+}
+.fpsu a{
+
+    color: rgb(20, 20, 185);
+    
+}
+
+
+input[type=button]{
+    
+    font-family: 'Baloo Tammudu 2', cursive;
+/*    background-color: white;*/
+    border: none;
+    color: black;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  input[type=email],[type=password] {
+    width: 70%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid rgb(117, 19, 19);
+    transition: 0.5s;
+
+    outline: none;
+  }
+  
+  input[type=email]:focus {
+    border: 0px solid white;
+    border-bottom: 2px solid rgb(117, 19, 19);
+    transform: scale(1.05);
+
+  }
+  input[type=password]:focus {
+    border: 0px solid white;
+    border-bottom: 2px solid rgb(117, 19, 19);
+    transform: scale(1.05);
+
+  }
+
+
+
+@media (max-width:1200px)
+{
+    .contain{
+        width:100%;
+       
+    }
+    .contain2{
+
+        height: 500px;
+        width: 400px;
+        background-color:white;
+        box-shadow: 0px 0.1px 10px rgba(184, 202, 177, 0.401);
+        
+    }
+}
+
+/*@media (max-width:500px)
+{
+    .contain{
+        padding: 580px 0;
+        width:100%;
+        background-color: rgba(255, 255, 255, 0.329);
+    }
+    .contain2{
+        height: 500px;
+        width: 70%;
+        background-color:rgba(255, 255, 255, 0.603);
+        box-shadow: 0px 0.1px 10px rgb(255, 255, 255);
+        
+    }
+
+
+
+
+
+    
+}*/

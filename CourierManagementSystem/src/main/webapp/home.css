@@ -1,0 +1,157 @@
+html{
+    scroll-behavior: smooth;
+
+}
+
+
+.smlnav{
+    padding:1% 10%;
+    height:min-content;
+    background: #00656D;
+    color: rgb(255, 207, 144);
+}
+.is{
+ 
+    
+}
+.x{
+    list-style-type:none;
+    margin-left: 80px;
+    overflow: hidden;
+}
+.xx{
+    list-style-type:circle;
+    
+}
+.x li{
+    float: left;
+    
+}
+.x li a{
+
+    display:block;
+    color: rgb(255, 207, 144);
+    
+
+   /* padding: 8px;*/
+}
+.x li a:hover{
+    text-decoration: none;
+    color: bisque;
+}
+.linespace{
+    line-height: 10px;
+}
+
+@media (min-width:768px)
+{
+    .smlnav{
+        height: 50px;
+
+    }
+    .sg{
+        height:80px;
+    }
+}
+@media (max-width:767px)
+{
+    .nav-link{
+        background: #17A2B8;
+        margin: 10px;
+        color: white;
+    }
+    .banner-container h1{
+        font-size: 2.5rem;
+    }
+    
+}
+
+body{
+
+}
+h1,h2,h3,h4,h5,h6{
+
+
+}
+header{
+    background-image: url("https://images.pexels.com/photos/167676/pexels-photo-167676.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    /*background-position: center;*/
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+.banner-container{
+
+    height: 100vh;
+    
+}
+.banner-contents{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(30, 55, 20, 0.401);
+    padding-bottom: 20px;
+   padding-left: 40px;
+}
+.banner-container h1{
+    font-size: 3.5rem;
+    
+}
+
+.nav-icon{
+    color: orange;
+}
+
+.navbar{
+    padding:1% 10%;
+    /*background-color: rgba(0,0,0,0.3);*/
+    /*background: tomato;*/
+    background: white;
+
+}
+.nav-link{
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    transition:.4s;
+}
+.nav-link:hover{
+    background:tomato;
+    transform: scale(1.1);
+    color: white;
+}
+#features{
+    padding: 5% 10%;
+    background: white;
+}
+.features-col{
+    border: 1px solid white;
+    background: #F5F5F5;
+    padding: 10px;
+    /*border-radius: 5px;*/
+    /*padding: 15px;
+    margin:20px 0;*/
+    transition: .4s;
+}
+.features-col:hover{
+    background:white;
+    /*transform: scale(1.1);*/
+    box-shadow: 1px 0px 9px rgba(228, 18, 18, 0.466);
+
+}
+.icon-style{
+    background:#F8A555;
+    color:white;
+    margin-left: 20px;
+    margin-right: 10px;
+
+}
+.head{
+    background: #F8A555;
+    height:max-content;
+    color: white;
+    width: auto;
+    padding-bottom: 0.1px;
+    padding-top: 10px;
+    padding: 10px;
+}
