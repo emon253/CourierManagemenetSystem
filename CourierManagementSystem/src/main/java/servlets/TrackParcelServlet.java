@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +16,8 @@ import service.ParcelServiceImpl;
 
 @WebServlet("/TrackParcel")
 public class TrackParcelServlet extends HttpServlet {
-private ParcelService parcelService = new ParcelServiceImpl(new ParcelRequestRepImpl());
+	private ParcelService parcelService = new ParcelServiceImpl(new ParcelRequestRepImpl());
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.getRequestDispatcher("trackingSearch.jsp").forward(request, response);
@@ -23,9 +26,21 @@ private ParcelService parcelService = new ParcelServiceImpl(new ParcelRequestRep
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String pid = request.getParameter("search");
-		ParcelRequest pr = parcelService.findRequestParcelBypid(pid);
-		System.out.println(pr.getRequestedTime());
-		request.setAttribute("parcel", pr);
+
+		try {
+			ParcelRequest pr = parcelService.findRequestParcelBypid(pid);
+			request.setAttribute("parcel", pr);
+			if (pr == null) {
+				request.setAttribute("parcelNotfoundError", "No tracking information found for Tracking ID- " + pid);
+				request.getRequestDispatcher("trackingSearch.jsp").forward(request, response);
+				
+				return;
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+
+		}
+
 		request.getRequestDispatcher("trackingTimeline.jsp").forward(request, response);
 
 	}

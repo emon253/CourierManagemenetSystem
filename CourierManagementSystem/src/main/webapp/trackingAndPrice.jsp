@@ -22,8 +22,16 @@
 
 	<%
 	ParcelRequestDTO pRequest = (ParcelRequestDTO) session.getAttribute("parcelRequest");
-	System.out.println(pRequest);
 	%>
+
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      ...
+    </div>
+  </div>
+</div>
+
 
 	<div class="Main_body d-flex">
 		<div class="container-fluid">

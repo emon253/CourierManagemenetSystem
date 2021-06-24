@@ -46,7 +46,7 @@
 										<p>This is where it all goes down. You will compete head
 											to head with your friends and rivals. Get ready!</p>
 									</li>
-									<li class="event" data-date="8:30 - 9:30pm">
+									<li class="event" data-date="8:30 - 9:30pm ">
 										<h3>Closing Ceremony</h3>
 										<p>See how is the victor and who are the losers. The big
 											stage is where the winners bask in their own glory.</p>

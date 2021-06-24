@@ -10,7 +10,7 @@ public class ParcelRequest {
 	double parcelWeight;
 	String pickupAddress;
 	String deliveryAddress;
-	LocalDateTime requestedTime;
+	String requestedTime;
 	public ParcelRequest(String name, String email, long phone, double parcelWeight, String pickupAddress,
 			String deliveryAddress) {
 
@@ -71,10 +71,10 @@ public class ParcelRequest {
 	public void setParcelID(String parcelID) {
 		this.parcelID = parcelID;
 	}
-	public LocalDateTime getRequestedTime() {
+	public String getRequestedTime() {
 		return requestedTime;
 	}
-	public void setRequestedTime(LocalDateTime requestedTime) {
+	public void setRequestedTime(String requestedTime) {
 		this.requestedTime = requestedTime;
 	}
 	

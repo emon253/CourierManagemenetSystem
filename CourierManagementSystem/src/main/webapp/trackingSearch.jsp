@@ -16,7 +16,7 @@
 </head>
 <body>
 
-	<%@include file="includes/securedHeader.jsp"%>
+	<%@include file="includes/header.jsp"%>
 
 	<div class="bg d-flex">
 
@@ -26,7 +26,20 @@
 				<div class=" row contain2 mx-auto pr-5 pl-5">
 
 
-					<form action="TrackParcel" method = "post" class="was-validated mx-auto">
+					<form action="TrackParcel" method="post"
+						class="was-validated mx-auto">
+						<c:if test="${parcelNotfoundError != null }">
+							<div class="alert alert-dark alert-dismissible text-center">
+								 ${parcelNotfoundError}
+								<button type="button" class="close" data-dismiss="alert"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+						</c:if>
+
+
+
 						<div class="row">
 							<div class="col-12 mt-4 mb-5">
 								<div class="bgst">
@@ -37,8 +50,8 @@
 							<div class="col-lg-10">
 
 								<div class="form-group">
-									<input type="search" name="search" id="search-menu"
-										placeholder="Enter Order ID">
+									<input  type="text" name="search" required="required"
+										id="search-menu" placeholder="Enter Order ID">
 
 								</div>
 
