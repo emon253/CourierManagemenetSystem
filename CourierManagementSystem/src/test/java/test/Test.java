@@ -13,9 +13,13 @@ import javax.mail.MessagingException;
 import com.sun.jdi.connect.spi.Connection;
 
 import dbconnection.DBConnection;
+import repository.ParcelRequestRep;
+import repository.ParcelRequestRepImpl;
 import repository.UserRepository;
 import repository.UserRepositoryImpl;
 import service.OTPGenerator;
+import service.ParcelService;
+import service.ParcelServiceImpl;
 import service.UserService;
 import service.UserServiceImpl;
 
@@ -60,7 +64,12 @@ public class Test {
 //		
 //		System.out.println(ur.findUserByUserName("ddd"));
 
-	
+		ParcelRequestRep prr = new ParcelRequestRepImpl();
+		System.out.println(prr.fetchAllRequestedParcel().get(0).getpDivision());
+		
+	ParcelService ps = new ParcelServiceImpl(new ParcelRequestRepImpl());
+	System.out.println(ps.getAllRedquestedSortedbyLocationName().get(0).getpDivision());
+  
 
 	}
 

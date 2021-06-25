@@ -10,9 +10,12 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAccessor;
+import java.util.ArrayList;
+import java.util.List;
 
 import dbconnection.DBConnection;
 import domain.ParcelRequest;
+import domain.ParcelTracking;
 import dto.ParcelRequestDTO;
 
 public class ParcelRequestRepImpl implements ParcelRequestRep {
@@ -64,14 +67,44 @@ public class ParcelRequestRepImpl implements ParcelRequestRep {
 					+ rs.getString("pDivision") + "\n" + rs.getString("pFullAddress"));
 			pr.setDeliveryAddress(rs.getString("dSubDistrict") + ", " + rs.getString("dDistrict") + ", "
 					+ rs.getString("dDivision") + "\n" + rs.getString("dFullAddress"));
-			pr.setRequestedTime(new SimpleDateFormat("MM-dd-yyyy HH:mm aa").format(rs.getTimestamp("requestedTime")));
+			pr.setRequestedTime(new SimpleDateFormat("MM-dd-yyyy K:mm aa").format(rs.getTimestamp("requestedTime")));
 			return pr;
-		}else {
+		} else {
 			return null;
 		}
-		 
-		
 
+	}
+
+	@Override
+	public void saveSession(ParcelTracking parcelTracking) {
+
+	}
+
+	@Override
+	public ParcelTracking getSessionByPid(String pid) {
+		return null;
+	}
+
+	@Override
+	public List<ParcelRequestDTO> fetchAllRequestedParcel() throws ClassNotFoundException, SQLException {
+		String sql = "SELECT DISTINCT`pDivision`,`pDistrict`,`pSubDistrict`,`dDivision`,`dDistrict`,`dSubDistrict`,`pFullAddress`,`dFullAddress` FROM tbl_parcel_request;";
+		Connection connection = DBConnection.getConnection();
+		PreparedStatement statement = connection.prepareStatement(sql);
+		ResultSet rs = statement.executeQuery();
+
+		List<ParcelRequestDTO> list = new ArrayList<ParcelRequestDTO>();
+
+		while (rs.next()) {
+			ParcelRequestDTO parcel = extractParcel(rs);
+			list.add(parcel);
+		}
+		return list;
+	}
+
+	private ParcelRequestDTO extractParcel(ResultSet rs) throws NumberFormatException, SQLException {
+		return new ParcelRequestDTO("", "", 0, 0, rs.getString("pDivision"), rs.getString("pDistrict"),
+				rs.getString("pSubDistrict"), rs.getString("pFullAddress"), rs.getString("dDivision"),
+				rs.getString("dDistrict"), rs.getString("dSubDistrict"), rs.getString("dFullAddress"));
 	}
 
 }
