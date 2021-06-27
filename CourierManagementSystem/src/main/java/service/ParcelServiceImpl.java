@@ -7,6 +7,7 @@ import java.util.List;
 import domain.ParcelRequest;
 import domain.ParcelTracking;
 import dto.ParcelRequestDTO;
+import dto.TrackControlDto;
 import repository.ParcelRequestRep;
 import repository.ParcelRequestRepImpl;
 
@@ -27,12 +28,12 @@ public class ParcelServiceImpl implements ParcelService {
 	}
 
 	@Override
-	public void saveTrackingInformation(ParcelTracking parcelTracking) {
-		prr.saveSession(parcelTracking);
+	public void saveTrackingInformation(TrackControlDto tc) throws ClassNotFoundException, SQLException {
+		prr.saveSession(tc);
 	}
 
 	@Override
-	public ParcelTracking getParcelSessionSortedBytime(String pid) {
+	public List<ParcelTracking> getParcelSessionSortedBytime(String pid) throws ClassNotFoundException, SQLException {
 		
 		
 		return prr.getSessionByPid(pid);
@@ -40,6 +41,7 @@ public class ParcelServiceImpl implements ParcelService {
 
 	@Override
 	public List<ParcelRequestDTO> getAllRedquestedSortedbyLocationName() throws ClassNotFoundException, SQLException {
+		
 		List<ParcelRequestDTO> parcelList =  prr.fetchAllRequestedParcel();
 		
 	

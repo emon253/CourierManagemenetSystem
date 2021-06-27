@@ -33,10 +33,7 @@ public class ParcelRequestServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// request.getRequestDispatcher("parcelrequest.jsp").forward(request, response);
 		HttpSession session = request.getSession();
-//		if (request.getParameter("id").equals("confirmed")) {
-//			System.out.println(session.getAttribute("parcelrequest"));
-//			return;
-//		}
+
 		try {
 			ParcelRequestDTO pr = (ParcelRequestDTO) session.getAttribute("parcelRequest");
 

@@ -63,13 +63,13 @@ public class Test {
 //		System.out.println(ur.findUserbyEmail("emonchowdhury253@gmail.com"));
 //		
 //		System.out.println(ur.findUserByUserName("ddd"));
+//
+//		ParcelRequestRep prr = new ParcelRequestRepImpl();
+//		System.out.println(prr.fetchAllRequestedParcel().get(0).getpDivision());
 
-		ParcelRequestRep prr = new ParcelRequestRepImpl();
-		System.out.println(prr.fetchAllRequestedParcel().get(0).getpDivision());
-		
-	ParcelService ps = new ParcelServiceImpl(new ParcelRequestRepImpl());
-	System.out.println(ps.getAllRedquestedSortedbyLocationName().get(0).getpDivision());
-  
+		ParcelService ps = new ParcelServiceImpl(new ParcelRequestRepImpl());
+
+		System.out.println(ps.getParcelSessionSortedBytime("sdf").get(0).getPid());
 
 	}
 

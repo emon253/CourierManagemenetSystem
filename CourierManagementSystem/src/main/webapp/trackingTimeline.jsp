@@ -30,27 +30,16 @@
 							<h6 class="card-title">Timeline</h6>
 							<div id="content">
 								<ul class="timeline">
-									<li class="event" data-date="12:30 - 1:00pm">
-										<h3>Registration</h3>
-										<p>Get here on time, it's first come first serve. Be late,
-											get turned away.</p>
-									</li>
-									<li class="event" data-date="2:30 - 4:00pm">
-										<h3>Opening Ceremony</h3>
-										<p>Get ready for an exciting event, this will kick off in
-											amazing fashion with MOP &amp; Busta Rhymes as an opening
-											show.</p>
-									</li>
-									<li class="event" data-date="5:00 - 8:00pm">
-										<h3>Main Event</h3>
-										<p>This is where it all goes down. You will compete head
-											to head with your friends and rivals. Get ready!</p>
-									</li>
-									<li class="event" data-date="8:30 - 9:30pm ">
-										<h3>Closing Ceremony</h3>
-										<p>See how is the victor and who are the losers. The big
-											stage is where the winners bask in their own glory.</p>
-									</li>
+									<c:forEach items="${session}" var="parcel">
+
+										
+										<li class="event" data-date="${parcel.sessionTime}">
+											<h3>Registration</h3>
+											<p>${parcel.currentSession}</p>
+										</li>
+									</c:forEach>
+
+
 								</ul>
 							</div>
 						</div>
@@ -66,15 +55,15 @@
 						<hr class="mb-2"
 							style="height: 2px; background-color: red; width: 20%; margin: 0px;">
 						<h5>Tracking No:</h5>
-						<p> ${parcel.parcelID}</p>
+						<p>${parcel.parcelID}</p>
 						<h5>Customer Name:</h5>
-						<p> ${parcel.name}</p>
+						<p>${parcel.name}</p>
 						<h5>Pickup Point:</h5>
-						<p> ${parcel.pickupAddress}</p>
+						<p>${parcel.pickupAddress}</p>
 						<h5>Order date:</h5>
 						<p>${parcel.requestedTime}</p>
 						<h5>Destination Point:</h5>
-						<p> ${parcel.deliveryAddress}</p>
+						<p>${parcel.deliveryAddress}</p>
 					</div>
 				</div>
 			</div>

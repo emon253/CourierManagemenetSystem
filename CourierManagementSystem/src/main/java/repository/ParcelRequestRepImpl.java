@@ -17,6 +17,7 @@ import dbconnection.DBConnection;
 import domain.ParcelRequest;
 import domain.ParcelTracking;
 import dto.ParcelRequestDTO;
+import dto.TrackControlDto;
 
 public class ParcelRequestRepImpl implements ParcelRequestRep {
 
@@ -76,13 +77,26 @@ public class ParcelRequestRepImpl implements ParcelRequestRep {
 	}
 
 	@Override
-	public void saveSession(ParcelTracking parcelTracking) {
-
+	public void saveSession(TrackControlDto tc) throws ClassNotFoundException, SQLException {
+		String sql = "";
+		Connection connection = DBConnection.getConnection();
+		PreparedStatement statement = connection.prepareStatement(sql);
+		statement.executeUpdate();
 	}
 
 	@Override
-	public ParcelTracking getSessionByPid(String pid) {
-		return null;
+	public List<ParcelTracking> getSessionByPid(String pid) throws ClassNotFoundException, SQLException {
+		String sql = "SELECT * FROM `tbl_parcel_tracking` WHERE pid = '" + pid + "'";
+		Connection connection = DBConnection.getConnection();
+		PreparedStatement statement = connection.prepareStatement(sql);
+		ResultSet rs = statement.executeQuery();
+		List<ParcelTracking> list = new ArrayList<ParcelTracking>();
+		
+		while(rs.next()) {
+			ParcelTracking pt = new ParcelTracking(rs.getString("pid"),rs.getString("currentSession"),new SimpleDateFormat("MM-dd-yyyy K:mm aa").format(rs.getTimestamp("sessionTime")));
+			list.add(pt);
+		}
+		return list;
 	}
 
 	@Override
