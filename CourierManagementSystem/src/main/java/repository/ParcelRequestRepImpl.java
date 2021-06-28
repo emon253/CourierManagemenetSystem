@@ -78,10 +78,29 @@ public class ParcelRequestRepImpl implements ParcelRequestRep {
 
 	@Override
 	public void saveSession(TrackControlDto tc) throws ClassNotFoundException, SQLException {
-		String sql = "";
+		String sql1 = "SELECT `pid` FROM tbl_parcel_request WHERE `pDivision` = ? AND `pDistrict` = ? AND `pSubDistrict` = ? AND `dDivision` = ? AND `dDistrict`= ? AND `dSubDistrict` = ?;";
+		String sql2 = "INSERT INTO tbl_parcel_tracking(`pid`,`currentSession`) VALUES(?,?);";
 		Connection connection = DBConnection.getConnection();
-		PreparedStatement statement = connection.prepareStatement(sql);
-		statement.executeUpdate();
+		PreparedStatement statement1 = connection.prepareStatement(sql1);
+		statement1.setString(1, tc.getpDivision());
+		statement1.setString(2, tc.getpDistrict());
+		statement1.setString(3, tc.getpSubDistrict());
+		statement1.setString(4, tc.getdDivision());
+		statement1.setString(5, tc.getdDistrict());
+		statement1.setString(6, tc.getdSubDistrict());
+		System.out.println(statement1);
+
+		PreparedStatement statement2 = connection.prepareStatement(sql2);
+
+		ResultSet rs = statement1.executeQuery();
+		while (rs.next()) {
+			
+			String pid = rs.getString("pid");
+			System.out.println("pid = "+pid);
+			statement2.setString(1, pid);
+			statement2.setString(2, tc.getSessionMsg());
+			statement2.executeUpdate();
+		}
 	}
 
 	@Override
@@ -91,9 +110,10 @@ public class ParcelRequestRepImpl implements ParcelRequestRep {
 		PreparedStatement statement = connection.prepareStatement(sql);
 		ResultSet rs = statement.executeQuery();
 		List<ParcelTracking> list = new ArrayList<ParcelTracking>();
-		
-		while(rs.next()) {
-			ParcelTracking pt = new ParcelTracking(rs.getString("pid"),rs.getString("currentSession"),new SimpleDateFormat("MM-dd-yyyy K:mm aa").format(rs.getTimestamp("sessionTime")));
+
+		while (rs.next()) {
+			ParcelTracking pt = new ParcelTracking(rs.getString("pid"), rs.getString("currentSession"),
+					new SimpleDateFormat("MM-dd-yyyy K:mm aa").format(rs.getTimestamp("sessionTime")));
 			list.add(pt);
 		}
 		return list;

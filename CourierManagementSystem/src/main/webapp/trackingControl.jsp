@@ -228,11 +228,13 @@
 					<div class="col-sm-3 mx-auto">
 
 						<h6>Sub-district</h6>
-						<select name="dSubDistrict" id="pSubDistrict" class="form-control">
+						<select name="dSubDistrict" id="dSubDistrict" class="form-control">
 							<option value="">Select</option>
 
 							<c:forEach items="${list}" var="parcel">
-								<option></option>
+								<option>
+									<c:out value="${parcel.dSubDistrict}" />
+								</option>
 
 							</c:forEach>
 						</select>
@@ -287,19 +289,18 @@
 
 	</form>
 	<script type="text/javascript">
-		/* 	$('#pSubDistrict').change(function() {
-				console.log($(this).val());
-
-			}); */
-		/* 	$('#form').change(function() {
-				console.log($('#dSubDistrict').val());
-
-			}); */
-
-		/* 	$("#form").change(function(e) {
-				  const dp_value = $("#dSubDistrict").val();
-				  console.log(dp_value);
-				}); */
+		$("#form").on('submit', function(e) {
+			e.preventDefault();
+			var fData = $(this).serialize();
+			$.ajax({
+				url : "trackControl",
+				data : fData,
+				type : "POST",
+				success : function(data) {
+					console.log("data sent")
+				}
+			});
+		});
 
 		$("#session")
 				.on(
@@ -307,8 +308,9 @@
 						(function(e) {
 							var str1 = "Your parcel has been accepted by CMS, A pickup man will receive your Parcel soon";
 							var str2 = "Your parcel has received in your nearby hub. Will be delivered soon";
-							var str3="Your parcel is sending to your delivery loation";
-							var str4 = "We received your parcel in '"+ $("#dloc").val();
+							var str3 = "Your parcel is sending to your delivery loation";
+							var str4 = "We received your parcel in '"
+									+ $("#dloc").val();
 							var str5 = "A delivery man is out to deliver your parcel to your location"
 							var selectedItem = $(this).val();
 							if (selectedItem == "Accept requested parcel") {
@@ -322,11 +324,13 @@
 
 							} else if (selectedItem == "Parcel received in delivery hub") {
 								$("#sessionMsg").val(str4);
-							}else if (selectedItem == "Passing parcel to the delivery man") {
+							} else if (selectedItem == "Passing parcel to the delivery man") {
 								$("#sessionMsg").val(str5);
-								
-							}else{
-								$("#sessionMsg").val("Your parcel is successfully delivered");
+
+							} else {
+								$("#sessionMsg")
+										.val(
+												"Your parcel is successfully delivered");
 
 							}
 

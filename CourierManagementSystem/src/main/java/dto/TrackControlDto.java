@@ -10,33 +10,25 @@ public class TrackControlDto {
 
 	private String pSubDistrict;
 
-	private String pFullAddress;
-
 	private String dDivision;
 
 	private String dDistrict;
 
 	private String dSubDistrict;
 
-	private String dFullAddress;
-	
 	private String sessionMsg;
-	
+
 	private int overvationCount;
 
-
-
-	public TrackControlDto(String pDivision, String pDistrict, String pSubDistrict, String pFullAddress,
-			String dDivision, String dDistrict, String dSubDistrict, String dFullAddress, String sessionMsg,
-			int overvationCount) {
+	public TrackControlDto(String pDivision, String pDistrict, String pSubDistrict, String dDivision, String dDistrict,
+			String dSubDistrict, String sessionMsg, int overvationCount) {
+		super();
 		this.pDivision = pDivision;
 		this.pDistrict = pDistrict;
 		this.pSubDistrict = pSubDistrict;
-		this.pFullAddress = pFullAddress;
 		this.dDivision = dDivision;
 		this.dDistrict = dDistrict;
 		this.dSubDistrict = dSubDistrict;
-		this.dFullAddress = dFullAddress;
 		this.sessionMsg = sessionMsg;
 		this.overvationCount = overvationCount;
 	}
@@ -65,14 +57,6 @@ public class TrackControlDto {
 		this.pSubDistrict = pSubDistrict;
 	}
 
-	public String getpFullAddress() {
-		return pFullAddress;
-	}
-
-	public void setpFullAddress(String pFullAddress) {
-		this.pFullAddress = pFullAddress;
-	}
-
 	public String getdDivision() {
 		return dDivision;
 	}
@@ -97,14 +81,6 @@ public class TrackControlDto {
 		this.dSubDistrict = dSubDistrict;
 	}
 
-	public String getdFullAddress() {
-		return dFullAddress;
-	}
-
-	public void setdFullAddress(String dFullAddress) {
-		this.dFullAddress = dFullAddress;
-	}
-
 	public int getOvervationCount() {
 		return overvationCount;
 	}
@@ -120,6 +96,12 @@ public class TrackControlDto {
 	public void setSessionMsg(String sessionMsg) {
 		this.sessionMsg = sessionMsg;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "TrackControlDto [pDivision=" + pDivision + ", pDistrict=" + pDistrict + ", pSubDistrict=" + pSubDistrict
+				+ ", dDivision=" + dDivision + ", dDistrict=" + dDistrict + ", dSubDistrict=" + dSubDistrict
+				+ ", sessionMsg=" + sessionMsg + ", overvationCount=" + overvationCount + "]";
+	}
+
 }
