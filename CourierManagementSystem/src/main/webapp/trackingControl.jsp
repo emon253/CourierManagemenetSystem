@@ -119,6 +119,9 @@
 	<!--navbar ...................   ends-->
 
 	<%
+	//List<String> list = (List<String>) request.getAttribute("pDiv");
+	System.out.println(request.getAttribute("pDiv"));
+
 	ParcelService service = new ParcelServiceImpl(new ParcelRequestRepImpl());
 	List<ParcelRequestDTO> parcelList = service.getAllRedquestedSortedbyLocationName();
 	request.setAttribute("list", parcelList);
@@ -139,45 +142,33 @@
 					<div class="col-sm-3 mx-auto">
 
 						<h6>Division</h6>
-						<select name="pDivision" class="form-control">
-							<option value="">Select</option>
+						<select name="pDivision" id="pDivision" class="form-control">
+							<option value="default" disabled selected>Select</option>
 
 							<c:forEach items="${list}" var="parcel">
 								<option>
 									<c:out value="${parcel.pDivision}" />
 								</option>
 
-							</c:forEach>
+							</c:forEach> disabled selected
 
 						</select>
 					</div>
 					<div class="col-sm-3 mx-auto">
 
 						<h6>District</h6>
-						<select name="pDistrict" class="form-control">
-							<option value="">Select</option>
+						<select name="pDistrict" id="pDistrict" class="form-control">
+							<option value="default" disabled selected>Select</option>
 
-							<c:forEach items="${list}" var="parcel">
-								<option>
-									<c:out value="${parcel.pDistrict}" />
-								</option>
-
-							</c:forEach>
 
 						</select>
 					</div>
 					<div class="col-sm-3 mx-auto">
 
 						<h6>Sub-district</h6>
-						<select name="pSubDistrict" class="form-control">
-							<option value="">Select</option>
+						<select name="pSubDistrict" id="pSubDistrict" class="form-control">
+							<option value="default" disabled selected>Select</option>
 
-							<c:forEach items="${list}" var="parcel">
-								<option>
-									<c:out value="${parcel.pSubDistrict}" />
-								</option>
-
-							</c:forEach>
 						</select>
 					</div>
 				</div>
@@ -199,44 +190,26 @@
 					<div class="col-sm-3 mx-auto">
 
 						<h6>Division</h6>
-						<select name="dDivision" class="form-control">
-							<option value="">Select</option>
+						<select name="dDivision" id="dDivision" class="form-control">
+							<option value="default" disabled selected>Select</option>
 
-							<c:forEach items="${list}" var="parcel">
-								<option>
-									<c:out value="${parcel.dDivision}" />
-								</option>
-
-							</c:forEach>
 						</select>
 					</div>
 					<div class="col-sm-3 mx-auto">
 
 						<h6>District</h6>
-						<select name="dDistrict" class="form-control">
+						<select name="dDistrict" id="dDistrict" class="form-control">
+							<option value="default" disabled selected>Select</option>
 
-							<option value="">Select</option>
 
-							<c:forEach items="${list}" var="parcel">
-								<option>
-									<c:out value="${parcel.dDistrict}" />
-								</option>
-
-							</c:forEach>
 						</select>
 					</div>
 					<div class="col-sm-3 mx-auto">
 
 						<h6>Sub-district</h6>
 						<select name="dSubDistrict" id="dSubDistrict" class="form-control">
-							<option value="">Select</option>
+							<option value="default" disabled selected>Select</option>
 
-							<c:forEach items="${list}" var="parcel">
-								<option>
-									<c:out value="${parcel.dSubDistrict}" />
-								</option>
-
-							</c:forEach>
 						</select>
 					</div>
 				</div>
@@ -289,19 +262,187 @@
 
 	</form>
 	<script type="text/javascript">
+
 		$("#form").on('submit', function(e) {
-			e.preventDefault();
 			var fData = $(this).serialize();
+
+			e.preventDefault();
 			$.ajax({
 				url : "trackControl",
 				data : fData,
 				type : "POST",
-				success : function(data) {
-					console.log("data sent")
+				success : function(res) {
+					console.log(res)
 				}
 			});
 		});
+		$("#pDivision")
+				.change(
+						function(e) {
+							var fData = $('#form').serialize();
+							$('#pDistrict').find('option').remove();
+							$('#pDistrict')
+									.append(
+											'<option value="default" disabled selected>Select</option>');
+							$
+									.ajax({
+										url : "trackControl",
+										dataType : "json",
+										type : "GET",
+										data : fData,
+										success : function(data) {
+											var val = $
+													.parseJSON(data[0].pDistrict)
+											for (i = 0; i < val.length; i++) {
+												$('#pDistrict').append(
+														'<option>' + val[i]
+																+ '</option>');
 
+											}
+										},
+										error : function() {
+											$('#pDistrict')
+													.append(
+															'<option value="default" disabled selected>No district found</option>');
+										}
+									});
+						});
+		$("#pDistrict")
+				.change(
+						function(e) {
+							var fData = $('#form').serialize();
+							$('#pSubDistrict').find('option').remove();
+							$('#pSubDistrict')
+									.append(
+											'<option value="default" disabled selected>Select</option>');
+							$
+									.ajax({
+										url : "trackControl",
+										dataType : "json",
+										type : "GET",
+										data : fData,
+										success : function(data) {
+											var val = $
+													.parseJSON(data[0].pSubDistrict)
+											for (i = 0; i < val.length; i++) {
+												$('#pSubDistrict').append(
+														'<option>' + val[i]
+																+ '</option>');
+
+											}
+										},
+										error : function() {
+											console.log("error...........")
+
+											$('#pSubDistrict')
+													.append(
+															'<option value="default" disabled selected>No Sub district found</option>');
+										}
+									});
+						});
+
+		$("#pSubDistrict")
+				.change(
+						function(e) {
+							var fData = $('#form').serialize();
+							$('#dDivision').find('option').remove();
+							$('#dDivision')
+									.append(
+											'<option value="default" disabled selected>Select</option>');
+							$
+									.ajax({
+										url : "trackControl",
+										dataType : "json",
+										type : "GET",
+										data : fData,
+										success : function(data) {
+											var val = $
+													.parseJSON(data[0].dDivision)
+											for (i = 0; i < val.length; i++) {
+												$('#dDivision').append(
+														'<option>' + val[i]
+																+ '</option>');
+
+											}
+										},
+										error : function() {
+											console.log("error...........")
+
+											$('#dDivision')
+													.append(
+															'<option value="default" disabled selected>No Sub district found</option>');
+										}
+									});
+						});
+
+		$("#dDivision")
+				.change(
+						function(e) {
+							var fData = $('#form').serialize();
+							$('#dDistrict').find('option').remove();
+							$('#dDistrict')
+									.append(
+											'<option value="default" disabled selected>Select</option>');
+							$
+									.ajax({
+										url : "trackControl",
+										dataType : "json",
+										type : "GET",
+										data : fData,
+										success : function(data) {
+											var val = $
+													.parseJSON(data[0].dDistrict)
+											for (i = 0; i < val.length; i++) {
+												$('#dDistrict').append(
+														'<option>' + val[i]
+																+ '</option>');
+
+											}
+										},
+										error : function() {
+											console.log("error...........")
+
+											$('#dDistrict')
+													.append(
+															'<option value="default" disabled selected>No Sub district found</option>');
+										}
+									});
+						});
+
+		$("#dDistrict")
+		.change(
+				function(e) {
+					var fData = $('#form').serialize();
+					$('#dSubDistrict').find('option').remove();
+					$('#dSubDistrict')
+							.append(
+									'<option value="default" disabled selected>Select</option>');
+					$
+							.ajax({
+								url : "trackControl",
+								dataType : "json",
+								type : "GET",
+								data : fData,
+								success : function(data) {
+									var val = $
+											.parseJSON(data[0].dSubDistrict)
+									for (i = 0; i < val.length; i++) {
+										$('#dSubDistrict').append(
+												'<option>' + val[i]
+														+ '</option>');
+
+									} 
+								},
+								error : function() {
+									console.log("error...........")
+
+									$('#dSubDistrict')
+											.append(
+													'<option value="default" disabled selected>No Sub district found</option>');
+								}
+							});
+				});
+		
 		$("#session")
 				.on(
 						'change',

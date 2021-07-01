@@ -33,6 +33,9 @@ public class TrackControlDto {
 		this.overvationCount = overvationCount;
 	}
 
+	public TrackControlDto() {
+	}
+
 	public String getpDivision() {
 		return pDivision;
 	}

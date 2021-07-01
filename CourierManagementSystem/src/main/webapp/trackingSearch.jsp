@@ -9,6 +9,11 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/Traking.css">
@@ -26,17 +31,24 @@
 				<div class=" row contain2 mx-auto pr-5 pl-5">
 
 
-					<form action="TrackParcel" method="post"
+					<form id="form" action="TrackParcel" method="post"
 						class="was-validated mx-auto">
-						<c:if test="${parcelNotfoundError != null }">
-							<div class="alert alert-dark alert-dismissible text-center">
-								 ${parcelNotfoundError}
-								<button type="button" class="close" data-dismiss="alert"
-									aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-						</c:if>
+						<div class="d-flex justify-content-center">
+							<c:if test="${parcelNotfoundError != null }">
+
+
+								<div class="toast" role="alert" data-animation="true"
+									aria-live="polite" aria-atomic="true" data-delay="3000">
+									<div class="toast-body">
+										<div class="text-center">${parcelNotfoundError}</div>
+									</div>
+								</div>
+
+							</c:if>
+
+						</div>
+
+
 
 
 
@@ -50,7 +62,7 @@
 							<div class="col-lg-10">
 
 								<div class="form-group">
-									<input  type="text" name="search" required="required"
+									<input type="text" name="search" required="required"
 										id="search-menu" placeholder="Enter Order ID">
 
 								</div>
@@ -81,7 +93,15 @@
 
 
 	</div>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('.toast').toast('show');
 
+		});
+		
+		
+		
+	</script>
 	<footer>
 		<%@include file="/includes/footer.jsp"%></footer>
 

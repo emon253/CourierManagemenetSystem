@@ -16,7 +16,21 @@ public interface ParcelRequestRep {
 	void saveSession(TrackControlDto tc) throws ClassNotFoundException, SQLException;
 
 	List<ParcelTracking> getSessionByPid(String pid) throws ClassNotFoundException, SQLException;
-	
+
 	List<ParcelRequestDTO> fetchAllRequestedParcel() throws ClassNotFoundException, SQLException;
-	
+
+	List<String> getAllpDivition() throws ClassNotFoundException, SQLException;
+
+	List<String> getAllpDistrict(String division) throws ClassNotFoundException, SQLException;
+
+	List<String> getAllpSubDistrict(String division, String district) throws ClassNotFoundException, SQLException;
+
+	List<String> getAlldDivition(String pDiv, String pDis, String psDis) throws ClassNotFoundException, SQLException;
+
+	List<String> getAlldDistrict(String pDiv, String pDis, String psDis, String dDiv)
+			throws ClassNotFoundException, SQLException;
+
+	List<String> getAlldSubDistrict(String pDiv, String pDis, String psDis, String dDiv, String dDis)
+			throws ClassNotFoundException, SQLException;
+
 }

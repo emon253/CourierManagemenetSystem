@@ -68,7 +68,7 @@ public class ParcelRequestRepImpl implements ParcelRequestRep {
 					+ rs.getString("pDivision") + "\n" + rs.getString("pFullAddress"));
 			pr.setDeliveryAddress(rs.getString("dSubDistrict") + ", " + rs.getString("dDistrict") + ", "
 					+ rs.getString("dDivision") + "\n" + rs.getString("dFullAddress"));
-			pr.setRequestedTime(new SimpleDateFormat("MM-dd-yyyy K:mm aa").format(rs.getTimestamp("requestedTime")));
+			pr.setRequestedTime(new SimpleDateFormat("dd-MM-yyyy K:mm aa").format(rs.getTimestamp("requestedTime")));
 			return pr;
 		} else {
 			return null;
@@ -94,9 +94,9 @@ public class ParcelRequestRepImpl implements ParcelRequestRep {
 
 		ResultSet rs = statement1.executeQuery();
 		while (rs.next()) {
-			
+
 			String pid = rs.getString("pid");
-			System.out.println("pid = "+pid);
+			System.out.println("pid = " + pid);
 			statement2.setString(1, pid);
 			statement2.setString(2, tc.getSessionMsg());
 			statement2.executeUpdate();
@@ -113,7 +113,7 @@ public class ParcelRequestRepImpl implements ParcelRequestRep {
 
 		while (rs.next()) {
 			ParcelTracking pt = new ParcelTracking(rs.getString("pid"), rs.getString("currentSession"),
-					new SimpleDateFormat("MM-dd-yyyy K:mm aa").format(rs.getTimestamp("sessionTime")));
+					new SimpleDateFormat("dd-MM-yyyy K:mm aa").format(rs.getTimestamp("sessionTime")));
 			list.add(pt);
 		}
 		return list;
@@ -139,6 +139,114 @@ public class ParcelRequestRepImpl implements ParcelRequestRep {
 		return new ParcelRequestDTO("", "", 0, 0, rs.getString("pDivision"), rs.getString("pDistrict"),
 				rs.getString("pSubDistrict"), rs.getString("pFullAddress"), rs.getString("dDivision"),
 				rs.getString("dDistrict"), rs.getString("dSubDistrict"), rs.getString("dFullAddress"));
+	}
+
+	@Override
+	public List<String> getAllpDivition() throws ClassNotFoundException, SQLException {
+		String sql = "SELECT DISTINCT `pDivision` FROM `tbl_parcel_request` WHERE `states` != 'Delivered';";
+		Connection connection = DBConnection.getConnection();
+		PreparedStatement statement = connection.prepareStatement(sql);
+		ResultSet rs = statement.executeQuery();
+		List<String> list = new ArrayList<String>();
+		while (rs.next()) {
+			list.add(rs.getString("pDivision"));
+		}
+		return list;
+	}
+
+	@Override
+	public List<String> getAllpDistrict(String division) throws ClassNotFoundException, SQLException {
+		String sql = "SELECT `pDistrict` FROM `tbl_parcel_request` WHERE `pDivision` = '" + division
+				+ "' AND `states` != 'Delivered';";
+
+		Connection connection = DBConnection.getConnection();
+		PreparedStatement statement = connection.prepareStatement(sql);
+		List<String> list = new ArrayList<String>();
+		ResultSet rs = statement.executeQuery();
+		while (rs.next()) {
+			list.add(rs.getString("pDistrict"));
+		}
+		return list;
+	}
+
+	@Override
+	public List<String> getAllpSubDistrict(String division, String district)
+			throws ClassNotFoundException, SQLException {
+		String sql = "SELECT `pSubDistrict` FROM `tbl_parcel_request` WHERE `pDivision` = ? AND `pDistrict` = ? AND `states` != 'Delivered';";
+
+		Connection connection = DBConnection.getConnection();
+		PreparedStatement statement = connection.prepareStatement(sql);
+		statement.setString(1, division);
+		statement.setString(2, district);
+		List<String> list = new ArrayList<String>();
+
+		ResultSet rs = statement.executeQuery();
+		while (rs.next()) {
+			list.add(rs.getString("pSubDistrict"));
+		}
+		return list;
+	}
+
+
+
+	@Override
+	public List<String> getAlldDivition(String pDiv, String pDis, String psDis)
+			throws ClassNotFoundException, SQLException {
+		String sql = "SELECT DISTINCT `dDivision` FROM `tbl_parcel_request` WHERE pDivision=? AND pDistrict = ? AND pSubDistrict = ? AND `states` != 'Delivered';";
+		Connection connection = DBConnection.getConnection();
+		PreparedStatement statement = connection.prepareStatement(sql);
+		statement.setString(1, pDiv);
+		statement.setString(2, pDis);
+		statement.setString(3, psDis);
+		
+		ResultSet rs = statement.executeQuery();
+		List<String> list = new ArrayList<String>();
+		while (rs.next()) {
+			list.add(rs.getString("dDivision"));
+		}
+		return list;
+	}
+
+	@Override
+	public List<String> getAlldDistrict(String pDiv, String pDis, String psDis, String dDiv)
+			throws ClassNotFoundException, SQLException {
+		String sql = "SELECT DISTINCT `dDistrict` FROM `tbl_parcel_request` WHERE pDivision=? AND pDistrict = ? AND pSubDistrict = ? AND dDivision = ? AND `states` != 'Delivered';";
+		Connection connection = DBConnection.getConnection();
+		PreparedStatement statement = connection.prepareStatement(sql);
+		statement.setString(1, pDiv);
+		statement.setString(2, pDis);
+		statement.setString(3, psDis);
+		statement.setString(4, dDiv);
+		ResultSet rs = statement.executeQuery();
+		List<String> list = new ArrayList<String>();
+
+		while (rs.next()) {
+			list.add(rs.getString("dDistrict"));
+		}
+		return list;
+	}
+
+	@Override
+	public List<String> getAlldSubDistrict(String pDiv, String pDis, String psDis, String dDiv, String dDis)
+			throws ClassNotFoundException, SQLException {
+		
+		String sql = "SELECT DISTINCT `dSubDistrict` FROM `tbl_parcel_request` WHERE pDivision=? AND pDistrict = ? AND pSubDistrict = ? AND dDivision = ? AND dDistrict = ? AND `states` != 'Delivered';";
+		Connection connection = DBConnection.getConnection();
+		PreparedStatement statement = connection.prepareStatement(sql);
+		statement.setString(1, pDiv);
+		statement.setString(2, pDis);
+		statement.setString(3, psDis);
+		statement.setString(4, dDiv);
+		statement.setString(5, dDis);
+//		System.out.println(statement);
+
+		
+		List<String> list = new ArrayList<String>();
+		ResultSet rs = statement.executeQuery();
+		while (rs.next()) {
+			list.add(rs.getString("dSubDistrict"));
+		}
+		return list;
 	}
 
 }

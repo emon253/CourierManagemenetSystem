@@ -1,8 +1,2 @@
-/dbconnection/
-/domain/
-/dto/
-/repository/
-/service/
 /servlets/
-/admin/
-/admin_servlets/
+/repository/
