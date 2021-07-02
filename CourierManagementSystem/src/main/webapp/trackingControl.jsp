@@ -19,7 +19,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"
+	rel="stylesheet" />
+
 <link rel="stylesheet" href="TrackingControll.css">
+
 <title>Tracking Control Admin</title>
 
 <script
@@ -262,7 +267,6 @@
 
 	</form>
 	<script type="text/javascript">
-
 		$("#form").on('submit', function(e) {
 			var fData = $(this).serialize();
 
@@ -272,7 +276,7 @@
 				data : fData,
 				type : "POST",
 				success : function(res) {
-					console.log(res)
+				
 				}
 			});
 		});
@@ -410,39 +414,39 @@
 						});
 
 		$("#dDistrict")
-		.change(
-				function(e) {
-					var fData = $('#form').serialize();
-					$('#dSubDistrict').find('option').remove();
-					$('#dSubDistrict')
-							.append(
-									'<option value="default" disabled selected>Select</option>');
-					$
-							.ajax({
-								url : "trackControl",
-								dataType : "json",
-								type : "GET",
-								data : fData,
-								success : function(data) {
-									var val = $
-											.parseJSON(data[0].dSubDistrict)
-									for (i = 0; i < val.length; i++) {
-										$('#dSubDistrict').append(
-												'<option>' + val[i]
-														+ '</option>');
+				.change(
+						function(e) {
+							var fData = $('#form').serialize();
+							$('#dSubDistrict').find('option').remove();
+							$('#dSubDistrict')
+									.append(
+											'<option value="default" disabled selected>Select</option>');
+							$
+									.ajax({
+										url : "trackControl",
+										dataType : "json",
+										type : "GET",
+										data : fData,
+										success : function(data) {
+											var val = $
+													.parseJSON(data[0].dSubDistrict)
+											for (i = 0; i < val.length; i++) {
+												$('#dSubDistrict').append(
+														'<option>' + val[i]
+																+ '</option>');
 
-									} 
-								},
-								error : function() {
-									console.log("error...........")
+											}
+										},
+										error : function() {
+											console.log("error...........")
 
-									$('#dSubDistrict')
-											.append(
-													'<option value="default" disabled selected>No Sub district found</option>');
-								}
-							});
-				});
-		
+											$('#dSubDistrict')
+													.append(
+															'<option value="default" disabled selected>No Sub district found</option>');
+										}
+									});
+						});
+
 		$("#session")
 				.on(
 						'change',
@@ -477,6 +481,10 @@
 
 						}));
 	</script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
+
 	<%@include file="/includes/footer.jsp"%>
 </body>
 </html>
