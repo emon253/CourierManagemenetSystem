@@ -4,17 +4,23 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 public class TrackControlDto {
+	@NotEmpty
 	private String pDivision;
-
+	@NotEmpty
 	private String pDistrict;
+	@NotEmpty
 
 	private String pSubDistrict;
+	@NotEmpty
 
 	private String dDivision;
+	@NotEmpty
 
 	private String dDistrict;
+	@NotEmpty
 
 	private String dSubDistrict;
+	@NotEmpty
 
 	private String sessionMsg;
 

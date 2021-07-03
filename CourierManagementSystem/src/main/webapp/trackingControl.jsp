@@ -266,6 +266,7 @@
 		</div>
 
 	</form>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" ></script>
 	<script type="text/javascript">
 		$("#form").on('submit', function(e) {
 			var fData = $(this).serialize();
@@ -275,8 +276,14 @@
 				url : "trackControl",
 				data : fData,
 				type : "POST",
-				success : function(res) {
-				
+				success : function(response) {
+					if (response.trim() == 'success') {
+						swal("Success", "Tracking session updated ", "success");
+
+					}else{
+						swal("Fail", "Something went wrong", "error");
+
+					}
 				}
 			});
 		});
@@ -288,8 +295,7 @@
 							$('#pDistrict')
 									.append(
 											'<option value="default" disabled selected>Select</option>');
-							$
-									.ajax({
+							$.ajax({
 										url : "trackControl",
 										dataType : "json",
 										type : "GET",
