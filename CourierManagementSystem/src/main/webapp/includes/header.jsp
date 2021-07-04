@@ -142,9 +142,13 @@
 									</c:if>
 								</div>
 
-								<div class="modal-footer mx-auto">
+								<div class=" d-flex justify-content-center">
 									<!--button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button-->
+
 									<button type="submit" class="btn btn-primary mx-auto" >Login</button>
+
+									<!-- button type="submit" class="btn btn-primary ">Login</button-->
+
 								</div>
 							</form>
 						</div>
@@ -153,7 +157,7 @@
 			</div>
 
 			<div style="text-align: center;" class="pt-1 pb-3">
-				<a href="#"><p>forgot password?</p></a>Or<a href="#"><h6>sign
+				<a href="#"><p>forgot password?</p></a>Or<a href="signup.jsp"><h6>sign
 						up</h6></a>
 			</div>
 		</div>
