@@ -4,25 +4,32 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 public class TrackControlDto {
+	@NotEmpty
 	private String pDivision;
-
+	@NotEmpty
 	private String pDistrict;
+	@NotEmpty
 
 	private String pSubDistrict;
+	@NotEmpty
 
 	private String dDivision;
+	@NotEmpty
 
 	private String dDistrict;
+	@NotEmpty
 
 	private String dSubDistrict;
+	@NotEmpty
 
 	private String sessionMsg;
-
+	
+	private String states;
+	
 	private int overvationCount;
 
 	public TrackControlDto(String pDivision, String pDistrict, String pSubDistrict, String dDivision, String dDistrict,
 			String dSubDistrict, String sessionMsg, int overvationCount) {
-		super();
 		this.pDivision = pDivision;
 		this.pDistrict = pDistrict;
 		this.pSubDistrict = pSubDistrict;
@@ -100,11 +107,21 @@ public class TrackControlDto {
 		this.sessionMsg = sessionMsg;
 	}
 
+	public String getStates() {
+		return states;
+	}
+
+	public void setStates(String states) {
+		this.states = states;
+	}
+
 	@Override
 	public String toString() {
 		return "TrackControlDto [pDivision=" + pDivision + ", pDistrict=" + pDistrict + ", pSubDistrict=" + pSubDistrict
 				+ ", dDivision=" + dDivision + ", dDistrict=" + dDistrict + ", dSubDistrict=" + dSubDistrict
-				+ ", sessionMsg=" + sessionMsg + ", overvationCount=" + overvationCount + "]";
+				+ ", sessionMsg=" + sessionMsg + ", states=" + states + ", overvationCount=" + overvationCount + "]";
 	}
+
+	
 
 }

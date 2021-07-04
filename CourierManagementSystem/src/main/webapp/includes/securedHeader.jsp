@@ -16,10 +16,12 @@
 				</ul>
 				<%
 				} else {
-				response.sendRedirect("login.jsp");
+					request.setAttribute("loginMsg", "Please login first");
+				response.sendRedirect("home.jsp");
 				%>
+				
 				<ul class="x xx">
-					<li><a href="login.jsp">log in |</a></li>
+					<li><a href="home.jsp">log in |</a></li>
 					<li class="ml-4"><a href="signup.jsp">Create Account</a></li>
 				</ul>
 

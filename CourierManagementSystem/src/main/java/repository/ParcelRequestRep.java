@@ -32,5 +32,9 @@ public interface ParcelRequestRep {
 
 	List<String> getAlldSubDistrict(String pDiv, String pDis, String psDis, String dDiv, String dDis)
 			throws ClassNotFoundException, SQLException;
+	
+	int getTotalNumberofRequest(TrackControlDto tc) throws ClassNotFoundException, SQLException;
+
+	
 
 }

@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getRequestDispatcher("/login.jsp").forward(request, response);
+		request.getRequestDispatcher("/home.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -38,11 +38,11 @@ public class LoginServlet extends HttpServlet {
 		}
 		try {
 			login(loginDto, request);
-			response.sendRedirect("home.jsp");
+			//response.sendRedirect("home.jsp");
+			response.getWriter().write("success");
 		} catch (NoSuchAlgorithmException | ClassNotFoundException | UserPrincipalNotFoundException | SQLException e) {
 			errors.put("userloginError", "Incorrect user name or Password");
 			request.setAttribute("errors", errors);
-			request.getRequestDispatcher("/login.jsp").forward(request, response);
 
 		}
 	}

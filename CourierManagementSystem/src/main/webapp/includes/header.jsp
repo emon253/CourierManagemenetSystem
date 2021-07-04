@@ -18,7 +18,8 @@
 				} else {
 				%>
 				<ul class="x xx">
-					<li><a href="" data-toggle="modal" data-target="#exampleModal">log in |</a></li>
+					<li><a href="" data-toggle="modal" data-target="#exampleModal">log
+							in |</a></li>
 					<li class="ml-4"><a href="signup.jsp">Create Account</a></li>
 				</ul>
 
@@ -82,58 +83,79 @@
 	</div>
 </nav>
 
-    <div id="PopoverContent" style="display: none;">
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Recipient's username"
-                aria-label="Recipient's username with two button addons" aria-describedby="button-addon1">
-            <div class="input-group-append" id="button-addon1">
-                <button class="btn btn-outline-primary" type="button" data-toggle="popover" data-placement="bottom"
-                    data-html="true" data-title="Search">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-        </div>
-    </div>
+<div id="PopoverContent" style="display: none;">
+	<div class="input-group">
+		<input type="text" class="form-control"
+			placeholder="Recipient's username"
+			aria-label="Recipient's username with two button addons"
+			aria-describedby="button-addon1">
+		<div class="input-group-append" id="button-addon1">
+			<button class="btn btn-outline-primary" type="button"
+				data-toggle="popover" data-placement="bottom" data-html="true"
+				data-title="Search">
+				<i class="fas fa-search"></i>
+			</button>
+		</div>
+	</div>
+</div>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title mx-auto pl-5"  id="exampleModalLabel ">Login</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group ">
-                                    <label for="usr">Email</label>
-                                    <input type="email" class="form-control" placeholder="Email"
-                                        aria-label="Recipient's username with two button addons"
-                                        aria-describedby="button-addon4">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title mx-auto pl-5" id="exampleModalLabel ">Login</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="container">
+					<div class="row">
+						<div class="col">
+							<form id="loginForm" action="login" method="post">
+						<small    class="text-danger text-centre" id="errorMsg" ></small >
+ 
+								<div class="form-group ">
+									<label for="usr">Email</label> <input type="email"
+										class="form-control" name="email"
+										placeholder="Enter your Email / User name"
+										aria-label="Recipient's username with two button addons"
+										aria-describedby="button-addon4">
+									<c:if test="${errors.email != null }">
 
-                                </div>
-                                <div class="form-group">
-                                    <label for="pwd"> Password</label>
-                                    <input type="password" class="form-control" placeholder="password"
-                                        aria-label="Recipient's username with two button addons"
-                                        aria-describedby="button-addon4">
+										<small class="text-danger">${errors.email}</small>
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer mx-auto">
-                    <!--button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button-->
-                    <button type="button" class="btn btn-primary">Login</button>
-                </div>
-                <div style="text-align: center;" class="pt-1 pb-3">
-                  <a href="#"><p>forgot password?</p></a>Or<a href="#"><h6>sign up</h6></a>
-                </div>
-            </div>
-        </div>
-    </div>
+									</c:if>
+								</div>
+								<div class="form-group">
+									<label for="pwd"> Password</label> <input type="password"
+										class="form-control" name="password"
+										placeholder="Enter your Password"
+										aria-label="Recipient's username with two button addons"
+										aria-describedby="button-addon4">
+									<c:if test="${errors.password != null }">
+
+										<small class="text-danger">${errors.password}</small>
+
+									</c:if>
+								</div>
+
+								<div class="modal-footer mx-auto">
+									<!--button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button-->
+									<button type="submit" class="btn btn-primary mx-auto" >Login</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div style="text-align: center;" class="pt-1 pb-3">
+				<a href="#"><p>forgot password?</p></a>Or<a href="#"><h6>sign
+						up</h6></a>
+			</div>
+		</div>
+	</div>
+</div>

@@ -41,8 +41,6 @@ public class ParcelRequestRepImpl implements ParcelRequestRep {
 		statement.setString(12, pr.getpFullAddress());
 		statement.setString(13, pr.getdFullAddress());
 
-		System.out.println(statement);
-
 		if (statement.executeUpdate() > 0) {
 			connection.close();
 			return true;
@@ -80,6 +78,7 @@ public class ParcelRequestRepImpl implements ParcelRequestRep {
 	public void saveSession(TrackControlDto tc) throws ClassNotFoundException, SQLException {
 		String sql1 = "SELECT `pid` FROM tbl_parcel_request WHERE `pDivision` = ? AND `pDistrict` = ? AND `pSubDistrict` = ? AND `dDivision` = ? AND `dDistrict`= ? AND `dSubDistrict` = ?;";
 		String sql2 = "INSERT INTO tbl_parcel_tracking(`pid`,`currentSession`) VALUES(?,?);";
+		String sql3 = "UPDATE `tbl_parcel_request` SET `states` = ? WHERE `tbl_parcel_request`.`pid` = ?";
 		Connection connection = DBConnection.getConnection();
 		PreparedStatement statement1 = connection.prepareStatement(sql1);
 		statement1.setString(1, tc.getpDivision());
@@ -88,18 +87,23 @@ public class ParcelRequestRepImpl implements ParcelRequestRep {
 		statement1.setString(4, tc.getdDivision());
 		statement1.setString(5, tc.getdDistrict());
 		statement1.setString(6, tc.getdSubDistrict());
-		System.out.println(statement1);
 
 		PreparedStatement statement2 = connection.prepareStatement(sql2);
 
+		PreparedStatement statement3 = connection.prepareStatement(sql3);
 		ResultSet rs = statement1.executeQuery();
 		while (rs.next()) {
 
 			String pid = rs.getString("pid");
-			System.out.println("pid = " + pid);
 			statement2.setString(1, pid);
 			statement2.setString(2, tc.getSessionMsg());
+
+			statement3.setString(1, tc.getStates());
+			statement3.setString(2, pid);
+
 			statement2.executeUpdate();
+			statement3.executeUpdate();
+
 		}
 	}
 
@@ -187,8 +191,6 @@ public class ParcelRequestRepImpl implements ParcelRequestRep {
 		return list;
 	}
 
-
-
 	@Override
 	public List<String> getAlldDivition(String pDiv, String pDis, String psDis)
 			throws ClassNotFoundException, SQLException {
@@ -198,7 +200,7 @@ public class ParcelRequestRepImpl implements ParcelRequestRep {
 		statement.setString(1, pDiv);
 		statement.setString(2, pDis);
 		statement.setString(3, psDis);
-		
+
 		ResultSet rs = statement.executeQuery();
 		List<String> list = new ArrayList<String>();
 		while (rs.next()) {
@@ -229,7 +231,7 @@ public class ParcelRequestRepImpl implements ParcelRequestRep {
 	@Override
 	public List<String> getAlldSubDistrict(String pDiv, String pDis, String psDis, String dDiv, String dDis)
 			throws ClassNotFoundException, SQLException {
-		
+
 		String sql = "SELECT DISTINCT `dSubDistrict` FROM `tbl_parcel_request` WHERE pDivision=? AND pDistrict = ? AND pSubDistrict = ? AND dDivision = ? AND dDistrict = ? AND `states` != 'Delivered';";
 		Connection connection = DBConnection.getConnection();
 		PreparedStatement statement = connection.prepareStatement(sql);
@@ -240,13 +242,32 @@ public class ParcelRequestRepImpl implements ParcelRequestRep {
 		statement.setString(5, dDis);
 //		System.out.println(statement);
 
-		
 		List<String> list = new ArrayList<String>();
 		ResultSet rs = statement.executeQuery();
 		while (rs.next()) {
 			list.add(rs.getString("dSubDistrict"));
 		}
 		return list;
+	}
+
+	@Override
+	public int getTotalNumberofRequest(TrackControlDto tc) throws ClassNotFoundException, SQLException {
+		String sql1 = "SELECT count(*) FROM tbl_parcel_request WHERE `pDivision` = ? OR `pDistrict` = ? OR `pSubDistrict` = ? OR `dDivision` = ? OR `dDistrict`= ? OR `dSubDistrict` = ? ";
+		int total = 0;
+		Connection connection = DBConnection.getConnection();
+		PreparedStatement statement1 = connection.prepareStatement(sql1);
+		statement1.setString(1, tc.getpDivision());
+		statement1.setString(2, tc.getpDistrict());
+		statement1.setString(3, tc.getpSubDistrict());
+		statement1.setString(4, tc.getdDivision());
+		statement1.setString(5, tc.getdDistrict());
+		statement1.setString(6, tc.getdSubDistrict());
+		ResultSet rs = statement1.executeQuery();
+		while (rs.next()) {
+			total = rs.getInt("count(*)");
+
+		}
+		return total;
 	}
 
 }

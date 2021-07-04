@@ -125,8 +125,6 @@
 
 	<%
 	//List<String> list = (List<String>) request.getAttribute("pDiv");
-	System.out.println(request.getAttribute("pDiv"));
-
 	ParcelService service = new ParcelServiceImpl(new ParcelRequestRepImpl());
 	List<ParcelRequestDTO> parcelList = service.getAllRedquestedSortedbyLocationName();
 	request.setAttribute("list", parcelList);
@@ -225,8 +223,12 @@
 
 
 		<div class="container">
+
 			<div class="bg1">
-				<div class="th mt-5 mb-4 mx-auto">
+				<p id="total" class="text-center"></p>
+
+
+				<div class="th mt-3 mb-4 mx-auto">
 					<h4 class="page-header" style="text-align: center; padding: 10px;">Tracking
 						Session</h4>
 				</div>
@@ -234,19 +236,19 @@
 					<div class="col-lg-6 ts">
 						<h6>Choose Session</h6>
 						<select name="session" id="session" class="form-control">
-							<option value="">Select</option>
+							<option value="" disabled selected>Select</option>
 
-							<option>Accept requested parcel</option>
-							<option>Pickedup from customer</option>
+							<option id="accepted">Accept requested parcel</option>
+							<option id="pickup">Pickedup from customer</option>
 
-							<option>Sent to delivery sub district</option>
-							<option>Parcel received in delivery hub</option>
+							<option id="sentToSD">Sent to delivery sub district</option>
+							<option id="recievedDH">Parcel received in delivery hub</option>
 
-							<option>Passing parcel to the delivery man</option>
+							<option id="toDM">Passing parcel to the delivery man</option>
 
-							<option>Parcel successfully delivered</option>
+							<option id="delivered">Parcel successfully delivered</option>
+						</select> <input name="states" id="states" type="hidden" value="">
 
-						</select>
 					</div>
 
 					<div class="col-lg-4 ts">
@@ -266,50 +268,72 @@
 		</div>
 
 	</form>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 	<script type="text/javascript">
-		$("#form").on('submit', function(e) {
-			var fData = $(this).serialize();
+		function sendRequest(fData) {
+			$
+					.ajax({
+						url : "trackControl",
+						dataType : "json",
+						type : "GET",
+						data : fData,
+						success : function(data) {
+							var val = $.parseJSON(data[0].pDistrict)
+							for (i = 0; i < val.length; i++) {
+								$('#pDistrict').append(
+										'<option>' + val[i] + '</option>');
 
-			e.preventDefault();
-			$.ajax({
-				url : "trackControl",
-				data : fData,
-				type : "POST",
-				success : function(res) {
-				
-				}
-			});
-		});
+							}
+							$("#total")
+									.text(
+											'Total: '
+													+ $
+															.parseJSON(data[0].overvationCount));
+						},
+						error : function() {
+							$('#pDistrict')
+									.append(
+											'<option value="default" disabled selected>No district found</option>');
+						}
+					});
+		}
+
+		$("#form").on(
+				'submit',
+				function(e) {
+					var fData = $(this).serialize();
+
+					e.preventDefault();
+					$.ajax({
+						url : "trackControl",
+						data : fData,
+						type : "POST",
+						success : function(response) {
+							if (response.trim() == 'success') {
+								swal("Success", "Tracking session updated ",
+										"success");
+
+							} else {
+								swal("Fail", "Something went wrong", "error");
+
+							}
+						}
+					});
+				});
 		$("#pDivision")
 				.change(
 						function(e) {
 							var fData = $('#form').serialize();
+
 							$('#pDistrict').find('option').remove();
 							$('#pDistrict')
 									.append(
 											'<option value="default" disabled selected>Select</option>');
-							$
-									.ajax({
-										url : "trackControl",
-										dataType : "json",
-										type : "GET",
-										data : fData,
-										success : function(data) {
-											var val = $
-													.parseJSON(data[0].pDistrict)
-											for (i = 0; i < val.length; i++) {
-												$('#pDistrict').append(
-														'<option>' + val[i]
-																+ '</option>');
 
-											}
-										},
-										error : function() {
-											$('#pDistrict')
-													.append(
-															'<option value="default" disabled selected>No district found</option>');
-										}
-									});
+							
+							sendRequest(fData);
+							
 						});
 		$("#pDistrict")
 				.change(
@@ -473,6 +497,8 @@
 								$("#sessionMsg").val(str5);
 
 							} else {
+								$("#states").val("Delivered");
+
 								$("#sessionMsg")
 										.val(
 												"Your parcel is successfully delivered");
