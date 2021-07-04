@@ -58,7 +58,7 @@
 					<h1
 						class=" mt-5 font-weidth-bolder col-lg-5 text-lg-left text-white mb-5">We
 						Are Top Courier & Mover Service In Worldwide</h1>
-					<a href="" data-toggle="modal" data-target="#exampleModal"
+					<a href="parcelrequest.jsp"
 						class="ml-5 mt-2 btn btn-lg btn-outline-primary mr-1"> Send
 						parcel</a> <a href="trackingSearch.jsp"
 						class="ml-5 mt-2 btn btn-lg btn-outline-info mr-1">Track order</a>
