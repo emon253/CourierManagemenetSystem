@@ -5,15 +5,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://kit.fontawesome.com/a14342fe13.js"
-	crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/a14342fe13.js"></script>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="home.css">
 <title>CMS Courier</title>
 </head>
@@ -21,20 +22,21 @@
 
 	<%
 	String id = (String) session.getAttribute("msg");
-	
+
 	if (id == "success") {
 	%>
 	<div class="alert alert-warning alert-dismissible fade show"
 		role="alert">
 		<strong>Success !</strong> Your parcel request has been sent.....
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<button type="button" class="close" data-dismiss="alert"
+			aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>
 	</div>
-	<% 
+	<%
 	}
-	
-		session.removeAttribute("msg");
+
+	session.removeAttribute("msg");
 	%>
 
 	<!--small navigation Start-->
@@ -55,12 +57,34 @@
 			<div
 				class="banner-container d-flex justify-content-center align-items-center">
 				<div class="banner-contents">
+
 					<h1
 						class=" mt-5 font-weidth-bolder col-lg-5 text-lg-left text-white mb-5">We
 						Are Top Courier & Mover Service In Worldwide</h1>
+
+					<div id="toast" class="toast" role="alert" data-animation="true"
+					style="position: absolute; top: 52%; left: 15%;"	aria-live="polite" aria-atomic="true" data-delay="3000">
+						<div class="toast-body">
+							<div class="text-center ">Please login first</div>
+						</div>
+					</div>
+					<%
+					if (userName != null) {
+					%>
 					<a href="parcelrequest.jsp"
 						class="ml-5 mt-2 btn btn-lg btn-outline-primary mr-1"> Send
-						parcel</a> <a href="trackingSearch.jsp"
+						parcel</a>
+					<%
+					} else {
+					%>
+
+					<a onclick="loginToast()"
+						class="ml-5 mt-2 btn btn-lg btn-outline-primary mr-1"> Send
+						parcel</a>
+					<%
+					}
+					%>
+					<a href="trackingSearch.jsp"
 						class="ml-5 mt-2 btn btn-lg btn-outline-info mr-1">Track order</a>
 
 				</div>
@@ -130,37 +154,40 @@
 	</main>
 
 
-		<footer>
+	<footer>
 		<%@include file="/includes/footer.jsp"%></footer>
 
 	<script type="text/javascript">
-		$("#loginForm").on(
-				'submit',
-				function(e) {
-					var fData = $(this).serialize();
+		function loginToast() {
+			$('#toast').toast('show')
+			console.log("clicked")
+		}
 
-					e.preventDefault();
-					$.ajax({
-						url : "login",
-						data : fData,
-						type : "POST",
-						success : function(response) {
-							if(response.trim() == 'success'){
-								window.location.replace("home.jsp");
-							}else{
-								$('#errorMsg').text("Incorrect user name or password");
-							}
+		$("#loginForm").on('submit', function(e) {
+			var fData = $(this).serialize();
 
-						}
-					});
-				});
+			e.preventDefault();
+			$.ajax({
+				url : "login",
+				data : fData,
+				type : "POST",
+				success : function(response) {
+					if (response.trim() == 'success') {
+						window.location.replace("home.jsp");
+					} else {
+						$('#errorMsg').text("Incorrect user name or password");
+					}
+
+				}
+			});
+		});
 	</script>
 
 
 
 
 
-	
+
 
 </body>
 </html>
