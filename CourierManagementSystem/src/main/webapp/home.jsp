@@ -52,9 +52,9 @@ session.removeAttribute("msg");
 				class="banner-container d-flex justify-content-center align-items-center">
 				<div class="banner-contents">
 					<h1
-						class="ml-5 mt-5 font-weidth-bolder col-lg-5 text-lg-left text-white mb-5">We
+						class=" mt-5 font-weidth-bolder col-lg-5 text-lg-left text-white mb-5">We
 						Are Top Courier & Mover Service In Worldwide</h1>
-					<a href="parcelrequest.jsp"
+					<a href="" data-toggle="modal" data-target="#exampleModal"
 						class="ml-5 mt-2 btn btn-lg btn-outline-primary mr-1"> Send
 						parcel</a>
 					<a href = "trackingSearch.jsp" class="ml-5 mt-2 btn btn-lg btn-outline-info mr-1">Track
@@ -126,7 +126,8 @@ session.removeAttribute("msg");
 
 	</main>
 
-	<footer> </footer>
+		<footer>
+		<%@include file="/includes/footer.jsp"%></footer>
 
 
 

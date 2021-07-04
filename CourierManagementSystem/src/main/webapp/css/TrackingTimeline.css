@@ -16,7 +16,7 @@ html{
 }
 .x{
   list-style-type:none;
-  margin-left: 80px;
+  margin-left: 15px;
   overflow: hidden;
 }
 .xx{
@@ -82,6 +82,52 @@ html{
   color: white;
 }
 
+footer{
+    background-image: url("https://images.pexels.com/photos/1421903/pexels-photo-1421903.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    /*background-position: center;*/
+    /*background-attachment: fixed;*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+.bg{
+    background-color: #ff8f8f1e;
+}
+.lst li{
+
+    color:cornsilk; 
+    font-size: larger; 
+    line-height: 50px;
+
+}
+.lst li :hover {
+    color: navy;
+    
+
+}footer{
+    background-image: url("https://images.pexels.com/photos/1421903/pexels-photo-1421903.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    /*background-position: center;*/
+    /*background-attachment: fixed;*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+.bg{
+    background-color: #ff8f8f1e;
+}
+.lst li{
+
+    color:cornsilk; 
+    font-size: larger; 
+    line-height: 50px;
+
+}
+.lst li :hover {
+    color: navy;
+    
+
+}
+
 
 
 .timeline {
@@ -100,10 +146,14 @@ html{
     max-width: 70%;
 }
 
-@media (max-width: 767px) {
-    .timeline {
-        max-width: 98%;
-        padding: 25px;
+@media (min-width:768px)
+{
+    .smlnav{
+        height: 1%;
+
+    }
+    .sg{
+        height:80px;
     }
 }
 
@@ -201,4 +251,49 @@ html{
 
 .UserInfo {
   background-color: #f5f5f5;
+}
+.modal-content{
+    width: 300px;
+}
+
+@media (min-width:1250px)
+{
+    .smlnav{
+        height: 1%;
+
+    }
+    .sg{
+        height: 80px;
+    }
+
+
+
+
+
+}
+@media (min-width:1250px)
+{
+    .smlnav{
+        height: 50px;
+
+    }
+    .sg{
+        height:80px;
+    }
+
+}
+@media (max-width:767px)
+{
+    .nav-link{
+        background: #17A2B8;
+        margin: 10px;
+        color: white;
+    }
+    .banner-contents h1,button{
+        font-size: 30px;
+    }
+    .pd{
+        padding-bottom: 40px;
+    }
+    
 }

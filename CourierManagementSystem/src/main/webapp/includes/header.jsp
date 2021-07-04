@@ -35,6 +35,7 @@
 					<li><a href="#" class="mr-2"><i class="fab fa-twitter"></i></a></li>
 					<li><a href="#" class="mr-2"><i class="fab fa-facebook-f"></i></a></li>
 					<li><a href="#"><i class="fab fa-youtube"></i></a></li>
+					<li><a href="login.jsp" class="ml-3"><i class="fas fa-user-circle fa-1x"> ADMIN</i></a></li>
 				</ul>
 			</div>
 		</div>
@@ -70,17 +71,12 @@
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item"><a
 				class="nav-link text-center text-md-left" href="home.jsp">HOME</a></li>
-			<li class="nav-item"><a
-				class="nav-link text-center text-md-left" href="#about-us">ABOUT
-					US</a></li>
-			<!--li-- class="nav-item">
-          <a class="nav-link text-center text-md-left" href="#tutorial">TUTORIAL</a>
-        </li-->
+
 			<li class="nav-item"><a
 				class="nav-link text-center text-md-left" href="#feedback">FEEDBACK</a>
 			</li>
 			<li class="nav-item"><a
-				class="nav-link text-center text-md-left" href="#contact">CONTACT</a>
+				class="nav-link text-center text-md-left" href="ContactUs.jsp">CONTACT</a>
 			</li>
 		</ul>
 	</div>

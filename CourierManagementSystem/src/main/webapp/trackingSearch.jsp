@@ -23,7 +23,7 @@
 
 	<%@include file="includes/header.jsp"%>
 
-	<div class="bg d-flex">
+	<div class="bg1 d-flex">
 
 		<div class="container-fluid p-0">
 
@@ -69,7 +69,7 @@
 
 
 							</div>
-							<div class="col-lg-2 mt-3">
+							<div class="col-lg-2 mt-3 bt">
 								<button type="submit" class="btn m-3">TRACK</button>
 
 							</div>

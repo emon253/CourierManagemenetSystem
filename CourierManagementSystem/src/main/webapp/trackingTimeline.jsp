@@ -28,7 +28,7 @@
 					<div class="card">
 						<div class="card-body">
 							<h6 class="card-title">Timeline</h6>
-							<div id="content">
+							<div id="content ">
 								<ul class="timeline">
 									<c:forEach items="${session}" var="parcel">
 
