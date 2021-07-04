@@ -35,43 +35,37 @@ public class TrackingParcelControlServlet extends HttpServlet {
 		TrackControlDto loc = new TrackControlDto();
 		response.setContentType("text/html");
 
-		// System.out.println(tc);
 		ParcelRequestRep pr = new ParcelRequestRepImpl();
 		List<TrackControlDto> list = new ArrayList<TrackControlDto>();
 		Gson json = new Gson();
+		response.setContentType("text/html");
+
 		try {
 			if (tc.getpDivision() != null) {
 				String pDis = json.toJson(pr.getAllpDistrict(tc.getpDivision()));
 				loc.setpDistrict(pDis);
-				list.add(loc);
-				response.setContentType("text/html");
 			}
 			if (tc.getpDistrict() != null) {
 				String psDis = json.toJson(pr.getAllpSubDistrict(tc.getpDivision(), tc.getpDistrict()));
 				loc.setpSubDistrict(psDis);
-				list.add(loc);
 			}
 			if (tc.getpSubDistrict() != null) {
 				String dDiv = json
 						.toJson(pr.getAlldDivition(tc.getpDivision(), tc.getpDistrict(), tc.getpSubDistrict()));
 				loc.setdDivision(dDiv);
-				list.add(loc);
 			}
 			if (tc.getdDivision() != null) {
 				String dDis = json.toJson(pr.getAlldDistrict(tc.getpDivision(), tc.getpDistrict(), tc.getpSubDistrict(),
 						tc.getdDivision()));
 				loc.setdDistrict(dDis);
-				list.add(loc);
 			}
 			if (tc.getdDistrict() != null) {
 				String dsDis = json.toJson(pr.getAlldSubDistrict(tc.getpDivision(), tc.getpDistrict(),
 						tc.getpSubDistrict(), tc.getdDivision(), tc.getdDistrict()));
 				loc.setdSubDistrict(dsDis);
-				list.add(loc);
 			}
 			loc.setOvervationCount(pr.getTotalNumberofRequest(tc));
-			list.add(loc);
-			response.getWriter().write(json.toJson(list));
+			response.getWriter().write(json.toJson(loc));
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
@@ -85,7 +79,6 @@ public class TrackingParcelControlServlet extends HttpServlet {
 				request.getParameter("dSubDistrict"), request.getParameter("sessionMsg"), 0);
 		trackControl.setStates(request.getParameter("states"));
 		var errors = ValidationUtil.getInstance().validate(trackControl);
-//System.out.println(trackControl);
 		try {
 			if (errors.isEmpty()) {
 				service.saveTrackingInformation(trackControl);

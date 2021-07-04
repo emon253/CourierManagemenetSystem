@@ -279,7 +279,7 @@
 						type : "GET",
 						data : fData,
 						success : function(data) {
-							var val = $.parseJSON(data[0].pDistrict)
+							var val = $.parseJSON(data.pDistrict)
 							for (i = 0; i < val.length; i++) {
 								$('#pDistrict').append(
 										'<option>' + val[i] + '</option>');
@@ -289,7 +289,7 @@
 									.text(
 											'Total: '
 													+ $
-															.parseJSON(data[0].overvationCount));
+															.parseJSON(data.overvationCount));
 						},
 						error : function() {
 							$('#pDistrict')
@@ -351,7 +351,7 @@
 										data : fData,
 										success : function(data) {
 											var val = $
-													.parseJSON(data[0].pSubDistrict)
+													.parseJSON(data.pSubDistrict)
 											for (i = 0; i < val.length; i++) {
 												$('#pSubDistrict').append(
 														'<option>' + val[i]
@@ -385,7 +385,7 @@
 										data : fData,
 										success : function(data) {
 											var val = $
-													.parseJSON(data[0].dDivision)
+													.parseJSON(data.dDivision)
 											for (i = 0; i < val.length; i++) {
 												$('#dDivision').append(
 														'<option>' + val[i]
@@ -419,7 +419,7 @@
 										data : fData,
 										success : function(data) {
 											var val = $
-													.parseJSON(data[0].dDistrict)
+													.parseJSON(data.dDistrict)
 											for (i = 0; i < val.length; i++) {
 												$('#dDistrict').append(
 														'<option>' + val[i]
@@ -453,7 +453,7 @@
 										data : fData,
 										success : function(data) {
 											var val = $
-													.parseJSON(data[0].dSubDistrict)
+													.parseJSON(data.dSubDistrict)
 											for (i = 0; i < val.length; i++) {
 												$('#dSubDistrict').append(
 														'<option>' + val[i]
@@ -483,7 +483,8 @@
 							var str5 = "A delivery man is out to deliver your parcel to your location"
 							var selectedItem = $(this).val();
 							if (selectedItem == "Accept requested parcel") {
-								$("#sessionMsg").val(str1);
+								//System.out.println(trackControl);
+	$("#sessionMsg").val(str1);
 
 							} else if (selectedItem == "Pickedup from customer") {
 								$("#sessionMsg").val(str2);
