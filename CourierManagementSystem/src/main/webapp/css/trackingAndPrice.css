@@ -53,10 +53,6 @@ html{
         font-size: 2.5rem;
     }
 
-
-
-
-
     
 }
 .nav-icon{
@@ -81,6 +77,38 @@ html{
     transform: scale(1.1);
     color: white;
 }
+
+
+
+/*footer*/
+footer{
+    background-image: url("https://images.pexels.com/photos/1421903/pexels-photo-1421903.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    /*background-position: center;*/
+    /*background-attachment: fixed;*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+.bg{
+    background-color: #ff8f8f1e;
+}
+
+.lst li{
+
+    color:cornsilk; 
+    font-size: larger; 
+    line-height: 50px;
+
+}
+.lst li :hover {
+    color: navy;
+    
+
+}
+
+/*footer ends*/
+
+
 
 .Main_body {
     background-image: url("https://images.pexels.com/photos/4498142/pexels-photo-4498142.jpeg?cs=srgb&dl=pexels-karolina-grabowska-4498142.jpg&fm=jpg");

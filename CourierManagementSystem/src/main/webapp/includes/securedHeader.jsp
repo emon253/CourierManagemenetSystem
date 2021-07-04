@@ -83,12 +83,7 @@
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item"><a
 				class="nav-link text-center text-md-left" href="home.jsp">HOME</a></li>
-			<li class="nav-item"><a
-				class="nav-link text-center text-md-left" href="#about-us">ABOUT
-					US</a></li>
-			<!--li-- class="nav-item">
-          <a class="nav-link text-center text-md-left" href="#tutorial">TUTORIAL</a>
-        </li-->
+
 			<li class="nav-item"><a
 				class="nav-link text-center text-md-left" href="#feedback">FEEDBACK</a>
 			</li>

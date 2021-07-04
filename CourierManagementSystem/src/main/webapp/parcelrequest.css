@@ -68,6 +68,33 @@ h1,h2,h3,h4,h5,h6{
 
 }
 
+/*footer*/
+footer{
+    background-image: url("https://images.pexels.com/photos/1421903/pexels-photo-1421903.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    /*background-position: center;*/
+    /*background-attachment: fixed;*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+.bg{
+    background-color: #ff8f8f1e;
+}
+.lst li{
+
+    color:cornsilk; 
+    font-size: larger; 
+    line-height: 50px;
+
+}
+.lst li :hover {
+    color: navy;
+    
+
+}
+
+/*footer ends*/
+
 
 
 .nav-icon{
@@ -93,6 +120,11 @@ h1,h2,h3,h4,h5,h6{
     color: white;
 }
 
+
+/*footer*/
+
+
+
 .icon-style{
     background:#F8A555;
     color:white;
@@ -100,7 +132,7 @@ h1,h2,h3,h4,h5,h6{
     margin-right: 10px;
 
 }
-.bg{
+.bg1{
     background-image: url("https://images.pexels.com/photos/4498142/pexels-photo-4498142.jpeg?cs=srgb&dl=pexels-karolina-grabowska-4498142.jpg&fm=jpg");
     background-repeat: no-repeat;
     background-size: cover;
