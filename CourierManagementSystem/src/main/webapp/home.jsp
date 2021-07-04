@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +12,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="home.css">
 <title>CMS Courier</title>
 </head>
@@ -17,21 +21,21 @@
 
 	<%
 	String id = (String) session.getAttribute("msg");
+	
 	if (id == "success") {
 	%>
 	<div class="alert alert-warning alert-dismissible fade show"
 		role="alert">
 		<strong>Success !</strong> Your parcel request has been sent.....
-		<button type="button" class="close" data-dismiss="alert"
-			aria-label="Close">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>
 	</div>
-	<%
-}
-session.removeAttribute("msg");
-%>
-
+	<% 
+	}
+	
+		session.removeAttribute("msg");
+	%>
 
 	<!--small navigation Start-->
 	<%@include file="includes/header.jsp"%>
@@ -56,9 +60,8 @@ session.removeAttribute("msg");
 						Are Top Courier & Mover Service In Worldwide</h1>
 					<a href="parcelrequest.jsp"
 						class="ml-5 mt-2 btn btn-lg btn-outline-primary mr-1"> Send
-						parcel</a>
-					<a href = "trackingSearch.jsp" class="ml-5 mt-2 btn btn-lg btn-outline-info mr-1">Track
-						order</a>
+						parcel</a> <a href="trackingSearch.jsp"
+						class="ml-5 mt-2 btn btn-lg btn-outline-info mr-1">Track order</a>
 
 				</div>
 
@@ -126,21 +129,33 @@ session.removeAttribute("msg");
 
 	</main>
 
-	<footer> </footer>
+	<script type="text/javascript">
+		$("#loginForm").on(
+				'submit',
+				function(e) {
+					var fData = $(this).serialize();
+
+					e.preventDefault();
+					$.ajax({
+						url : "login",
+						data : fData,
+						type : "POST",
+						success : function(response) {
+							if(response.trim() == 'success'){
+								window.location.replace("home.jsp");
+							}else{
+								$('#errorMsg').text("Incorrect user name or password");
+							}
+
+						}
+					});
+				});
+	</script>
 
 
 
 
+	
 
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-	<!-- Popper JS -->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-	<!-- Latest compiled JavaScript -->
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

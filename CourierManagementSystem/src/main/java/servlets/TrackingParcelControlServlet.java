@@ -31,7 +31,7 @@ public class TrackingParcelControlServlet extends HttpServlet {
 				request.getParameter("pSubDistrict"), request.getParameter("dDivision"),
 				request.getParameter("dDistrict"), request.getParameter("dSubDistrict"),
 				request.getParameter("sessionMsg"), 0);
-		// System.out.println(tc);
+
 		TrackControlDto loc = new TrackControlDto();
 		response.setContentType("text/html");
 
@@ -68,9 +68,9 @@ public class TrackingParcelControlServlet extends HttpServlet {
 						tc.getpSubDistrict(), tc.getdDivision(), tc.getdDistrict()));
 				loc.setdSubDistrict(dsDis);
 				list.add(loc);
-			}  
-
-			// System.out.println(json.toJson(list));
+			}
+			loc.setOvervationCount(pr.getTotalNumberofRequest(tc));
+			list.add(loc);
 			response.getWriter().write(json.toJson(list));
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -83,9 +83,9 @@ public class TrackingParcelControlServlet extends HttpServlet {
 				request.getParameter("pDistrict"), request.getParameter("pSubDistrict"),
 				request.getParameter("dDivision"), request.getParameter("dDistrict"),
 				request.getParameter("dSubDistrict"), request.getParameter("sessionMsg"), 0);
-		System.out.println(trackControl);
+		trackControl.setStates(request.getParameter("states"));
 		var errors = ValidationUtil.getInstance().validate(trackControl);
-
+//System.out.println(trackControl);
 		try {
 			if (errors.isEmpty()) {
 				service.saveTrackingInformation(trackControl);
