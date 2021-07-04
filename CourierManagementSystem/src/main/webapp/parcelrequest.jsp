@@ -26,7 +26,7 @@
 
 
 
-	<div class="bg d-flex">
+	<div class="bg1 d-flex">
 
 
 
@@ -244,7 +244,8 @@
 
 	</div>
 
-	<footer> <%@include file = "/includes/footer.jsp" %></footer>
+	
+		<%@include file="/includes/footer.jsp"%>
 
 
 

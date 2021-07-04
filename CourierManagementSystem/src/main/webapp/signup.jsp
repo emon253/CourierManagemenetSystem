@@ -17,7 +17,7 @@
 </head>
 <body>
 	<%@include file="includes/header.jsp"%>
-	<div class="bg d-flex">
+	<div class="bg1 d-flex">
 
 		<div class="container-fluid p-0">
 
@@ -162,7 +162,8 @@
 		</div>
 
 	</div>
-	<%@include file="includes/footer.jsp"%>
+	<footer>
+		<%@include file="/includes/footer.jsp"%></footer>
 
 </body>
 </html>
