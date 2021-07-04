@@ -117,7 +117,7 @@
 
       <div class="col-4 col-md-4 col-sm-12" style="text-align: center;">
         <div class="card">
-          <a href="trackingControl.jsp" class="mt-4">
+          <a href="<%=request.getContextPath()%>/trackingControl.jsp" class="mt-4">
             <i class="fas fa-map-marked-alt fa-5x is"></i>
             <h5 style="color: black;">Tracking Control</h5>
           </a>
