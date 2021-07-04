@@ -153,7 +153,7 @@
 									<c:out value="${parcel.pDivision}" />
 								</option>
 
-							</c:forEach> disabled selected
+							</c:forEach> 
 
 						</select>
 					</div>

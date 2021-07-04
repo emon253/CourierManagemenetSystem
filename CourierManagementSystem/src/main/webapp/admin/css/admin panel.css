@@ -32,8 +32,6 @@ html{
     display:block;
     color: rgb(255, 207, 144);
     
-
-   /* padding: 8px;*/
 }
 .x li a:hover{
     text-decoration: none;
@@ -49,9 +47,7 @@ html{
         margin: 10px;
         color: white;
     }
-    .banner-container h1{
-        font-size: 2.5rem;
-    }
+    /*body item 1 starts*/
     .thm1{
         visibility: hidden;
         align-content: center;
@@ -62,6 +58,8 @@ html{
         padding: 22px;
         align-items: center;
     }
+    /*body item 1 ends*/
+    
 
 
 
@@ -110,14 +108,7 @@ h1,h2,h3,h4,h5,h6{
     margin-right: 10px;
 
 }
-.th{
-
-    background-color: #17A2B8;
-    border-radius: 50px;
-    color: antiquewhite;
-    /*height: 40px;*/
-    width: 90%;
-}
+/*body item 2 starts*/
 .thm{
     align-content: center;
     justify-content: center;
@@ -126,22 +117,26 @@ h1,h2,h3,h4,h5,h6{
     color: rgb(255, 207, 144);
     padding: 22px;
 }
-.ts{
-    padding: 15px;
-}
-.ts button{
-    margin-top: 15px;
-}
-.tabs-wrap {
-	margin-top: 40px;
-}
-.tab-content .tab-pane {
-	padding: 20px 0;
-}
+
 .bg{
     background-color: rgba(218, 216, 216, 0.781);
     margin-top: 10px;
     padding-top: 0.09px;
+    box-shadow: 0px 0.1px 5px rgba(0, 0, 0, 0.664);
+    margin-top: 100px;
+}
+.card{
+    margin: 10px;
+    padding: 10px;
+    background-color: rgb(255, 255, 255);
+    margin-top: 10px;
+    padding-top: 0.09px;
+    /*box-shadow: 1px 0px 1px rgb(255, 255, 255);*/
+    transition: .4s;
+
+}
+.card:hover{
+    transform: scale(1.04);
 
 }
 .bg1{
@@ -153,6 +148,17 @@ h1,h2,h3,h4,h5,h6{
     
 }
 
+a:hover{
+    text-decoration: none;
+
+}
+.is{
+    margin-bottom: 10px;
+    color: #056168;
+}
+
+/*body item 2 ends*/
+
 @media (min-width:750px)
 {
     .smlnav{
@@ -160,11 +166,10 @@ h1,h2,h3,h4,h5,h6{
 
     }
     .sg{
-        height:80px;
+        height: 80px;
     }
-    .contain2{
-        width: 1000px;
-    }
+
+    /*body item 3 starts*/
     .thm{
         visibility:hidden;
         display: none;
@@ -177,6 +182,8 @@ h1,h2,h3,h4,h5,h6{
         padding: 22px;
         
     }
+
+    /*body item 3 ends*/
 
 
 
@@ -191,11 +198,5 @@ h1,h2,h3,h4,h5,h6{
     .sg{
         height:80px;
     }
-    .contain2{
-        width: 1000px;
-    }
-
-
-
 
 }

@@ -19,7 +19,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"
+	rel="stylesheet" />
+
 <link rel="stylesheet" href="css/TrackingControll.css">
+
 <title>Tracking Control Admin</title>
 
 <script
@@ -119,6 +124,7 @@
 	<!--navbar ...................   ends-->
 
 	<%
+	//List<String> list = (List<String>) request.getAttribute("pDiv");
 	ParcelService service = new ParcelServiceImpl(new ParcelRequestRepImpl());
 	List<ParcelRequestDTO> parcelList = service.getAllRedquestedSortedbyLocationName();
 	request.setAttribute("list", parcelList);
@@ -139,45 +145,33 @@
 					<div class="col-sm-3 mx-auto">
 
 						<h6>Division</h6>
-						<select class="form-control">
-							<option value="">Select</option>
+						<select name="pDivision" id="pDivision" class="form-control">
+							<option value="default" disabled selected>Select</option>
 
 							<c:forEach items="${list}" var="parcel">
 								<option>
 									<c:out value="${parcel.pDivision}" />
 								</option>
 
-							</c:forEach>
+							</c:forEach> disabled selected
 
 						</select>
 					</div>
 					<div class="col-sm-3 mx-auto">
 
 						<h6>District</h6>
-						<select class="form-control">
-							<option value="">Select</option>
+						<select name="pDistrict" id="pDistrict" class="form-control">
+							<option value="default" disabled selected>Select</option>
 
-							<c:forEach items="${list}" var="parcel">
-								<option>
-									<c:out value="${parcel.pDistrict}" />
-								</option>
-
-							</c:forEach>
 
 						</select>
 					</div>
 					<div class="col-sm-3 mx-auto">
 
 						<h6>Sub-district</h6>
-						<select class="form-control">
-							<option value="">Select</option>
+						<select name="pSubDistrict" id="pSubDistrict" class="form-control">
+							<option value="default" disabled selected>Select</option>
 
-							<c:forEach items="${list}" var="parcel">
-								<option>
-									<c:out value="${parcel.pSubDistrict}" />
-								</option>
-
-							</c:forEach>
 						</select>
 					</div>
 				</div>
@@ -199,44 +193,26 @@
 					<div class="col-sm-3 mx-auto">
 
 						<h6>Division</h6>
-						<select class="form-control">
-							<option value="">Select</option>
+						<select name="dDivision" id="dDivision" class="form-control">
+							<option value="default" disabled selected>Select</option>
 
-							<c:forEach items="${list}" var="parcel">
-								<option>
-									<c:out value="${parcel.dDivision}" />
-								</option>
-
-							</c:forEach>
 						</select>
 					</div>
 					<div class="col-sm-3 mx-auto">
 
 						<h6>District</h6>
-						<select class="form-control">
+						<select name="dDistrict" id="dDistrict" class="form-control">
+							<option value="default" disabled selected>Select</option>
 
-							<option value="">Select</option>
 
-							<c:forEach items="${list}" var="parcel">
-								<option>
-									<c:out value="${parcel.dDistrict}" />
-								</option>
-
-							</c:forEach>
 						</select>
 					</div>
 					<div class="col-sm-3 mx-auto">
 
 						<h6>Sub-district</h6>
-						<select id="pSubDistrict" class="form-control">
-							<option value="">Select</option>
+						<select name="dSubDistrict" id="dSubDistrict" class="form-control">
+							<option value="default" disabled selected>Select</option>
 
-							<c:forEach items="${list}" var="parcel">
-								<option>
-									<c:out value="${parcel.dSubDistrict}" />
-								</option>
-
-							</c:forEach>
 						</select>
 					</div>
 				</div>
@@ -247,17 +223,42 @@
 
 
 		<div class="container">
+
 			<div class="bg1">
-				<div class="th mt-5 mb-4 mx-auto">
+				<p id="total" class="text-center"></p>
+
+
+				<div class="th mt-3 mb-4 mx-auto">
 					<h4 class="page-header" style="text-align: center; padding: 10px;">Tracking
 						Session</h4>
 				</div>
 				<div class="row mb-5">
+					<div class="col-lg-6 ts">
+						<h6>Choose Session</h6>
+						<select name="session" id="session" class="form-control">
+							<option value="" disabled selected>Select</option>
+
+							<option id="accepted">Accept requested parcel</option>
+							<option id="pickup">Pickedup from customer</option>
+
+							<option id="sentToSD">Sent to delivery sub district</option>
+							<option id="recievedDH">Parcel received in delivery hub</option>
+
+							<option id="toDM">Passing parcel to the delivery man</option>
+
+							<option id="delivered">Parcel successfully delivered</option>
+						</select> <input name="states" id="states" type="hidden" value="">
+
+					</div>
+
 					<div class="col-lg-4 ts">
 						<div class="form-group">
-							<textarea class="form-control ta" style="resize: none;" rows="3"
+							<textarea name="sessionMsg" id="sessionMsg"
+								class="form-control ta" style="resize: none;" rows="3"
 								id="comment"></textarea>
 							<button type="submit" class="btn btn-info">Add Session</button>
+							<input id="dloc" type="hidden"
+								value="'<%=parcelList.get(0).getdSubDistrict()%>'">
 
 						</div>
 					</div>
@@ -267,47 +268,249 @@
 		</div>
 
 	</form>
-
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 	<script type="text/javascript">
+		function sendRequest(fData) {
+			$
+					.ajax({
+						url : "trackControl",
+						dataType : "json",
+						type : "GET",
+						data : fData,
+						success : function(data) {
+							var val = $.parseJSON(data[0].pDistrict)
+							for (i = 0; i < val.length; i++) {
+								$('#pDistrict').append(
+										'<option>' + val[i] + '</option>');
 
+							}
+							$("#total")
+									.text(
+											'Total: '
+													+ $
+															.parseJSON(data[0].overvationCount));
+						},
+						error : function() {
+							$('#pDistrict')
+									.append(
+											'<option value="default" disabled selected>No district found</option>');
+						}
+					});
+		}
 
-	/* 	$('#pSubDistrict').change(function() {
-			console.log($(this).val());
+		$("#form").on(
+				'submit',
+				function(e) {
+					var fData = $(this).serialize();
 
-		}); */
-	/* 	$('#form').change(function() {
-			console.log($('#dSubDistrict').val());
+					e.preventDefault();
+					$.ajax({
+						url : "trackControl",
+						data : fData,
+						type : "POST",
+						success : function(response) {
+							if (response.trim() == 'success') {
+								swal("Success", "Tracking session updated ",
+										"success");
 
-		}); */
+							} else {
+								swal("Fail", "Something went wrong", "error");
 
-	/* 	$("#form").change(function(e) {
-			  const dp_value = $("#dSubDistrict").val();
-			  console.log(dp_value);
-			}); */
-			
-			
-			
-			$(".form").on('submit',(function(e){
-		        e.preventDefault();
-		        $.ajax({
-		            url: "trackControl",
-		            type: "POST",
-		            data:  new FormData(this),
-		            contentType: false,
-		            cache: false,
-		            processData:false,
-		            success: function(data){
-		                alert(data);
-		                console.log(data);
-		            },
-		            error: function(){
-		                alert("error");
-		            }           
-		        })
-		    }));
-			
-			
+							}
+						}
+					});
+				});
+		$("#pDivision")
+				.change(
+						function(e) {
+							var fData = $('#form').serialize();
+
+							$('#pDistrict').find('option').remove();
+							$('#pDistrict')
+									.append(
+											'<option value="default" disabled selected>Select</option>');
+
+							
+							sendRequest(fData);
+							
+						});
+		$("#pDistrict")
+				.change(
+						function(e) {
+							var fData = $('#form').serialize();
+							$('#pSubDistrict').find('option').remove();
+							$('#pSubDistrict')
+									.append(
+											'<option value="default" disabled selected>Select</option>');
+							$
+									.ajax({
+										url : "trackControl",
+										dataType : "json",
+										type : "GET",
+										data : fData,
+										success : function(data) {
+											var val = $
+													.parseJSON(data[0].pSubDistrict)
+											for (i = 0; i < val.length; i++) {
+												$('#pSubDistrict').append(
+														'<option>' + val[i]
+																+ '</option>');
+
+											}
+										},
+										error : function() {
+											console.log("error...........")
+
+											$('#pSubDistrict')
+													.append(
+															'<option value="default" disabled selected>No Sub district found</option>');
+										}
+									});
+						});
+
+		$("#pSubDistrict")
+				.change(
+						function(e) {
+							var fData = $('#form').serialize();
+							$('#dDivision').find('option').remove();
+							$('#dDivision')
+									.append(
+											'<option value="default" disabled selected>Select</option>');
+							$
+									.ajax({
+										url : "trackControl",
+										dataType : "json",
+										type : "GET",
+										data : fData,
+										success : function(data) {
+											var val = $
+													.parseJSON(data[0].dDivision)
+											for (i = 0; i < val.length; i++) {
+												$('#dDivision').append(
+														'<option>' + val[i]
+																+ '</option>');
+
+											}
+										},
+										error : function() {
+											console.log("error...........")
+
+											$('#dDivision')
+													.append(
+															'<option value="default" disabled selected>No Sub district found</option>');
+										}
+									});
+						});
+
+		$("#dDivision")
+				.change(
+						function(e) {
+							var fData = $('#form').serialize();
+							$('#dDistrict').find('option').remove();
+							$('#dDistrict')
+									.append(
+											'<option value="default" disabled selected>Select</option>');
+							$
+									.ajax({
+										url : "trackControl",
+										dataType : "json",
+										type : "GET",
+										data : fData,
+										success : function(data) {
+											var val = $
+													.parseJSON(data[0].dDistrict)
+											for (i = 0; i < val.length; i++) {
+												$('#dDistrict').append(
+														'<option>' + val[i]
+																+ '</option>');
+
+											}
+										},
+										error : function() {
+											console.log("error...........")
+
+											$('#dDistrict')
+													.append(
+															'<option value="default" disabled selected>No Sub district found</option>');
+										}
+									});
+						});
+
+		$("#dDistrict")
+				.change(
+						function(e) {
+							var fData = $('#form').serialize();
+							$('#dSubDistrict').find('option').remove();
+							$('#dSubDistrict')
+									.append(
+											'<option value="default" disabled selected>Select</option>');
+							$
+									.ajax({
+										url : "trackControl",
+										dataType : "json",
+										type : "GET",
+										data : fData,
+										success : function(data) {
+											var val = $
+													.parseJSON(data[0].dSubDistrict)
+											for (i = 0; i < val.length; i++) {
+												$('#dSubDistrict').append(
+														'<option>' + val[i]
+																+ '</option>');
+
+											}
+										},
+										error : function() {
+											console.log("error...........")
+
+											$('#dSubDistrict')
+													.append(
+															'<option value="default" disabled selected>No Sub district found</option>');
+										}
+									});
+						});
+
+		$("#session")
+				.on(
+						'change',
+						(function(e) {
+							var str1 = "Your parcel has been accepted by CMS, A pickup man will receive your Parcel soon";
+							var str2 = "Your parcel has received in your nearby hub. Will be delivered soon";
+							var str3 = "Your parcel is sending to your delivery loation";
+							var str4 = "We received your parcel in '"
+									+ $("#dloc").val();
+							var str5 = "A delivery man is out to deliver your parcel to your location"
+							var selectedItem = $(this).val();
+							if (selectedItem == "Accept requested parcel") {
+								$("#sessionMsg").val(str1);
+
+							} else if (selectedItem == "Pickedup from customer") {
+								$("#sessionMsg").val(str2);
+
+							} else if (selectedItem == "Sent to delivery sub district") {
+								$("#sessionMsg").val(str3);
+
+							} else if (selectedItem == "Parcel received in delivery hub") {
+								$("#sessionMsg").val(str4);
+							} else if (selectedItem == "Passing parcel to the delivery man") {
+								$("#sessionMsg").val(str5);
+
+							} else {
+								$("#states").val("Delivered");
+
+								$("#sessionMsg")
+										.val(
+												"Your parcel is successfully delivered");
+
+							}
+
+						}));
 	</script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
+
 	<%@include file="/includes/footer.jsp"%>
 </body>
 </html>

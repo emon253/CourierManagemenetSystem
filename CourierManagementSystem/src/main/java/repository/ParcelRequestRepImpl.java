@@ -125,7 +125,7 @@ public class ParcelRequestRepImpl implements ParcelRequestRep {
 
 	@Override
 	public List<ParcelRequestDTO> fetchAllRequestedParcel() throws ClassNotFoundException, SQLException {
-		String sql = "SELECT DISTINCT`pDivision`,`pDistrict`,`pSubDistrict`,`dDivision`,`dDistrict`,`dSubDistrict`,`pFullAddress`,`dFullAddress` FROM tbl_parcel_request;";
+		String sql = "SELECT DISTINCT `pDivision`,`pDistrict`,`pSubDistrict`,`dDivision`,`dDistrict`,`dSubDistrict`,`pFullAddress`,`dFullAddress` FROM tbl_parcel_request;";
 		Connection connection = DBConnection.getConnection();
 		PreparedStatement statement = connection.prepareStatement(sql);
 		ResultSet rs = statement.executeQuery();

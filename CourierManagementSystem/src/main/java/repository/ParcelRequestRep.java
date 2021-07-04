@@ -19,6 +19,7 @@ public interface ParcelRequestRep {
 
 	List<ParcelRequestDTO> fetchAllRequestedParcel() throws ClassNotFoundException, SQLException;
 
+
 	List<String> getAllpDivition() throws ClassNotFoundException, SQLException;
 
 	List<String> getAllpDistrict(String division) throws ClassNotFoundException, SQLException;
@@ -32,9 +33,7 @@ public interface ParcelRequestRep {
 
 	List<String> getAlldSubDistrict(String pDiv, String pDis, String psDis, String dDiv, String dDis)
 			throws ClassNotFoundException, SQLException;
-	
-	int getTotalNumberofRequest(TrackControlDto tc) throws ClassNotFoundException, SQLException;
 
-	
+	int getTotalNumberofRequest(TrackControlDto tc) throws ClassNotFoundException, SQLException;
 
 }
