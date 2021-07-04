@@ -113,7 +113,7 @@
 					id="navbardrop" data-toggle="dropdown"> HOME </a>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="#">ADMIN</a> <a
-							class="dropdown-item" href="#">HOME</a>
+							class="dropdown-item" href="home.jsp">HOME</a>
 					</div></li>
 			</ul>
 

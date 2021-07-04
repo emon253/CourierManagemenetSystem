@@ -31,12 +31,11 @@ public class TrackingParcelControlServlet extends HttpServlet {
 				request.getParameter("pSubDistrict"), request.getParameter("dDivision"),
 				request.getParameter("dDistrict"), request.getParameter("dSubDistrict"),
 				request.getParameter("sessionMsg"), 0);
-
+//System.out.println(tc);
 		TrackControlDto loc = new TrackControlDto();
 		response.setContentType("text/html");
 
 		ParcelRequestRep pr = new ParcelRequestRepImpl();
-		List<TrackControlDto> list = new ArrayList<TrackControlDto>();
 		Gson json = new Gson();
 		response.setContentType("text/html");
 

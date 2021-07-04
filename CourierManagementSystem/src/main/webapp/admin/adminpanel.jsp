@@ -89,7 +89,7 @@
               </a>
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="#">ADMIN</a>
-                <a class="dropdown-item" href="home.jsp">HOME</a>
+                <a class="dropdown-item" href="<%=request.getContextPath()%>/home.jsp">HOME</a>
               </div>
             </li>
           </ul>
