@@ -256,7 +256,7 @@ footer{
     width: 300px;
 }
 
-@media (min-width:1250px)
+@media (min-width:1330px)
 {
     .smlnav{
         height: 1%;
@@ -271,7 +271,7 @@ footer{
 
 
 }
-@media (min-width:1250px)
+@media (min-width:1335px)
 {
     .smlnav{
         height: 50px;
