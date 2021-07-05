@@ -134,7 +134,7 @@
 	<form id="form" action="trackControl" method="post">
 		<div class="container">
 
-			<div class="bg">
+			<div class="bg2">
 				<div class="th mt-5 mb-4 mx-auto">
 					<h4 class="page-header" style="text-align: center; padding: 10px;">Enter
 						Pickup Warehouse location</h4>
@@ -184,7 +184,7 @@
 
 
 		<div class="container">
-			<div class="bg">
+			<div class="bg2">
 				<div class="th mt-5 mb-4 mx-auto">
 					<h4 class="page-header" style="text-align: center; padding: 10px;">Enter
 						Destination Warehouse location</h4>
