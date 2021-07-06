@@ -153,7 +153,7 @@
 									<c:out value="${parcel.pDivision}" />
 								</option>
 
-							</c:forEach> 
+							</c:forEach>
 
 						</select>
 					</div>
@@ -272,24 +272,16 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 	<script type="text/javascript">
 		function sendRequest(fData) {
-			$
+			var response;
+			var ajax = $
 					.ajax({
 						url : "trackControl",
 						dataType : "json",
 						type : "GET",
 						data : fData,
-						success : function(data) {
-							var val = $.parseJSON(data.pDistrict)
-							for (i = 0; i < val.length; i++) {
-								$('#pDistrict').append(
-										'<option>' + val[i] + '</option>');
+						async : false,
+						success : function(response) {
 
-							}
-							$("#total")
-									.text(
-											'Total: '
-													+ $
-															.parseJSON(data.overvationCount));
 						},
 						error : function() {
 							$('#pDistrict')
@@ -297,6 +289,13 @@
 											'<option value="default" disabled selected>No district found</option>');
 						}
 					});
+
+			const obj = JSON.parse(ajax.responseText)
+
+			$("#total").text('Total: ' + $.parseJSON(obj.overvationCount));
+
+			return obj;
+
 		}
 
 		$("#form").on(
@@ -331,9 +330,14 @@
 									.append(
 											'<option value="default" disabled selected>Select</option>');
 
-							
-							sendRequest(fData);
-							
+							const val = JSON.parse(sendRequest(fData).pDistrict)
+
+							for (i = 0; i < val.length; i++) {
+								$('#pDistrict').append(
+										'<option>' + val[i] + '</option>');
+
+							}
+
 						});
 		$("#pDistrict")
 				.change(
@@ -343,30 +347,15 @@
 							$('#pSubDistrict')
 									.append(
 											'<option value="default" disabled selected>Select</option>');
-							$
-									.ajax({
-										url : "trackControl",
-										dataType : "json",
-										type : "GET",
-										data : fData,
-										success : function(data) {
-											var val = $
-													.parseJSON(data.pSubDistrict)
-											for (i = 0; i < val.length; i++) {
-												$('#pSubDistrict').append(
-														'<option>' + val[i]
-																+ '</option>');
 
-											}
-										},
-										error : function() {
-											console.log("error...........")
+						
+							const val = JSON.parse(sendRequest(fData).pSubDistrict)
 
-											$('#pSubDistrict')
-													.append(
-															'<option value="default" disabled selected>No Sub district found</option>');
-										}
-									});
+							for (i = 0; i < val.length; i++) {
+								$('#pSubDistrict').append(
+										'<option>' + val[i] + '</option>');
+
+							}
 						});
 
 		$("#pSubDistrict")
@@ -377,30 +366,13 @@
 							$('#dDivision')
 									.append(
 											'<option value="default" disabled selected>Select</option>');
-							$
-									.ajax({
-										url : "trackControl",
-										dataType : "json",
-										type : "GET",
-										data : fData,
-										success : function(data) {
-											var val = $
-													.parseJSON(data.dDivision)
-											for (i = 0; i < val.length; i++) {
-												$('#dDivision').append(
-														'<option>' + val[i]
-																+ '</option>');
+							const val = JSON.parse(sendRequest(fData).dDivision)
 
-											}
-										},
-										error : function() {
-											console.log("error...........")
+							for (i = 0; i < val.length; i++) {
+								$('#dDivision').append(
+										'<option>' + val[i] + '</option>');
 
-											$('#dDivision')
-													.append(
-															'<option value="default" disabled selected>No Sub district found</option>');
-										}
-									});
+							}
 						});
 
 		$("#dDivision")
@@ -411,31 +383,13 @@
 							$('#dDistrict')
 									.append(
 											'<option value="default" disabled selected>Select</option>');
-							$
-									.ajax({
-										url : "trackControl",
-										dataType : "json",
-										type : "GET",
-										data : fData,
-										success : function(data) {
-											var val = $
-													.parseJSON(data.dDistrict)
-											for (i = 0; i < val.length; i++) {
-												$('#dDistrict').append(
-														'<option>' + val[i]
-																+ '</option>');
+							const val = JSON.parse(sendRequest(fData).dDistrict)
 
-											}
-										},
-										error : function() {
-											console.log("error...........")
+							for (i = 0; i < val.length; i++) {
+								$('#dDistrict').append(
+										'<option>' + val[i] + '</option>');
 
-											$('#dDistrict')
-													.append(
-															'<option value="default" disabled selected>No Sub district found</option>');
-										}
-									});
-						});
+							}						});
 
 		$("#dDistrict")
 				.change(
@@ -445,30 +399,13 @@
 							$('#dSubDistrict')
 									.append(
 											'<option value="default" disabled selected>Select</option>');
-							$
-									.ajax({
-										url : "trackControl",
-										dataType : "json",
-										type : "GET",
-										data : fData,
-										success : function(data) {
-											var val = $
-													.parseJSON(data.dSubDistrict)
-											for (i = 0; i < val.length; i++) {
-												$('#dSubDistrict').append(
-														'<option>' + val[i]
-																+ '</option>');
+							const val = JSON.parse(sendRequest(fData).dSubDistrict)
 
-											}
-										},
-										error : function() {
-											console.log("error...........")
+							for (i = 0; i < val.length; i++) {
+								$('#dSubDistrict').append(
+										'<option>' + val[i] + '</option>');
 
-											$('#dSubDistrict')
-													.append(
-															'<option value="default" disabled selected>No Sub district found</option>');
-										}
-									});
+							}
 						});
 
 		$("#session")
@@ -484,7 +421,7 @@
 							var selectedItem = $(this).val();
 							if (selectedItem == "Accept requested parcel") {
 								//System.out.println(trackControl);
-	$("#sessionMsg").val(str1);
+								$("#sessionMsg").val(str1);
 
 							} else if (selectedItem == "Pickedup from customer") {
 								$("#sessionMsg").val(str2);
