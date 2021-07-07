@@ -160,7 +160,7 @@ public class ParcelRequestRepImpl implements ParcelRequestRep {
 
 	@Override
 	public List<String> getAllpDistrict(String division) throws ClassNotFoundException, SQLException {
-		String sql = "SELECT `pDistrict` FROM `tbl_parcel_request` WHERE `pDivision` = '" + division
+		String sql = "SELECT DISTINCT `pDistrict` FROM `tbl_parcel_request` WHERE `pDivision` = '" + division
 				+ "' AND `states` != 'Delivered';";
 
 		Connection connection = DBConnection.getConnection();
@@ -252,7 +252,7 @@ public class ParcelRequestRepImpl implements ParcelRequestRep {
 
 	@Override
 	public int getTotalNumberofRequest(TrackControlDto tc) throws ClassNotFoundException, SQLException {
-		String sql1 = "SELECT count(*) FROM tbl_parcel_request WHERE `pDivision` = ? OR `pDistrict` = ? OR `pSubDistrict` = ? OR `dDivision` = ? OR `dDistrict`= ? OR `dSubDistrict` = ? ";
+		String sql1 = "SELECT count(*) FROM tbl_parcel_request WHERE `pDivision` = ? AND `pDistrict` = ? AND `pSubDistrict` = ? AND `dDivision` = ? AND `dDistrict`= ? AND `dSubDistrict` = ? AND `states` != 'Delivered'; ";
 		int total = 0;
 		Connection connection = DBConnection.getConnection();
 		PreparedStatement statement1 = connection.prepareStatement(sql1);
@@ -263,9 +263,10 @@ public class ParcelRequestRepImpl implements ParcelRequestRep {
 		statement1.setString(5, tc.getdDistrict());
 		statement1.setString(6, tc.getdSubDistrict());
 		ResultSet rs = statement1.executeQuery();
+		System.out.println(statement1);
 		while (rs.next()) {
 			total = rs.getInt("count(*)");
-
+			System.out.println(total);
 		}
 		return total;
 	}

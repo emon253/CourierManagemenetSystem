@@ -148,13 +148,6 @@
 						<select name="pDivision" id="pDivision" class="form-control">
 							<option value="default" disabled selected>Select</option>
 
-							<c:forEach items="${list}" var="parcel">
-								<option>
-									<c:out value="${parcel.pDivision}" />
-								</option>
-
-							</c:forEach>
-
 						</select>
 					</div>
 					<div class="col-sm-3 mx-auto">
@@ -292,8 +285,6 @@
 
 			const obj = JSON.parse(ajax.responseText)
 
-			$("#total").text('Total: ' + $.parseJSON(obj.overvationCount));
-
 			return obj;
 
 		}
@@ -310,9 +301,12 @@
 						type : "POST",
 						success : function(response) {
 							if (response.trim() == 'success') {
+
 								swal("Success", "Tracking session updated ",
 										"success");
-
+								setTimeout(function() {
+									window.location.replace("trackingControl.jsp");
+								}, 3000);
 							} else {
 								swal("Fail", "Something went wrong", "error");
 
@@ -320,6 +314,32 @@
 						}
 					});
 				});
+
+		function remove(l1) {
+
+		}
+
+		$(document)
+				.ready(
+						function(e) {
+							var fData = $('#form').serialize();
+
+							$('#pDivision').find('option').remove();
+
+							$('#pDivision')
+									.append(
+											'<option value="default" disabled selected>Select</option>');
+
+							const val = JSON
+									.parse(sendRequest(fData).pDivision)
+
+							for (i = 0; i < val.length; i++) {
+								$('#pDivision').append(
+										'<option>' + val[i] + '</option>');
+
+							}
+						});
+
 		$("#pDivision")
 				.change(
 						function(e) {
@@ -330,7 +350,8 @@
 									.append(
 											'<option value="default" disabled selected>Select</option>');
 
-							const val = JSON.parse(sendRequest(fData).pDistrict)
+							const val = JSON
+									.parse(sendRequest(fData).pDistrict)
 
 							for (i = 0; i < val.length; i++) {
 								$('#pDistrict').append(
@@ -348,8 +369,8 @@
 									.append(
 											'<option value="default" disabled selected>Select</option>');
 
-						
-							const val = JSON.parse(sendRequest(fData).pSubDistrict)
+							const val = JSON
+									.parse(sendRequest(fData).pSubDistrict)
 
 							for (i = 0; i < val.length; i++) {
 								$('#pSubDistrict').append(
@@ -366,7 +387,8 @@
 							$('#dDivision')
 									.append(
 											'<option value="default" disabled selected>Select</option>');
-							const val = JSON.parse(sendRequest(fData).dDivision)
+							const val = JSON
+									.parse(sendRequest(fData).dDivision)
 
 							for (i = 0; i < val.length; i++) {
 								$('#dDivision').append(
@@ -383,13 +405,15 @@
 							$('#dDistrict')
 									.append(
 											'<option value="default" disabled selected>Select</option>');
-							const val = JSON.parse(sendRequest(fData).dDistrict)
+							const val = JSON
+									.parse(sendRequest(fData).dDistrict)
 
 							for (i = 0; i < val.length; i++) {
 								$('#dDistrict').append(
 										'<option>' + val[i] + '</option>');
 
-							}						});
+							}
+						});
 
 		$("#dDistrict")
 				.change(
@@ -399,7 +423,8 @@
 							$('#dSubDistrict')
 									.append(
 											'<option value="default" disabled selected>Select</option>');
-							const val = JSON.parse(sendRequest(fData).dSubDistrict)
+							const val = JSON
+									.parse(sendRequest(fData).dSubDistrict)
 
 							for (i = 0; i < val.length; i++) {
 								$('#dSubDistrict').append(
@@ -407,6 +432,15 @@
 
 							}
 						});
+
+		$("#dSubDistrict").change(function(e) {
+			var fData = $('#form').serialize();
+
+			const val = JSON.parse(sendRequest(fData).overvationCount)
+
+			$("#total").text('Total: ' + $.parseJSON(val));
+
+		});
 
 		$("#session")
 				.on(
@@ -420,18 +454,26 @@
 							var str5 = "A delivery man is out to deliver your parcel to your location"
 							var selectedItem = $(this).val();
 							if (selectedItem == "Accept requested parcel") {
-								//System.out.println(trackControl);
+								$("#states").val("Accepted");
 								$("#sessionMsg").val(str1);
 
 							} else if (selectedItem == "Pickedup from customer") {
+								$("#states").val("PickedUp");
+
 								$("#sessionMsg").val(str2);
 
 							} else if (selectedItem == "Sent to delivery sub district") {
+								$("#states").val("toSubDis");
+
 								$("#sessionMsg").val(str3);
 
 							} else if (selectedItem == "Parcel received in delivery hub") {
+								$("#states").val("Received Delivery hub");
+
 								$("#sessionMsg").val(str4);
 							} else if (selectedItem == "Passing parcel to the delivery man") {
+								$("#states").val(" To Delivery Man");
+
 								$("#sessionMsg").val(str5);
 
 							} else {
