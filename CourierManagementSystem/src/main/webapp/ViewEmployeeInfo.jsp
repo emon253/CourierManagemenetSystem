@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -7,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/admin panel.css">
+        <link rel="stylesheet" href="View request.css">
         <title>CMS Courier</title>
     </head>
     <body>
@@ -20,7 +19,7 @@
       
               <ul class="x xx">
                 <li><a href="#" >log out |</a></li>
-                <li class="ml-4"><a href="corporateSignup.jsp">Create Account</a></li>
+                <li class="ml-4"><a href="">Create Account</a></li>
               </ul>
       
             </div>
@@ -67,29 +66,25 @@
           <p ><h6 class="mb-1">CMS</h6>COURIER</p>
         </div>
         <div class="thm mx-auto">
-          <h4>Admin Panel</h4>
+          <h4>Workers Information</h4>
         </div>
       
         <!-- Navbar links -->
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
 
           <div class="thm1 mx-auto" style="align-items: center; ">
-            <h4>Admin Panel</h4>
+            <h4>Workers Information</h4>
           </div>
 
-          <!--ul class="navbar-nav ">
-            <li class="nav-item">
-              <a class="nav-link text-center text-md-left" href="#">HOME</a>
-            </li>
-          </ul-->
+
           <ul>
             <li class="navbar-nav dropdown">
               <a class="nav-link dropdown-toggle text-center text-md-left" href="#" id="navbardrop" data-toggle="dropdown">
                 HOME
               </a>
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">ADMIN</a>
-                <a class="dropdown-item" href="<%=request.getContextPath()%>/home.jsp">HOME</a>
+                <a class="dropdown-item" href="admin panel.html">ADMIN</a>
+                <a class="dropdown-item" href="home.html">HOME</a>
               </div>
             </li>
           </ul>
@@ -103,49 +98,73 @@
 
 
 <div class="container">
-  <div class="bg ">
     <div class="row">
+        <div class="col-sm-3 mt-5">
 
-      <div class="col-4 col-md-4 col-sm-12" style="text-align: center;">
-        <div class="card">
-          <a href="ViewParcelRequests.jsp" class="mt-4">
-            <i class="fas fa-list-ul fa-5x is"></i>
-            <h5 style="color: black;">Parcel Requests</h5>
-          </a>
-        </div>
-      </div>
-
-      <div class="col-4 col-md-4 col-sm-12" style="text-align: center;">
-        <div class="card">
-          <a href="<%=request.getContextPath()%>/trackingControl.jsp" class="mt-4">
-            <i class="fas fa-map-marked-alt fa-5x is"></i>
-            <h5 style="color: black;">Tracking Control</h5>
-          </a>
-        </div>
-
-      </div>
-
-      <div class="col-4 col-md-4 col-sm-12" style="text-align: center;">
-        <div class="card">
-          <a href="ViewEmployeeInfo.jsp" class="mt-4">
-            <i class="fas fa-hard-hat fa-5x is"></i>
-            <h5 style="color: black;">Workers Info</h5>
-          </a>
-        </div>
-
-      </div>
-
+            <h6>Select Designation</h6>
+            <select class="form-control">
+              
+              <option value="1">Select All</option>
+              <option value="2">Manager</option>
+              <option value="3">Delivery Man</option>
+              
+            </select>
+          </div>
     </div>
+
+    <div class="input-group mb-3 mt-5" style="width: 50%;">
+        <input type="text" class="form-control"  placeholder="Username or Id " aria-label="Recipient's username" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button">Search</button>
+        </div>
+      </div>
+
+
+  <div class="bg ">
+        <div class=" card  mb-5">
+
+            <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Weight(kg)</th>
+                    <th scope="col">Picup Address</th>
+                    <th scope="col">Delivery Addreress</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Abdulla Al Mued</td>
+                    <td>abdullaalmuid101@gmail.com</td>
+                    <td>01831553096</td>
+                    <td>18</td>
+                    <td>Dhaka,Faridpur,Madhukhlai,East garakhola</td>
+                    <td>Dhaka,Dhaka,Mirpur-2,Road-11</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Abdulla Al Mued</td>
+                    <td>abdullaalmuid101@gmail.com</td>
+                    <td>01831553096</td>
+                    <td>18</td>
+                    <td>Dhaka,Faridpur,Madhukhlai,East garakhola</td>
+                    <td>Dhaka,Dhaka,Mirpur-2,Road-11</td>
+                  </tr>
+
+                </tbody>
+              </table>
+
+        </div>
   </div>
 </div>
 
 
 
-      
-
-
-
-     
+    
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
       <!-- Popper JS -->
