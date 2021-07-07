@@ -40,6 +40,8 @@ public class TrackingParcelControlServlet extends HttpServlet {
 		response.setContentType("text/html");
 
 		try {
+			String pDiv = json.toJson(pr.getAllpDivition());
+			loc.setpDivision(pDiv);
 			if (tc.getpDivision() != null) {
 				String pDis = json.toJson(pr.getAllpDistrict(tc.getpDivision()));
 				loc.setpDistrict(pDis);
