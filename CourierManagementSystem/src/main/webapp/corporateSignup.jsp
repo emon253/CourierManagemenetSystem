@@ -10,6 +10,13 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/corporate account create.css">
 <title>CMS Courier</title>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js">
+	
+</script>
 </head>
 <body>
 
@@ -22,7 +29,7 @@
 
 					<ul class="x xx">
 						<li style="list-style-type: none;">Alreaady registered?</li>
-						<li class = "ml-4"><a href="adminlogin.jsp">login</a></li>
+						<li class="ml-4"><a href="adminlogin.jsp">login</a></li>
 
 					</ul>
 
@@ -142,26 +149,27 @@
 							<div class="col-lg-5">
 
 								<div class="form-group was-validated">
-									<label for="pwd">Password</label> <input type="password"
-										class="form-control" placeholder="Password" name="password"
+									<label id="passlbl" for="pwd">Password</label> <input type="password"
+										class="form-control" placeholder="Password" id="password" name="password"
 										required>
 									<div class="invalid-feedback">Atleast 6 charecter.</div>
 								</div>
 
 
 								<div class="form-group was-validated">
-									<label for="pwd">Confirm Password</label> <input
+									<label id="cpasslbl"  for="pwd">Confirm Password</label> <input
 										type="password" min="6" class="form-control"
-										placeholder="Confirm Password" name="confirmPassword" required>
+										placeholder="Confirm Password" id="confirmPassword"  name="confirmPassword" required>
 
 
 								</div>
 
 								<div class="form-group">
 									<label for="designation">Designation</label> <select
-										name="designation" class="form-control">
+										id="designation" name="designation" class="form-control">
+										<option value="default" disabled selected>Select</option>
 										<option value="Manager">Manager</option>
-										<option value="Delivery Man">Delivery Man</option>
+										<option value="DeliveryMan">Delivery Man</option>
 
 									</select>
 								</div>
@@ -177,8 +185,8 @@
 									<div class="invalid-feedback">Please fill out this field.</div>
 								</div>
 								<div class="form-group">
-									<label for="pwd">Corporate ID</label> <input type="text"
-										class="form-control" placeholder="Corporate ID" name="id"
+									<label id="cidlbl" for="pwd">Corporate ID</label> <input type="text"
+										class="form-control" placeholder="Corporate ID" id="id" name="id"
 										required>
 
 								</div>
@@ -223,18 +231,37 @@
 
 	<footer> </footer>
 
+	<script type="text/javascript">
+		$('#designation').on('change', function() {
+			if ($('#designation').val() == "DeliveryMan") {
+				$("#id"). hide();
+				$("#password"). hide();
+				$("#confirmPassword"). hide();
+
+				$("#passlbl"). hide();
+				$("#cpasslbl"). hide();
+				$("#cidlbl"). hide();
 
 
+
+			}else{
+				$("#passlbl"). show();
+				$("#cpasslbl"). show();
+				$("#cidlbl"). show();
+
+				$("#id"). show();
+				$("#password"). show();
+				$("#confirmPassword"). show();
+			}
+
+		})
+	</script>
 
 	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js">
+		
+	</script>
 
-	<!-- Popper JS -->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
-	<!-- Latest compiled JavaScript -->
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
