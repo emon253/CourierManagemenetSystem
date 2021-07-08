@@ -4,8 +4,6 @@
 <web-app id="WebApp_ID">
 	<display-name>CourierManagementSystem</display-name>
 
-
-
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.htm</welcome-file>

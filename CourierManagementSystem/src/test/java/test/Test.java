@@ -20,6 +20,7 @@ import repository.UserRepositoryImpl;
 import service.OTPGenerator;
 import service.ParcelService;
 import service.ParcelServiceImpl;
+import service.PasswordEncryptor;
 import service.UserService;
 import service.UserServiceImpl;
 
@@ -66,11 +67,12 @@ public class Test {
 //
 //		ParcelRequestRep prr = new ParcelRequestRepImpl();
 //		System.out.println(prr.fetchAllRequestedParcel().get(0).getpDivision());
+//
+//		ParcelService ps = new ParcelServiceImpl(new ParcelRequestRepImpl());
+//
+//		System.out.println(ps.getParcelSessionSortedBytime("sdf").get(0).getPid());
 
-		ParcelService ps = new ParcelServiceImpl(new ParcelRequestRepImpl());
-
-		System.out.println(ps.getParcelSessionSortedBytime("sdf").get(0).getPid());
-
+		System.out.println(PasswordEncryptor.getInstance().encriptPassword("emon"));
 	}
 
 }

@@ -12,20 +12,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import domain.Admin;
 import domain.User;
 import dto.LoginDTO;
-import repository.UserRepositoryImpl;
-import service.UserService;
-import service.UserServiceImpl;
+import repository.AdminRepositoryImpl;
+import service.AdminService;
+import service.AdminServiceImpl;
 import service.ValidationUtil;
 
-@WebServlet("/login")
-public class LoginServlet extends HttpServlet {
-	private UserService userService = new UserServiceImpl(new UserRepositoryImpl());
+@WebServlet("/adminLogin")
+public class AdminLoginServlet extends HttpServlet {
+	AdminService service = new AdminServiceImpl(new AdminRepositoryImpl());
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getRequestDispatcher("/home.jsp").forward(request, response);
+		request.getRequestDispatcher("adminlogin.jsp").forward(request, response);
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -35,29 +37,32 @@ public class LoginServlet extends HttpServlet {
 		var errors = ValidationUtil.getInstance().validate(loginDto);
 		if (!errors.isEmpty()) {
 			request.setAttribute("errors", errors);
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			request.getRequestDispatcher("adminlogin.jsp").forward(request, response);
 		}
 		try {
 			login(loginDto, request);
-			//response.sendRedirect("home.jsp");
-			response.getWriter().write("success");
+			response.sendRedirect("adminpanel.jsp");
 		} catch (NoSuchAlgorithmException | ClassNotFoundException | UserPrincipalNotFoundException | SQLException e) {
 			errors.put("userloginError", "Incorrect user name or Password");
 			request.setAttribute("errors", errors);
+			request.getRequestDispatcher("adminlogin.jsp").forward(request, response);
+
 
 		}
+
 	}
 
 	private void login(LoginDTO loginDto, HttpServletRequest request)
 			throws NoSuchAlgorithmException, ClassNotFoundException, UserPrincipalNotFoundException, SQLException {
-		User user = userService.verifyUser(loginDto);
+		Admin admin = service.verifyAdmin(loginDto);
 
 		HttpSession oldSession = request.getSession(false);
 		if (oldSession != null) {
 			oldSession.invalidate();
 		}
 		HttpSession session = request.getSession(true);
-		session.setAttribute("userName", user.getUserName());
+		session.setAttribute("admin", admin);
+
 	}
 
 }

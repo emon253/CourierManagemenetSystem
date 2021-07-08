@@ -50,7 +50,6 @@ public class Signup extends HttpServlet {
 			e.printStackTrace();
 		}
 		HttpSession session = request.getSession();
-		System.out.println(errors);
 		if (errors.isEmpty()) {
 
 			// session.setAttribute("loginStates", "success");

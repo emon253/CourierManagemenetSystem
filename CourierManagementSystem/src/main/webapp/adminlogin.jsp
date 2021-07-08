@@ -45,7 +45,7 @@
 						<div class="col-12 mt-5 one ">
 
 
-							<form action="login" method="post">
+							<form action="adminLogin" method="post">
 
 
 								<div class="cnt form-group ">
@@ -76,7 +76,7 @@
 									<a href="">forgot password?</a>
 									<p class="fc">Or</p>
 									<h6>
-										<a href="">Sign Up</a>
+										<a href="corporateSignup.jsp">Sign Up</a>
 									</h6>
 								</div>
 							</form>

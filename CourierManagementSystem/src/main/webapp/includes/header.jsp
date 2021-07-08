@@ -38,7 +38,7 @@
 					<li><a href="#" class="mr-2"><i class="fab fa-twitter"></i></a></li>
 					<li><a href="#" class="mr-2"><i class="fab fa-facebook-f"></i></a></li>
 					<li><a href="#"><i class="fab fa-youtube"></i></a></li>
-					<li><a href="admin/adminpanel.jsp" class="ml-3"><i class="fas fa-user-circle fa-1x"> ADMIN</i></a></li>
+					<li><a href="adminlogin.jsp" class="ml-3"><i class="fas fa-user-circle fa-1x"> ADMIN</i></a></li>
 				</ul>
 			</div>
 		</div>

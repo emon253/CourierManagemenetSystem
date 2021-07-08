@@ -27,7 +27,6 @@ public class UserServiceImpl implements UserService {
 		user.setAddress(userDto.getAddress());
 		String encryptP = encriptPassword(userDto.getPassword());
 		user.setPassword(encryptP);
-		System.out.println(user);
 		userRepository.save(user);
 	}
 
@@ -59,7 +58,6 @@ public class UserServiceImpl implements UserService {
 		String password = encriptPassword(userDto.getPassword());
 
 		User user = userRepository.findUserbyEmail(email);
-		System.out.println(user);
 
 		if (password.equals(user.getPassword())) {
 

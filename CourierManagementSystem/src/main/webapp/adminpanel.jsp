@@ -1,4 +1,6 @@
+
 <!DOCTYPE html>
+<%@page import="domain.Admin"%>
 <html lang="en">
 <head>
 <script src="https://kit.fontawesome.com/a14342fe13.js"
@@ -8,12 +10,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="View request.css">
+<link rel="stylesheet" href="css/admin panel.css">
 <title>CMS Courier</title>
 </head>
 <body>
 
 	<!--small navigation Start-->
+
 	<section>
 		<div class="smlnav ">
 			<!--pt-2 pt-lg-4-->
@@ -21,7 +24,6 @@
 				<div class="col-lg-4 justify-content-center align-items-center">
 
 					<%@include file="includes/admin_securePage_controller.jsp"%>
-
 
 				</div>
 				<div class="col-lg-3"></div>
@@ -67,14 +69,14 @@
 			</p>
 		</div>
 		<div class="thm mx-auto">
-			<h4>View Requests</h4>
+			<h4>Admin Panel</h4>
 		</div>
 
 		<!-- Navbar links -->
 		<div class="collapse navbar-collapse" id="collapsibleNavbar">
 
 			<div class="thm1 mx-auto" style="align-items: center;">
-				<h4>View Requests</h4>
+				<h4>Admin Panel</h4>
 			</div>
 
 			<!--ul class="navbar-nav ">
@@ -87,8 +89,9 @@
 					class="nav-link dropdown-toggle text-center text-md-left" href="#"
 					id="navbardrop" data-toggle="dropdown"> HOME </a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="admin panel.html">ADMIN</a> <a
-							class="dropdown-item" href="home.html">HOME</a>
+						<a class="dropdown-item" href="#">ADMIN</a> <a
+							class="dropdown-item"
+							href="<%=request.getContextPath()%>/home.jsp">HOME</a>
 					</div></li>
 			</ul>
 
@@ -102,47 +105,45 @@
 
 	<div class="container">
 		<div class="bg ">
+			<div class="row">
 
-			<div class=" card">
+				<div class="col-4 col-md-4 col-sm-12" style="text-align: center;">
+					<div class="card">
+						<a href="ViewParcelRequests.jsp" class="mt-4"> <i
+							class="fas fa-list-ul fa-5x is"></i>
+							<h5 style="color: black;">Parcel Requests</h5>
+						</a>
+					</div>
+				</div>
 
-				<table class="table">
-					<thead class="thead-dark">
-						<tr>
-							<th scope="col">#</th>
-							<th scope="col">Name</th>
-							<th scope="col">Email</th>
-							<th scope="col">Phone</th>
-							<th scope="col">Weight(kg)</th>
-							<th scope="col">Picup Address</th>
-							<th scope="col">Delivery Addreress</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<th scope="row">1</th>
-							<td>Abdulla Al Mued</td>
-							<td>abdullaalmuid101@gmail.com</td>
-							<td>01831553096</td>
-							<td>18</td>
-							<td>Dhaka,Faridpur,Madhukhlai,East garakhola</td>
-							<td>Dhaka,Dhaka,Mirpur-2,Road-11</td>
-						</tr>
-						<tr>
-							<th scope="row">2</th>
-							<td>Abdulla Al Mued</td>
-							<td>abdullaalmuid101@gmail.com</td>
-							<td>01831553096</td>
-							<td>18</td>
-							<td>Dhaka,Faridpur,Madhukhlai,East garakhola</td>
-							<td>Dhaka,Dhaka,Mirpur-2,Road-11</td>
-						</tr>
+				<div class="col-4 col-md-4 col-sm-12" style="text-align: center;">
+					<div class="card">
+						<a href="<%=request.getContextPath()%>/trackingControl.jsp"
+							class="mt-4"> <i class="fas fa-map-marked-alt fa-5x is"></i>
+							<h5 style="color: black;">Tracking Control</h5>
+						</a>
+					</div>
 
-					</tbody>
-				</table>
+				</div>
+
+				<div class="col-4 col-md-4 col-sm-12" style="text-align: center;">
+					<div class="card">
+						<a href="ViewEmployeeInfo.jsp" class="mt-4"> <i
+							class="fas fa-hard-hat fa-5x is"></i>
+							<h5 style="color: black;">Workers Info</h5>
+						</a>
+					</div>
+
+				</div>
 
 			</div>
 		</div>
 	</div>
+
+
+
+
+
 
 
 

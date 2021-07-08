@@ -17,10 +17,8 @@
           <div class="row ">
             <div class="col-lg-4 justify-content-center align-items-center">
       
-              <ul class="x xx">
-                <li><a href="#" >log out |</a></li>
-                <li class="ml-4"><a href="">Create Account</a></li>
-              </ul>
+           					<%@include file="includes/admin_securePage_controller.jsp"%>
+
       
             </div>
             <div class="col-lg-3">
