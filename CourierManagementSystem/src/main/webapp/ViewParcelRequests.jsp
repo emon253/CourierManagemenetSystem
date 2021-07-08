@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +14,14 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="View request.css">
 <title>CMS Courier</title>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<!-- Popper JS -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js">
+	</script>
 </head>
 <body>
 
@@ -20,8 +32,8 @@
 			<div class="row ">
 				<div class="col-lg-4 justify-content-center align-items-center">
 
-					<%@include file="includes/admin_securePage_controller.jsp"%>
-
+ 					<%@include file="includes/admin_securePage_controller.jsp"%>
+ 
 
 				</div>
 				<div class="col-lg-3"></div>
@@ -87,8 +99,8 @@
 					class="nav-link dropdown-toggle text-center text-md-left" href="#"
 					id="navbardrop" data-toggle="dropdown"> HOME </a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="admin panel.html">ADMIN</a> <a
-							class="dropdown-item" href="home.html">HOME</a>
+						<a class="dropdown-item" href="adminpanel.jsp">ADMIN</a> <a
+							class="dropdown-item" href="home.jsp">HOME</a>
 					</div></li>
 			</ul>
 
@@ -108,7 +120,7 @@
 				<table class="table">
 					<thead class="thead-dark">
 						<tr>
-							<th scope="col">#</th>
+							<th scope="col">Parcel ID</th>
 							<th scope="col">Name</th>
 							<th scope="col">Email</th>
 							<th scope="col">Phone</th>
@@ -118,24 +130,18 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<th scope="row">1</th>
-							<td>Abdulla Al Mued</td>
-							<td>abdullaalmuid101@gmail.com</td>
-							<td>01831553096</td>
-							<td>18</td>
-							<td>Dhaka,Faridpur,Madhukhlai,East garakhola</td>
-							<td>Dhaka,Dhaka,Mirpur-2,Road-11</td>
-						</tr>
-						<tr>
-							<th scope="row">2</th>
-							<td>Abdulla Al Mued</td>
-							<td>abdullaalmuid101@gmail.com</td>
-							<td>01831553096</td>
-							<td>18</td>
-							<td>Dhaka,Faridpur,Madhukhlai,East garakhola</td>
-							<td>Dhaka,Dhaka,Mirpur-2,Road-11</td>
-						</tr>
+						<c:forEach items="${parcel}" var="parcel">
+							<tr>
+								<th scope="row"><c:out value="${parcel.parcelID}" /></th>
+								<td><c:out value="${parcel.name}" /></td>
+								<td><c:out value="${parcel.email}" /></td>
+								<td><c:out value="${parcel.phone}" /></td>
+								<td><c:out value="${parcel.parcelWeight}" /></td>
+								<td><c:out value="${parcel.pickupAddress}" /></td>
+								<td><c:out value="${parcel.deliveryAddress}" /></td>
+							</tr>
+
+						</c:forEach>
 
 					</tbody>
 				</table>
@@ -144,14 +150,21 @@
 		</div>
 	</div>
 
+<script type="text/javascript">
+/* $(document).ready(function () {
+   
+    $.ajax({
+        type:'GET',
+        url:'viewParcel',
+        success:function(resp){
+           // window.location.href = "ViewParcelRequests.jsp";
+        }
+    });
+});
+ */
+</script>
 
 
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-	<!-- Popper JS -->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
 	<!-- Latest compiled JavaScript -->
 	<script

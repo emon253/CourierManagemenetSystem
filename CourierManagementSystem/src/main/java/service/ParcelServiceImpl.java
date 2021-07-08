@@ -40,9 +40,9 @@ public class ParcelServiceImpl implements ParcelService {
 	}
 
 	@Override
-	public List<ParcelRequestDTO> getAllRedquestedSortedbyLocationName() throws ClassNotFoundException, SQLException {
+	public List<ParcelRequest> getAllRedquestedParcel() throws ClassNotFoundException, SQLException {
 		
-		List<ParcelRequestDTO> parcelList =  prr.fetchAllRequestedParcel();
+		List<ParcelRequest> parcelList =  prr.fetchAllRequestedParcel();
 		
 	
 		return parcelList;

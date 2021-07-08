@@ -89,7 +89,7 @@
 					class="nav-link dropdown-toggle text-center text-md-left" href="#"
 					id="navbardrop" data-toggle="dropdown"> HOME </a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#">ADMIN</a> <a
+						<a class="dropdown-item" href="adminpanel.jsp">ADMIN</a> <a
 							class="dropdown-item"
 							href="<%=request.getContextPath()%>/home.jsp">HOME</a>
 					</div></li>
@@ -109,7 +109,7 @@
 
 				<div class="col-4 col-md-4 col-sm-12" style="text-align: center;">
 					<div class="card">
-						<a href="ViewParcelRequests.jsp" class="mt-4"> <i
+						<a href="<%=request.getContextPath()%>/viewParcel" class="mt-4"> <i
 							class="fas fa-list-ul fa-5x is"></i>
 							<h5 style="color: black;">Parcel Requests</h5>
 						</a>

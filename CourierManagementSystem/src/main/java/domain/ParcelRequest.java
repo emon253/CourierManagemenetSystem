@@ -14,6 +14,18 @@ public class ParcelRequest {
 	String deliveryAddress;
 	String requestedTime;
 
+	public ParcelRequest(String parcelID, String name, String email, long phone, double parcelWeight,
+			String pickupAddress, String deliveryAddress, String requestedTime) {
+		this.parcelID = parcelID;
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
+		this.parcelWeight = parcelWeight;
+		this.pickupAddress = pickupAddress;
+		this.deliveryAddress = deliveryAddress;
+		this.requestedTime = requestedTime;
+	}
+
 	public ParcelRequest(String name, String email, long phone, double parcelWeight, String pickupAddress,
 			String deliveryAddress) {
 
@@ -29,10 +41,12 @@ public class ParcelRequest {
 		// TODO Auto-generated constructor stub
 	}
 
+
 	@Override
 	public String toString() {
-		return "ParcelRequestDTO [name=" + name + ", email=" + email + ", phone=" + phone + ", parcelWeight="
-				+ parcelWeight + ", pickupAddress=" + pickupAddress + ", deliveryAddress=" + deliveryAddress + "]";
+		return "ParcelRequest [parcelID=" + parcelID + ", name=" + name + ", email=" + email + ", phone=" + phone
+				+ ", parcelWeight=" + parcelWeight + ", pickupAddress=" + pickupAddress + ", deliveryAddress="
+				+ deliveryAddress + ", requestedTime=" + requestedTime + "]";
 	}
 
 	public String getName() {

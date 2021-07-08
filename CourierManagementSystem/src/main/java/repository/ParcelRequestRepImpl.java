@@ -124,25 +124,35 @@ public class ParcelRequestRepImpl implements ParcelRequestRep {
 	}
 
 	@Override
-	public List<ParcelRequestDTO> fetchAllRequestedParcel() throws ClassNotFoundException, SQLException {
-		String sql = "SELECT DISTINCT `pDivision`,`pDistrict`,`pSubDistrict`,`dDivision`,`dDistrict`,`dSubDistrict`,`pFullAddress`,`dFullAddress` FROM tbl_parcel_request;";
+	public List<ParcelRequest> fetchAllRequestedParcel() throws ClassNotFoundException, SQLException {
+		String sql = "SELECT * FROM tbl_parcel_request;";
 		Connection connection = DBConnection.getConnection();
 		PreparedStatement statement = connection.prepareStatement(sql);
 		ResultSet rs = statement.executeQuery();
 
-		List<ParcelRequestDTO> list = new ArrayList<ParcelRequestDTO>();
+		List<ParcelRequest> list = new ArrayList<ParcelRequest>();
 
 		while (rs.next()) {
-			ParcelRequestDTO parcel = extractParcel(rs);
+			ParcelRequest parcel = extractParcel(rs);
 			list.add(parcel);
 		}
 		return list;
 	}
 
-	private ParcelRequestDTO extractParcel(ResultSet rs) throws NumberFormatException, SQLException {
-		return new ParcelRequestDTO("", "", 0, 0, rs.getString("pDivision"), rs.getString("pDistrict"),
+	private ParcelRequest extractParcel(ResultSet rs) throws NumberFormatException, SQLException {
+		var address = new ParcelRequestDTO("", "", 0, 0, rs.getString("pDivision"), rs.getString("pDistrict"),
 				rs.getString("pSubDistrict"), rs.getString("pFullAddress"), rs.getString("dDivision"),
 				rs.getString("dDistrict"), rs.getString("dSubDistrict"), rs.getString("dFullAddress"));
+		var request = new ParcelRequest();
+		request.setParcelID(rs.getString("pid"));
+		request.setName(rs.getString("name"));
+		request.setEmail(rs.getString("email"));
+		request.setPhone(rs.getLong("phone"));
+		request.setParcelWeight(rs.getInt("parcelWeight"));
+		request.setPickupAddress(address.getpSubDistrict() +","+ address.getpDistrict() +", "+address.getpDivision()+"\n"+address.getpFullAddress());
+		request.setDeliveryAddress(address.getdSubDistrict() +","+ address.getdDistrict() +", "+address.getdDivision()+"\n"+address.getdFullAddress());
+		
+		return request;
 	}
 
 	@Override

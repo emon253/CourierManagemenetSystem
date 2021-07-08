@@ -17,7 +17,7 @@ public interface ParcelRequestRep {
 
 	List<ParcelTracking> getSessionByPid(String pid) throws ClassNotFoundException, SQLException;
 
-	List<ParcelRequestDTO> fetchAllRequestedParcel() throws ClassNotFoundException, SQLException;
+	List<ParcelRequest> fetchAllRequestedParcel() throws ClassNotFoundException, SQLException;
 
 
 	List<String> getAllpDivition() throws ClassNotFoundException, SQLException;

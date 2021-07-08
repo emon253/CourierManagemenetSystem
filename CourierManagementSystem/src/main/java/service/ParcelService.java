@@ -15,5 +15,5 @@ public interface ParcelService {
 
 	List<ParcelTracking> getParcelSessionSortedBytime(String pid) throws ClassNotFoundException, SQLException;
 
-	List<ParcelRequestDTO> getAllRedquestedSortedbyLocationName() throws ClassNotFoundException, SQLException;
+	List<ParcelRequest> getAllRedquestedParcel() throws ClassNotFoundException, SQLException;
 }
