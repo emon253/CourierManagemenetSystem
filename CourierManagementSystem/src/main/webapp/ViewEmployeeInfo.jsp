@@ -81,8 +81,8 @@
                 HOME
               </a>
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="admin panel.html">ADMIN</a>
-                <a class="dropdown-item" href="home.html">HOME</a>
+                <a class="dropdown-item" href="adminpanel.jsp">ADMIN</a>
+                <a class="dropdown-item" href="home.jsp">HOME</a>
               </div>
             </li>
           </ul>
@@ -121,16 +121,16 @@
   <div class="bg ">
         <div class=" card  mb-5">
 
-            <table class="table">
+            <table class="table ">
                 <thead class="thead-dark">
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
                     <th scope="col">Phone</th>
-                    <th scope="col">Weight(kg)</th>
-                    <th scope="col">Picup Address</th>
-                    <th scope="col">Delivery Addreress</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Designation</th>
+                    <th scope="col">Address</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -140,7 +140,7 @@
                     <td>abdullaalmuid101@gmail.com</td>
                     <td>01831553096</td>
                     <td>18</td>
-                    <td>Dhaka,Faridpur,Madhukhlai,East garakhola</td>
+                    <td>Manager</td>
                     <td>Dhaka,Dhaka,Mirpur-2,Road-11</td>
                   </tr>
                   <tr>
@@ -149,7 +149,7 @@
                     <td>abdullaalmuid101@gmail.com</td>
                     <td>01831553096</td>
                     <td>18</td>
-                    <td>Dhaka,Faridpur,Madhukhlai,East garakhola</td>
+                    <td>Manager</td>
                     <td>Dhaka,Dhaka,Mirpur-2,Road-11</td>
                   </tr>
 

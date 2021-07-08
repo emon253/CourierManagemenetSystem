@@ -113,9 +113,9 @@
 
 
 	<div class="container">
-		<div class="bg ">
+		<div class="bg mb-5">
 
-			<div class=" card">
+			<div class=" card ">
 
 				<table class="table">
 					<thead class="thead-dark">
