@@ -24,6 +24,7 @@
 	<div class="mainbody d-flex">
 		<div class="container-fluid py-4 px-2">
 			<div class="row">
+
 				<div class="col-md-8">
 					<div class="card">
 						<div class="card-body">
@@ -32,9 +33,9 @@
 								<ul class="timeline">
 									<c:forEach items="${session}" var="parcel">
 
-										
+
 										<li class="event" data-date="${parcel.sessionTime}">
-											<h3>Registration</h3>
+											<h3>****</h3>
 											<p>${parcel.currentSession}</p>
 										</li>
 									</c:forEach>
@@ -56,16 +57,43 @@
 							style="height: 2px; background-color: red; width: 20%; margin: 0px;">
 						<h5>Tracking No:</h5>
 						<p>${parcel.parcelID}</p>
-						<h5>Customer Name:</h5>
-						<p>${parcel.name}</p>
-						<h5>Pickup Point:</h5>
-						<p>${parcel.pickupAddress}</p>
 						<h5>Order date:</h5>
+
 						<p>${parcel.requestedTime}</p>
-						<h5>Destination Point:</h5>
-						<p>${parcel.deliveryAddress}</p>
+						<div class="row">
+							<div class="col-md-6 border-right-1">
+								<h5>Pickup Point:</h5>
+								<hr class="mb-2"
+									style="height: 2px; background-color: blue; width: 60%; margin: 0px;">
+								<p>
+									<b>Sender:</b> ${parcel.name}
+								</p>
+								<p>
+									<b>Phone:</b> ${parcel.name}
+								</p>
+
+								<p>${parcel.pickupAddress}</p>
+							</div>
+							<div class="col-md-6">
+								<h5>Destination Point:</h5>
+								<hr class="mb-2"
+									style="height: 2px; background-color: blue; width: 60%; margin: 0px;">
+								<p>
+									<b>Receiver:</b> ${parcel.receiverName}
+								</p>
+								<p>
+									<b>Phone:</b> ${parcel.receiverPhone}
+								</p>
+								<p>${parcel.deliveryAddress}</p>
+
+							</div>
+						</div>
+
+
 					</div>
 				</div>
+
+
 			</div>
 		</div>
 	</div>

@@ -71,6 +71,9 @@ public class ParcelRequestRepImpl implements ParcelRequestRep {
 			pr.setDeliveryAddress(rs.getString("dSubDistrict") + ", " + rs.getString("dDistrict") + ", "
 					+ rs.getString("dDivision") + "\n" + rs.getString("dFullAddress"));
 			pr.setRequestedTime(new SimpleDateFormat("dd-MM-yyyy K:mm aa").format(rs.getTimestamp("requestedTime")));
+			pr.setReceiverName(rs.getString("receiverName"));
+			pr.setReceiverEmail(rs.getString("receiverEmail"));
+			pr.setReceiverPhone(rs.getLong("receiverPhone"));
 			return pr;
 		} else {
 			return null;

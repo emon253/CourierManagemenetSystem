@@ -9,6 +9,9 @@ public class ParcelRequest {
 	String name;
 	String email;
 	long phone;
+	String receiverName;
+	String receiverEmail;
+	long receiverPhone;
 	double parcelWeight;
 	String pickupAddress;
 	String deliveryAddress;
@@ -40,7 +43,6 @@ public class ParcelRequest {
 	public ParcelRequest() {
 		// TODO Auto-generated constructor stub
 	}
-
 
 	@Override
 	public String toString() {
@@ -113,5 +115,28 @@ public class ParcelRequest {
 		this.requestedTime = requestedTime;
 	}
 
+	public String getReceiverName() {
+		return receiverName;
+	}
+
+	public void setReceiverName(String receiverName) {
+		this.receiverName = receiverName;
+	}
+
+	public String getReceiverEmail() {
+		return receiverEmail;
+	}
+
+	public void setReceiverEmail(String receiverEmail) {
+		this.receiverEmail = receiverEmail;
+	}
+
+	public long getReceiverPhone() {
+		return receiverPhone;
+	}
+
+	public void setReceiverPhone(long receiverPhone) {
+		this.receiverPhone = receiverPhone;
+	}
 
 }
