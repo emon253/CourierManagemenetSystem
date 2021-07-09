@@ -120,16 +120,6 @@
 
 	</nav>
 
-	<!--navbar ...................   ends-->
-
-	<%
-	//List<String> list = (List<String>) request.getAttribute("pDiv");
-	ParcelService service = new ParcelServiceImpl(new ParcelRequestRepImpl());
-	List<ParcelRequestDTO> parcelList = service.getAllRedquestedSortedbyLocationName();
-	request.setAttribute("list", parcelList);
-	%>
-
-
 	<form id="form" action="trackControl" method="post">
 		<div class="container">
 
@@ -249,9 +239,7 @@
 								class="form-control ta" style="resize: none;" rows="3"
 								id="comment"></textarea>
 							<button type="submit" class="btn btn-info">Add Session</button>
-							<input id="dloc" type="hidden"
-								value="'<%=parcelList.get(0).getdSubDistrict()%>'">
-
+							
 						</div>
 					</div>
 
@@ -449,8 +437,8 @@
 							var str1 = "Your parcel has been accepted by CMS, A pickup man will receive your Parcel soon";
 							var str2 = "Your parcel has received in your nearby hub. Will be delivered soon";
 							var str3 = "Your parcel is sending to your delivery loation";
-							var str4 = "We received your parcel in '"
-									+ $("#dloc").val();
+							var str4 = "We received your parcel in delivery hub'";
+									
 							var str5 = "A delivery man is out to deliver your parcel to your location"
 							var selectedItem = $(this).val();
 							if (selectedItem == "Accept requested parcel") {

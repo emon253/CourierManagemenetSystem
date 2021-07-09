@@ -8,184 +8,44 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class ParcelRequestDTO {
-	String parcelID;
-	double price;
-	
-	@NotEmpty
-	@Size(min = 1, max = 32)
-	private String name;
 
-	@NotEmpty
-	@Email
-	@Size(min = 6, max = 120)
-	private String email;
+	private ParcelSenderDTO parcelSenderDto;
 
-	@NotNull
-	private long phone;
+	private ParcelReceiverDTO parcelReceiverDto;
+
+	private String parcelID;
+
+	private double price;
 
 	@NotNull
 	@Max(value = 100)
 	private double parcelWeight;
 
-	@NotEmpty
-	@Size(min = 1, max = 50)
-	private String pDivision;
-
-	@NotEmpty
-	@Size(min = 1, max = 50)
-	private String pDistrict;
-
-	@NotEmpty
-	@Size(min = 1, max = 50)
-	private String pSubDistrict;
-
-	@NotEmpty
-	@Size(min = 1, max = 140)
-	private String pFullAddress;
-
-	@NotEmpty
-	@Size(min = 1, max = 50)
-	private String dDivision;
-
-	@NotEmpty
-	@Size(min = 1, max = 50)
-	private String dDistrict;
-
-	@NotEmpty
-	@Size(min = 1, max = 50)
-	private String dSubDistrict;
-
-	@NotEmpty
-	@Size(min = 1, max = 140)
-	private String dFullAddress;
-
-	public ParcelRequestDTO(@NotEmpty @Size(min = 4, max = 32) String name, @NotEmpty String email, long phone,
-			double parcelWeight, @NotEmpty String pDivision, @NotEmpty String pDistrict, @NotEmpty String pSubDistrict,
-			@NotEmpty String pFullAddress, @NotEmpty String dDivision, @NotEmpty String dDistrict,
-			@NotEmpty String dSubDistrict, @NotEmpty String dFullAddress) {
-
-		this.name = name;
-		this.email = email;
-		this.phone = phone;
-		this.parcelWeight = parcelWeight;
-		this.pDivision = pDivision;
-		this.pDistrict = pDistrict;
-		this.pSubDistrict = pSubDistrict;
-		this.pFullAddress = pFullAddress;
-		this.dDivision = dDivision;
-		this.dDistrict = dDistrict;
-		this.dSubDistrict = dSubDistrict;
-		this.dFullAddress = dFullAddress;
-	}
-
 	public ParcelRequestDTO() {
 	}
 
-
-
-	@Override
-	public String toString() {
-		return "ParcelRequestDTO [parcelID=" + parcelID + ", price=" + price + ", name=" + name + ", email=" + email
-				+ ", phone=" + phone + ", parcelWeight=" + parcelWeight + ", pDivision=" + pDivision + ", pDistrict="
-				+ pDistrict + ", pSubDistrict=" + pSubDistrict + ", pFullAddress=" + pFullAddress + ", dDivision="
-				+ dDivision + ", dDistrict=" + dDistrict + ", dSubDistrict=" + dSubDistrict + ", dFullAddress="
-				+ dFullAddress + "]";
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public long getPhone() {
-		return phone;
-	}
-
-	public void setPhone(long phone) {
-		this.phone = phone;
-	}
-
-	public double getParcelWeight() {
-		return parcelWeight;
-	}
-
-	public void setParcelWeight(double parcelWeight) {
+	public ParcelRequestDTO(ParcelSenderDTO parcelSenderDto, ParcelReceiverDTO parcelReceiverDto, String parcelID,
+			double price, double parcelWeight) {
+		this.parcelReceiverDto = parcelReceiverDto;
+		this.parcelID = parcelID;
+		this.price = price;
 		this.parcelWeight = parcelWeight;
 	}
 
-	public String getpDivision() {
-		return pDivision;
+	public ParcelSenderDTO getParcelSenderDto() {
+		return parcelSenderDto;
 	}
 
-	public void setpDivision(String pDivision) {
-		this.pDivision = pDivision;
+	public void setParcelSenderDto(ParcelSenderDTO parcelSenderDto) {
+		this.parcelSenderDto = parcelSenderDto;
 	}
 
-	public String getpDistrict() {
-		return pDistrict;
+	public ParcelReceiverDTO getParcelReceiverDto() {
+		return parcelReceiverDto;
 	}
 
-	public void setpDistrict(String pDistrict) {
-		this.pDistrict = pDistrict;
-	}
-
-	public String getpSubDistrict() {
-		return pSubDistrict;
-	}
-
-	public void setpSubDistrict(String pSubDistrict) {
-		this.pSubDistrict = pSubDistrict;
-	}
-
-	public String getdDivision() {
-		return dDivision;
-	}
-
-	public void setdDivision(String dDivision) {
-		this.dDivision = dDivision;
-	}
-
-	public String getdDistrict() {
-		return dDistrict;
-	}
-
-	public void setdDistrict(String dDistrict) {
-		this.dDistrict = dDistrict;
-	}
-
-	public String getdSubDistrict() {
-		return dSubDistrict;
-	}
-
-	public void setdSubDistrict(String dSubDistrict) {
-		this.dSubDistrict = dSubDistrict;
-	}
-
-	public String getpFullAddress() {
-		return pFullAddress;
-	}
-
-	public void setpFullAddress(String pFullAddress) {
-		this.pFullAddress = pFullAddress;
-	}
-
-	public String getdFullAddress() {
-		return dFullAddress;
-	}
-
-	public void setdFullAddress(String dFullAddress) {
-		this.dFullAddress = dFullAddress;
+	public void setParcelReceiverDto(ParcelReceiverDTO parcelReceiverDto) {
+		this.parcelReceiverDto = parcelReceiverDto;
 	}
 
 	public String getParcelID() {
@@ -203,5 +63,21 @@ public class ParcelRequestDTO {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+
+	public double getParcelWeight() {
+		return parcelWeight;
+	}
+
+	public void setParcelWeight(double parcelWeight) {
+		this.parcelWeight = parcelWeight;
+	}
+
+	@Override
+	public String toString() {
+		return "ParcelRequestDTO [parcelSenderDto=" + parcelSenderDto + ", parcelReceiverDto=" + parcelReceiverDto
+				+ ", parcelID=" + parcelID + ", price=" + price + ", parcelWeight=" + parcelWeight + "]";
+	}
+	
+	
 
 }

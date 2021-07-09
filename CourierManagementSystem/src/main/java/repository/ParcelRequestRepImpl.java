@@ -17,29 +17,33 @@ import dbconnection.DBConnection;
 import domain.ParcelRequest;
 import domain.ParcelTracking;
 import dto.ParcelRequestDTO;
+import dto.ParcelSenderDTO;
 import dto.TrackControlDto;
 
 public class ParcelRequestRepImpl implements ParcelRequestRep {
 
 	@Override
 	public boolean save(ParcelRequestDTO pr) throws ClassNotFoundException, SQLException {
-		String sql = "INSERT INTO tbl_parcel_request  (`pid`,`name`,`email`,`phone`,`parcelWeight`,`pDivision`,`pDistrict`,`pSubDistrict`,`dDivision`,`dDistrict`,`dSubDistrict`,`pFullAddress`,`dFullAddress`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO tbl_parcel_request  (`pid`,`name`,`email`,`phone`,`receiverName`,`receiverEmail`,`receiverPhone`,`parcelWeight`,`pDivision`,`pDistrict`,`pSubDistrict`,`dDivision`,`dDistrict`,`dSubDistrict`,`pFullAddress`,`dFullAddress`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		Connection connection = DBConnection.getConnection();
 		PreparedStatement statement = connection.prepareStatement(sql);
 
 		statement.setString(1, pr.getParcelID());
-		statement.setString(2, pr.getName());
-		statement.setString(3, pr.getEmail());
-		statement.setLong(4, pr.getPhone());
-		statement.setDouble(5, pr.getParcelWeight());
-		statement.setString(6, pr.getpDivision());
-		statement.setString(7, pr.getpDistrict());
-		statement.setString(8, pr.getpSubDistrict());
-		statement.setString(9, pr.getdDivision());
-		statement.setString(10, pr.getdDistrict());
-		statement.setString(11, pr.getdSubDistrict());
-		statement.setString(12, pr.getpFullAddress());
-		statement.setString(13, pr.getdFullAddress());
+		statement.setString(2, pr.getParcelSenderDto().getName());
+		statement.setString(3, pr.getParcelSenderDto().getEmail());
+		statement.setLong(4, pr.getParcelSenderDto().getPhone());
+		statement.setString(5, pr.getParcelReceiverDto().getName());
+		statement.setString(6, pr.getParcelReceiverDto().getEmail());
+		statement.setLong(7, pr.getParcelReceiverDto().getPhone());
+		statement.setDouble(8, pr.getParcelWeight());
+		statement.setString(9, pr.getParcelSenderDto().getpDivision());
+		statement.setString(10, pr.getParcelSenderDto().getpDistrict());
+		statement.setString(11, pr.getParcelSenderDto().getpSubDistrict());
+		statement.setString(12, pr.getParcelReceiverDto().getdDivision());
+		statement.setString(13, pr.getParcelReceiverDto().getdDistrict());
+		statement.setString(14, pr.getParcelReceiverDto().getdSubDistrict());
+		statement.setString(15, pr.getParcelSenderDto().getpFullAddress());
+		statement.setString(16, pr.getParcelReceiverDto().getdFullAddress());
 
 		if (statement.executeUpdate() > 0) {
 			connection.close();
@@ -140,18 +144,19 @@ public class ParcelRequestRepImpl implements ParcelRequestRep {
 	}
 
 	private ParcelRequest extractParcel(ResultSet rs) throws NumberFormatException, SQLException {
-		var address = new ParcelRequestDTO("", "", 0, 0, rs.getString("pDivision"), rs.getString("pDistrict"),
-				rs.getString("pSubDistrict"), rs.getString("pFullAddress"), rs.getString("dDivision"),
-				rs.getString("dDistrict"), rs.getString("dSubDistrict"), rs.getString("dFullAddress"));
+
+		var senderInfo = new ParcelSenderDTO();
 		var request = new ParcelRequest();
 		request.setParcelID(rs.getString("pid"));
 		request.setName(rs.getString("name"));
 		request.setEmail(rs.getString("email"));
 		request.setPhone(rs.getLong("phone"));
 		request.setParcelWeight(rs.getInt("parcelWeight"));
-		request.setPickupAddress(address.getpSubDistrict() +","+ address.getpDistrict() +", "+address.getpDivision()+"\n"+address.getpFullAddress());
-		request.setDeliveryAddress(address.getdSubDistrict() +","+ address.getdDistrict() +", "+address.getdDivision()+"\n"+address.getdFullAddress());
-		
+		request.setPickupAddress(rs.getString("pSubDistrict") + "," + rs.getString("pDistrict") + ", "
+				+ rs.getString("pDivision") + "\n" + rs.getString("pFullAddress"));
+		request.setDeliveryAddress(rs.getString("pSubDistrict") + "," + rs.getString("pDistrict") + ", "
+				+ rs.getString("pDivision") + "\n" + rs.getString("pFullAddress"));
+
 		return request;
 	}
 

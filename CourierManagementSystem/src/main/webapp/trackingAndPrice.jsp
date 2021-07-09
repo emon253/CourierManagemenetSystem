@@ -25,13 +25,12 @@
 	ParcelRequestDTO pRequest = (ParcelRequestDTO) session.getAttribute("parcelRequest");
 	%>
 
-<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      ...
-    </div>
-  </div>
-</div>
+	<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog"
+		aria-labelledby="mySmallModalLabel" aria-hidden="">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">...</div>
+		</div>
+	</div>
 
 
 	<div class="Main_body d-flex">
@@ -54,10 +53,11 @@
 						</tr>
 						<tr>
 							<td class="border border-dark"><%=pRequest.getParcelID()%></td>
-							<td class="border border-dark"><%=pRequest.getpSubDistrict() + ", " + pRequest.getpDistrict() + ", " + pRequest.getdDivision() + ", "
-		+ pRequest.getpFullAddress()%></td>
-							<td class="border border-dark"><%=pRequest.getpSubDistrict() + ", " + pRequest.getdDistrict() + ", " + pRequest.getdDivision() + ", "
-		+ pRequest.getdFullAddress()%></td>
+							<td class="border border-dark"><%=pRequest.getParcelSenderDto().getpSubDistrict() + ", " + pRequest.getParcelSenderDto().getpDistrict() + ", "
+		+ pRequest.getParcelSenderDto().getpDivision() + ", " + pRequest.getParcelSenderDto().getpFullAddress()%></td>
+							<td class="border border-dark"><%=pRequest.getParcelReceiverDto().getdSubDistrict() + ", " + pRequest.getParcelReceiverDto().getdDistrict()
+		+ ", " + pRequest.getParcelReceiverDto().getdDivision() + ", "
+		+ pRequest.getParcelReceiverDto().getdFullAddress()%></td>
 							<td class="border border-dark"><%=pRequest.getPrice()%></td>
 						</tr>
 					</table>
@@ -214,10 +214,10 @@
 
 				</form>
 				<form id="checkoutForm" action="ParcelRequestServlet" method="get">
-<button class="w-10 btn btn-primary btn-sm mb-5" type="submit">Continue
-					to checkout</button>
+					<button class="w-10 btn btn-primary btn-sm mb-5" type="submit">Continue
+						to checkout</button>
 				</form>
-				
+
 			</div>
 		</div>
 

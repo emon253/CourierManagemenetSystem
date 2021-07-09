@@ -19,7 +19,9 @@ import javax.validation.ValidatorFactory;
 
 import dbconnection.DBConnection;
 import domain.ParcelRequest;
+import dto.ParcelReceiverDTO;
 import dto.ParcelRequestDTO;
+import dto.ParcelSenderDTO;
 import repository.ParcelRequestRep;
 import repository.ParcelRequestRepImpl;
 import service.OTPGenerator;
@@ -52,8 +54,8 @@ public class ParcelRequestServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		ParcelRequestDTO pr = copyParametersTo(request);
 
+		ParcelRequestDTO pr = copyParametersTo(request);
 		String pid = "CMS200" + OTPGenerator.getInstance().generateOTP();
 		HttpSession session = request.getSession();
 		Map<String, String> errors = ValidationUtil.getInstance().validate(pr);
@@ -78,21 +80,33 @@ public class ParcelRequestServlet extends HttpServlet {
 
 	private ParcelRequestDTO copyParametersTo(HttpServletRequest request) {
 		var pr = new ParcelRequestDTO();
+		ParcelSenderDTO psd = new ParcelSenderDTO();
+		ParcelReceiverDTO prd = new ParcelReceiverDTO();
 		
-		//pr.setParcelID();
-		pr.setName(request.getParameter("name"));
-		pr.setEmail(request.getParameter("email"));
-		pr.setPhone(Long.parseLong(request.getParameter("phone")));
-		pr.setParcelWeight(Long.parseLong(request.getParameter("parcelWeight")));
-		pr.setpDivision(request.getParameter("pDivision"));
-		pr.setpDistrict(request.getParameter("pDistrict"));
-		pr.setpSubDistrict(request.getParameter("pSubDistrict"));
-		pr.setpFullAddress(request.getParameter("pFullAddress"));
-		pr.setdFullAddress(request.getParameter("dFullAddress"));
-		pr.setdDivision(request.getParameter("dDivision"));
-		pr.setdDistrict(request.getParameter("dDistrict"));
-		pr.setdSubDistrict(request.getParameter("dSubDistrict"));
+		psd.setName(request.getParameter("name"));
+		psd.setEmail(request.getParameter("email"));
+		psd.setPhone(Long.parseLong(request.getParameter("phone")));
+		psd.setpDivision(request.getParameter("pDivision"));
+		psd.setpDistrict(request.getParameter("pDistrict"));
+		psd.setpSubDistrict(request.getParameter("pSubDistrict"));
+		psd.setpFullAddress(request.getParameter("pFullAddress"));
 		
+		prd.setName(request.getParameter("rname"));
+		prd.setEmail(request.getParameter("remail"));
+		prd.setPhone(Long.parseLong(request.getParameter("rphone")));
+		prd.setdFullAddress(request.getParameter("dFullAddress"));
+		prd.setdDivision(request.getParameter("dDivision"));
+		prd.setdDistrict(request.getParameter("dDistrict"));
+		prd.setdSubDistrict(request.getParameter("dSubDistrict"));
+		
+		pr.setParcelWeight(Double.parseDouble(request.getParameter("parcelWeight")));
+		pr.setParcelReceiverDto(prd);
+		pr.setParcelSenderDto(psd);
+		System.out.println(prd);
+		System.out.println(psd);
+
+		System.out.println(pr);
+
 		return pr;
 	}
 
