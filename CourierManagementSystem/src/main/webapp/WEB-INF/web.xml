@@ -3,6 +3,16 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 <web-app id="WebApp_ID">
 	<display-name>CourierManagementSystem</display-name>
+	<servlet>
+		<servlet-name>EmployeeViewerServlet</servlet-name>
+		<display-name>EmployeeViewerServlet</display-name>
+		<description></description>
+		<servlet-class>servlets.EmployeeViewerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EmployeeViewerServlet</servlet-name>
+		<url-pattern>/EmployeeViewerServlet</url-pattern>
+	</servlet-mapping>
 
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

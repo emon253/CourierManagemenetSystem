@@ -1,6 +1,6 @@
 package domain;
 
-public class Admin {
+public class Employee {
 	private String id;
 	private String name;
 	private String email;
@@ -11,7 +11,7 @@ public class Admin {
 	
 	
 	
-	public Admin() {
+	public Employee() {
 
 	}
 	public String getId() {

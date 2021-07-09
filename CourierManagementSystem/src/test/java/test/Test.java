@@ -13,6 +13,9 @@ import javax.mail.MessagingException;
 import com.sun.jdi.connect.spi.Connection;
 
 import dbconnection.DBConnection;
+import domain.Employee;
+import repository.EmployeeRepository;
+import repository.EmployeeRepositoryImpl;
 import repository.ParcelRequestRep;
 import repository.ParcelRequestRepImpl;
 import repository.UserRepository;
@@ -72,7 +75,14 @@ public class Test {
 //
 //		System.out.println(ps.getParcelSessionSortedBytime("sdf").get(0).getPid());
 
-		System.out.println(PasswordEncryptor.getInstance().encriptPassword("emon"));
+		//System.out.println(PasswordEncryptor.getInstance().encriptPassword("emon"));
+	
+	EmployeeRepository rep = new EmployeeRepositoryImpl();
+	
+	for (Employee emp : rep.findAllEmployee()) {
+		System.out.println(emp);
+	}
+	
 	}
 
 }

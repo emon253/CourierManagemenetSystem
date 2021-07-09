@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="domain.Admin"%>
+<%@page import="domain.Employee"%>
 
 
 <ul class="x xx ml-2">
 	<%
-	Admin admin = (Admin) session.getAttribute("admin");
-	if (admin != null) {
+	Employee employee = (Employee) session.getAttribute("admin");
+	if (employee != null) {
 	%>
-	<li class=""><a href="#">[<%=admin.getName()%>]
+	<li class=""><a href="#">[<%=employee.getName()%>]
 	</a></li>
 
 	<li class="ml-4"><a href="<%=request.getContextPath()%>/logout?u=admin">log out </a></li>

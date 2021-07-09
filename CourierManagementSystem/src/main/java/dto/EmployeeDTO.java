@@ -5,7 +5,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class AdminDTO {
+public class EmployeeDTO {
 	@NotEmpty
 	@Size(min = 1, max = 32)
 	private String id;
@@ -40,9 +40,9 @@ public class AdminDTO {
 	
 	
 	
-	public AdminDTO() {
+	public EmployeeDTO() {
 	}
-	public AdminDTO(String id, String name, String email, Long phone, String designation, String address,
+	public EmployeeDTO(String id, String name, String email, Long phone, String designation, String address,
 			String password, String confirmPassword) {
 		this.id = id;
 		this.name = name;

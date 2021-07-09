@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<%@page import="domain.Admin"%>
+<%@page import="domain.Employee"%>
 <html lang="en">
 <head>
 <script src="https://kit.fontawesome.com/a14342fe13.js"
@@ -128,7 +128,7 @@
 
 				<div class="col-4 col-md-4 col-sm-12" style="text-align: center;">
 					<div class="card">
-						<a href="ViewEmployeeInfo.jsp" class="mt-4"> <i
+						<a href="<%=request.getContextPath()%>/employeeViewer" class="mt-4"> <i
 							class="fas fa-hard-hat fa-5x is"></i>
 							<h5 style="color: black;">Workers Info</h5>
 						</a>

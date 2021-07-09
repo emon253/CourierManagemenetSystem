@@ -12,17 +12,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import domain.Admin;
+import domain.Employee;
 import domain.User;
 import dto.LoginDTO;
-import repository.AdminRepositoryImpl;
-import service.AdminService;
-import service.AdminServiceImpl;
+import repository.EmployeeRepositoryImpl;
+import service.EmployeeService;
+import service.EmployeeServiceImpl;
 import service.ValidationUtil;
 
 @WebServlet("/adminLogin")
 public class AdminLoginServlet extends HttpServlet {
-	AdminService service = new AdminServiceImpl(new AdminRepositoryImpl());
+	EmployeeService service = new EmployeeServiceImpl(new EmployeeRepositoryImpl());
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -54,14 +54,14 @@ public class AdminLoginServlet extends HttpServlet {
 
 	private void login(LoginDTO loginDto, HttpServletRequest request)
 			throws NoSuchAlgorithmException, ClassNotFoundException, UserPrincipalNotFoundException, SQLException {
-		Admin admin = service.verifyAdmin(loginDto);
+		Employee employee = service.verifyAdmin(loginDto);
 
 		HttpSession oldSession = request.getSession(false);
 		if (oldSession != null) {
 			oldSession.invalidate();
 		}
 		HttpSession session = request.getSession(true);
-		session.setAttribute("admin", admin);
+		session.setAttribute("admin", employee);
 
 	}
 
