@@ -22,7 +22,7 @@
 				<ul class="x xx">
 					<li><a href="#"><%=userName%></a></li>
 					<li class="ml-4"><a
-						href="<%=request.getContextPath()%>/logout">Logout</a></li>
+						href="<%=request.getContextPath()%>/logout?u=user">Logout</a></li>
 				</ul>
 				<%
 				} else {

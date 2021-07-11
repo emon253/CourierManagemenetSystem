@@ -172,12 +172,14 @@
 	<script type="text/javascript">
 		$("#designation").click(function() {
 			let val = $('#designation').val();
-
-			console.log(val)
 			$.ajax({
 				type : 'GET',
 				url : 'employeeViewer',
+				data : {
+					designationKey : $('#designation').val()
+				},
 				success : function(resp) {
+					
 				}
 			});
 
