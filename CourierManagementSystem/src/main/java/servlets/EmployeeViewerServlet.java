@@ -39,7 +39,6 @@ public class EmployeeViewerServlet extends HttpServlet {
 
 		String searchKey = request.getParameter("searchKey");
 		String designationKey = request.getParameter("designationKey");
-System.out.println(searchKey+" "+designationKey);
 		try {
 			List<Employee> list = service.searchEmployee(searchKey,designationKey);
 			

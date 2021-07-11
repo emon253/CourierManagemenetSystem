@@ -116,7 +116,7 @@
 
 				<h6>Select Designation</h6>
 				<select id="designation" class="form-control">
-					<option value="1">Select All</option>
+					<option value="ALL">Select All</option>
 					<option value="Manager">Manager</option>
 					<option value="Delivery Man">Delivery Man</option>
 				</select>
@@ -172,6 +172,10 @@
 	<script type="text/javascript">
 		$("#designation").click(function() {
 			let val = $('#designation').val();
+		 	if(val == 'ALL'){
+				location.reload();
+				return;
+			} 
 			$.ajax({
 				type : 'POST',
 				url : 'employeeViewer',
