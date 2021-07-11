@@ -34,8 +34,8 @@
 									<c:forEach items="${session}" var="parcel">
 
 
-										<li class="event" data-date="${parcel.sessionTime}">
-											<h3>****</h3>
+										<li class="event" data-date="">
+											<h3>${parcel.sessionTime}</h3>
 											<p>${parcel.currentSession}</p>
 										</li>
 									</c:forEach>

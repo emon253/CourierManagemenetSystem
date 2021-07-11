@@ -67,17 +67,25 @@ public class EmployeeServiceImpl implements EmployeeService {
 		List<Employee> newList = new ArrayList<>();
 		Gson json = new Gson();
 
+		
+		
+		
 		for (Employee employee : list) {
 			if (skey != null) {
-				if (employee.getDesignation().equals(dkey))
-					if (employee.getId().contains(skey) || employee.getName().toLowerCase().contains(skey)
-							|| employee.getName().contains(skey)) {
-						newList.add(employee);
-					}
+				if (employee.getDesignation().equals(dkey) && (employee.getId().contains(skey)
+						|| employee.getName().toLowerCase().contains(skey) || employee.getName().contains(skey))) {
+
+					newList.add(employee);
+				}
+
+				if (dkey.equals("ALL") && (employee.getId().contains(skey)
+						|| employee.getName().toLowerCase().contains(skey) || employee.getName().contains(skey))) {
+					newList.add(employee);
+				}
+
 			} else {
 				if (employee.getDesignation().equals(dkey)) {
 					newList.add(employee);
-
 				}
 			}
 		}
