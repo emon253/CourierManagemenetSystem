@@ -62,14 +62,23 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public List<Employee> searchEmployee(String key) throws SQLException, ClassNotFoundException {
+	public List<Employee> searchEmployee(String skey, String dkey) throws SQLException, ClassNotFoundException {
 		List<Employee> list = repository.findAllEmployee();
 		List<Employee> newList = new ArrayList<>();
 		Gson json = new Gson();
 
 		for (Employee employee : list) {
-			if (employee.getId().contains(key) || employee.getName().toLowerCase().contains(key)) {
-				newList.add(employee);
+			if (skey != null) {
+				if (employee.getDesignation().equals(dkey))
+					if (employee.getId().contains(skey) || employee.getName().toLowerCase().contains(skey)
+							|| employee.getName().contains(skey)) {
+						newList.add(employee);
+					}
+			} else {
+				if (employee.getDesignation().equals(dkey)) {
+					newList.add(employee);
+
+				}
 			}
 		}
 

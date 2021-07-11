@@ -19,6 +19,6 @@ public interface EmployeeService {
 
 	List<Employee> findAllEmployees() throws SQLException, ClassNotFoundException;
 
-	List<Employee> searchEmployee(String key) throws SQLException, ClassNotFoundException;
+	List<Employee> searchEmployee(String skey,String dkey) throws SQLException, ClassNotFoundException;
 
 }

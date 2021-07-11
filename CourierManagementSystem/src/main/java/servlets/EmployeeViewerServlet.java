@@ -38,8 +38,10 @@ public class EmployeeViewerServlet extends HttpServlet {
 		Gson json = new Gson();
 
 		String searchKey = request.getParameter("searchKey");
+		String designationKey = request.getParameter("designationKey");
+System.out.println(searchKey+" "+designationKey);
 		try {
-			List<Employee> list = service.searchEmployee(searchKey);
+			List<Employee> list = service.searchEmployee(searchKey,designationKey);
 			
 			response.getWriter().write(json.toJson(list));
 

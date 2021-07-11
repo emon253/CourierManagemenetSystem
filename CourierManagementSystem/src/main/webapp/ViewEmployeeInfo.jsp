@@ -118,7 +118,7 @@
 				<select id="designation" class="form-control">
 					<option value="1">Select All</option>
 					<option value="Manager">Manager</option>
-					<option value="DeliveryMan">Delivery Man</option>
+					<option value="Delivery Man">Delivery Man</option>
 				</select>
 			</div>
 		</div>
@@ -173,14 +173,30 @@
 		$("#designation").click(function() {
 			let val = $('#designation').val();
 			$.ajax({
-				type : 'GET',
+				type : 'POST',
 				url : 'employeeViewer',
 				data : {
-					designationKey : $('#designation').val()
+					designationKey : val
 				},
 				success : function(resp) {
-					
-				}
+					$('#tableBody').empty();
+
+					const employee = JSON.parse(resp);
+					for (i = 0; i < employee.length; i++) {
+
+						$('table').append(
+								'<tr>' + '<th scope="row">'
+										+ employee[i].id + '</th>'
+										+ '<td>' + employee[i].name
+										+ '</td>' + '<td>'
+										+ employee[i].email + '</td>'
+										+ '<td>' + employee[i].phone
+										+ '</td>' + '<td>'
+										+ employee[i].designation
+										+ '</td>' + '<td>'
+										+ employee[i].address + '</td>'
+										+ '<tr/>');
+					}				}
 			});
 
 		});
@@ -191,7 +207,9 @@
 						type : 'POST',
 						url : 'employeeViewer',
 						data : {
-							searchKey : $('#searchField').val()
+							searchKey : $('#searchField').val(),
+							designationKey :  $('#designation').val()
+
 						},
 						success : function(resp) {
 							$('#tableBody').empty();
