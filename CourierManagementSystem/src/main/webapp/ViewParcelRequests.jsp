@@ -113,22 +113,59 @@
 
 
 	<div class="container">
-		<div class="bg mb-5">
+		<div class="">
+			    <form action="">
 
-			<div class=" card ">
 
-				<table class="table">
-					<thead class="thead-dark">
-						<tr>
-							<th scope="col">Parcel ID</th>
-							<th scope="col">Name</th>
-							<th scope="col">Email</th>
-							<th scope="col">Phone</th>
-							<th scope="col">Weight(kg)</th>
-							<th scope="col">Picup Address</th>
-							<th scope="col">Delivery Addreress</th>
-						</tr>
-					</thead>
+      <div class="form-group mt-5" style="width: 35%;">
+        <label for="division">Select Type:</label>
+        <select name="pDivision" id="pDivision" class="form-control">
+          <option value="default" disabled selected>Select</option>
+  
+        </select>
+      </div>
+  
+      <label for="division">Location</label>
+      <div class="input-group mb-3" style="width: 42%;">
+        
+        <input type="text" class="form-control"  placeholder="Enter Order Location " aria-label="Recipient's username" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button">Search</button>
+        </div>
+      </div>
+
+      <label for="division">View Parcel Details</label>
+      <div class="input-group mb-3" style="width: 42%;">
+        
+        <input type="text" class="form-control"  placeholder="Enter Order Id " aria-label="Recipient's username" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button">Search</button>
+        </div>
+      </div>
+
+
+    </form>
+    
+    	    <table class="table  mb-0">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Weight(kg)</th>
+          <th scope="col">Picup Address</th>
+          <th scope="col">Delivery Addreress</th>
+        </tr>
+      </thead>
+     </table>
+		
+		
+
+			<div class="table-wrapper-scroll-y my-custom-scrollbar card mb-5" style="height: 400px;">
+
+				<table class="table  mb-0">
+
 					<tbody>
 						<c:forEach items="${parcel}" var="parcel">
 							<tr>

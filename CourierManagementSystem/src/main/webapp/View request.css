@@ -58,15 +58,7 @@ html{
         color: rgb(255, 207, 144);
         padding: 22px;
         align-items: center;
-    }
-
-    
-
-
-
-
-
-    
+    }   
 }
 
 body{
@@ -76,6 +68,19 @@ h1,h2,h3,h4,h5,h6{
 
 
 }
+
+
+/*new*/
+.my-custom-scrollbar {
+position: relative;
+height: 200px;
+overflow: auto;
+}
+.table-wrapper-scroll-y {
+display: block;
+}
+
+/*ne*/
 
 
 
