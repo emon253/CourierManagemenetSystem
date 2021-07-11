@@ -14,7 +14,11 @@ public interface EmployeeService {
 
 	boolean isEmailExist(String email) throws ClassNotFoundException, SQLException;
 
-	Employee verifyAdmin(LoginDTO loginDto) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException, UserPrincipalNotFoundException;
+	Employee verifyAdmin(LoginDTO loginDto)
+			throws ClassNotFoundException, SQLException, NoSuchAlgorithmException, UserPrincipalNotFoundException;
 
 	List<Employee> findAllEmployees() throws SQLException, ClassNotFoundException;
+
+	List<Employee> searchEmployee(String key) throws SQLException, ClassNotFoundException;
+
 }

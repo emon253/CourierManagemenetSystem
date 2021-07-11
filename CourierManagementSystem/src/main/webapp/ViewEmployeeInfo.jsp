@@ -116,20 +116,20 @@
 
 				<h6>Select Designation</h6>
 				<select class="form-control">
-
 					<option value="1">Select All</option>
 					<option value="2">Manager</option>
 					<option value="3">Delivery Man</option>
-
 				</select>
 			</div>
 		</div>
 
 		<div class="input-group mb-3 mt-5" style="width: 50%;">
-			<input type="text" class="form-control" placeholder="Username or Id "
+			<input name="searchField" id="searchField" type="text"
+				class="form-control" placeholder="Username or Id "
 				aria-label="Recipient's username" aria-describedby="basic-addon2">
 			<div class="input-group-append">
-				<button class="btn btn-outline-secondary" type="button">Search</button>
+				<button id="searchButton" class="btn btn-outline-secondary"
+					type="button">Search</button>
 			</div>
 		</div>
 
@@ -148,7 +148,7 @@
 							<th scope="col">Address</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody id="tableBody">
 
 						<c:forEach items="${employeeList}" var="employee">
 							<tr>
@@ -170,19 +170,53 @@
 	</div>
 
 	<script type="text/javascript">
-	
-	 $(document).ready(function () {
-         // window.location.replace("employeeViewer");
+		$("#searchButton").click(function() {
 
-		/*     $.ajax({
-		        type:'GET',
-		        url:'emoloyeeViewer',
-		        success:function(resp){
-		        }
-		    });*/
-		}); 
+		});
+
+		$("#searchField").keyup(function() {
+			$.ajax({
+				type : 'POST',
+				url : 'employeeViewer',
+				data : {
+					searchKey : $('#searchField').val()
+				},
+				success : function(resp) {
+					$('#tableBody').empty();
+
+					const employee = JSON.parse(resp);
+					for (i = 0; i < employee.length; i++) {
+
+						    $('table').append('<tr>'+
+									 '<th scope="row">'+employee[i].id+'</th>'+
+									 '<td>'+employee[i].name +'</td>'+
+									 '<td>'+employee[i].email+'</td>'+
+									 '<td>'+employee[i].phone+'</td>'+
+									 '<td>'+employee[i].designation+'</td>'+
+									 '<td>'+ employee[i].address+'</td>'+
+									 '<tr/>');
+					}
+				}
+			})
+		});
+
+		/* 	 $('#searchFields'').on('click',function () {
+		
+						 
 		
 		
+		
+		 // window.location.replace("employeeViewer");
+
+		 $.ajax({
+		 type:'GET',
+		 url:'emoloyeeViewer',
+		 success:function(resp){
+		 }
+		 });
+		 });  
+		
+		 */
 	</script>
 
 

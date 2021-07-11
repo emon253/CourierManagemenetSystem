@@ -21,7 +21,6 @@ public class Email {
 		properties.put("mail.smtp.port", "465");
 		properties.put("mail.smtp.ssl.enable", "true");
 		properties.put("mail.smtp.auth", "true");
-		System.out.println(properties);
 	}
 
 	public static Email getInstance() {

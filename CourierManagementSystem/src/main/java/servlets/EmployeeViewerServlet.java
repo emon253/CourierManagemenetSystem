@@ -1,5 +1,4 @@
 package servlets;
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -9,6 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 
 import domain.Employee;
 import repository.EmployeeRepositoryImpl;
@@ -27,14 +29,26 @@ public class EmployeeViewerServlet extends HttpServlet {
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		//doPost(request, response);
 		request.getRequestDispatcher("ViewEmployeeInfo.jsp").forward(request, response);
 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-	
+		Gson json = new Gson();
+
+		String searchKey = request.getParameter("searchKey");
+		try {
+			List<Employee> list = service.searchEmployee(searchKey);
+			
+			response.getWriter().write(json.toJson(list));
+
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+
+
+			
 
 	}
 

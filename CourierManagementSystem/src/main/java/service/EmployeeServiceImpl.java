@@ -3,7 +3,10 @@ package service;
 import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+
+import com.google.gson.Gson;
 
 import domain.Employee;
 import domain.User;
@@ -16,10 +19,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	public EmployeeServiceImpl(EmployeeRepository repository) {
 		this.repository = repository;
-	}	
+	}
 
 	@Override
-	public void saveAdmin(EmployeeDTO employeeDto) throws NoSuchAlgorithmException, ClassNotFoundException, SQLException {
+	public void saveAdmin(EmployeeDTO employeeDto)
+			throws NoSuchAlgorithmException, ClassNotFoundException, SQLException {
 		Employee admin = new Employee();
 		admin.setName(employeeDto.getName());
 		admin.setId(employeeDto.getId());
@@ -55,5 +59,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public List<Employee> findAllEmployees() throws SQLException, ClassNotFoundException {
 		return repository.findAllEmployee();
+	}
+
+	@Override
+	public List<Employee> searchEmployee(String key) throws SQLException, ClassNotFoundException {
+		List<Employee> list = repository.findAllEmployee();
+		List<Employee> newList = new ArrayList<>();
+		Gson json = new Gson();
+
+		for (Employee employee : list) {
+			if (employee.getId().contains(key) || employee.getName().toLowerCase().contains(key)) {
+				newList.add(employee);
+			}
+		}
+
+		return newList;
 	}
 }
