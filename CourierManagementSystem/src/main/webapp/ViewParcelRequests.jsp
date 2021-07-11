@@ -25,7 +25,7 @@
 </head>
 <body>
 
-	<!--small navigation Start-->
+	<!--small navigation bar Start-->
 	<section>
 		<div class="smlnav ">
 			<!--pt-2 pt-lg-4-->
