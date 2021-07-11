@@ -115,10 +115,10 @@
 			<div class="col-sm-3 mt-5">
 
 				<h6>Select Designation</h6>
-				<select class="form-control">
+				<select id="designation" class="form-control">
 					<option value="1">Select All</option>
-					<option value="2">Manager</option>
-					<option value="3">Delivery Man</option>
+					<option value="Manager">Manager</option>
+					<option value="DeliveryMan">Delivery Man</option>
 				</select>
 			</div>
 		</div>
@@ -170,35 +170,49 @@
 	</div>
 
 	<script type="text/javascript">
-		$("#searchButton").click(function() {
+		$("#designation").click(function() {
+			let val = $('#designation').val();
 
-		});
-
-		$("#searchField").keyup(function() {
+			console.log(val)
 			$.ajax({
-				type : 'POST',
+				type : 'GET',
 				url : 'employeeViewer',
-				data : {
-					searchKey : $('#searchField').val()
-				},
 				success : function(resp) {
-					$('#tableBody').empty();
-
-					const employee = JSON.parse(resp);
-					for (i = 0; i < employee.length; i++) {
-
-						    $('table').append('<tr>'+
-									 '<th scope="row">'+employee[i].id+'</th>'+
-									 '<td>'+employee[i].name +'</td>'+
-									 '<td>'+employee[i].email+'</td>'+
-									 '<td>'+employee[i].phone+'</td>'+
-									 '<td>'+employee[i].designation+'</td>'+
-									 '<td>'+ employee[i].address+'</td>'+
-									 '<tr/>');
-					}
 				}
-			})
+			});
+
 		});
+
+		$("#searchField").keyup(
+				function() {
+					$.ajax({
+						type : 'POST',
+						url : 'employeeViewer',
+						data : {
+							searchKey : $('#searchField').val()
+						},
+						success : function(resp) {
+							$('#tableBody').empty();
+
+							const employee = JSON.parse(resp);
+							for (i = 0; i < employee.length; i++) {
+
+								$('table').append(
+										'<tr>' + '<th scope="row">'
+												+ employee[i].id + '</th>'
+												+ '<td>' + employee[i].name
+												+ '</td>' + '<td>'
+												+ employee[i].email + '</td>'
+												+ '<td>' + employee[i].phone
+												+ '</td>' + '<td>'
+												+ employee[i].designation
+												+ '</td>' + '<td>'
+												+ employee[i].address + '</td>'
+												+ '<tr/>');
+							}
+						}
+					})
+				});
 
 		/* 	 $('#searchFields'').on('click',function () {
 		
