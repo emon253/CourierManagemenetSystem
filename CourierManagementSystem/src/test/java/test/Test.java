@@ -77,12 +77,13 @@ public class Test {
 
 		//System.out.println(PasswordEncryptor.getInstance().encriptPassword("emon"));
 	
-	EmployeeRepository rep = new EmployeeRepositoryImpl();
-	
-	for (Employee emp : rep.findAllEmployee()) {
-		System.out.println(emp);
-	}
-	
-	}
+/*		EmployeeRepository rep = new EmployeeRepositoryImpl();
+		
+		for (Employee emp : rep.findAllEmployee()) {
+			System.out.println(emp);
+		}
+		*/
+		}
+		
 
 }
