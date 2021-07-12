@@ -135,7 +135,7 @@
 
 
 		<div class="bg ">
-			<div class=" card  mb-5">
+			<div class="table-wrapper-scroll-y my-custom-scrollbar card  mb-5">
 
 				<table class="table ">
 					<thead class="thead-dark">
