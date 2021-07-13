@@ -135,9 +135,8 @@
 
 
 		<div class="bg ">
-			<div class="table-wrapper-scroll-y my-custom-scrollbar card  mb-5">
-
-				<table class="table ">
+			<table class="table mb-0">
+			
 					<thead class="thead-dark">
 						<tr>
 							<th scope="col">ID</th>
@@ -148,6 +147,12 @@
 							<th scope="col">Address</th>
 						</tr>
 					</thead>
+			
+			</table>
+			<div class="table-wrapper-scroll-y my-custom-scrollbar card  mb-5">
+
+				<table class="table ">
+
 					<tbody id="tableBody">
 
 						<c:forEach items="${employeeList}" var="employee">

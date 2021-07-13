@@ -107,7 +107,7 @@
 		<div class="bg ">
 			<div class="row">
 
-				<div class="col-4 col-md-4 col-sm-12" style="text-align: center;">
+				<div class="col-lg-3" style="text-align: center;">
 					<div class="card">
 						<a href="<%=request.getContextPath()%>/viewParcel" class="mt-4"> <i
 							class="fas fa-list-ul fa-5x is"></i>
@@ -116,7 +116,7 @@
 					</div>
 				</div>
 
-				<div class="col-4 col-md-4 col-sm-12" style="text-align: center;">
+				<div class="col-lg-3" style="text-align: center;">
 					<div class="card">
 						<a href="<%=request.getContextPath()%>/trackingControl.jsp"
 							class="mt-4"> <i class="fas fa-map-marked-alt fa-5x is"></i>
@@ -126,7 +126,7 @@
 
 				</div>
 
-				<div class="col-4 col-md-4 col-sm-12" style="text-align: center;">
+				<div class="col-lg-3" style="text-align: center;">
 					<div class="card">
 						<a href="<%=request.getContextPath()%>/employeeViewer" class="mt-4"> <i
 							class="fas fa-hard-hat fa-5x is"></i>
@@ -135,6 +135,15 @@
 					</div>
 
 				</div>
+				      <div class="col-lg-3" style="text-align: center;">
+        <div class="card">
+          <a href="workers info.html" class="mt-4">
+            <i class="fas fa-user-plus fa-5x is ml-4"></i>
+            <h5 style="color: black;">Signup</h5>
+          </a>
+        </div>
+
+      </div>
 
 			</div>
 		</div>

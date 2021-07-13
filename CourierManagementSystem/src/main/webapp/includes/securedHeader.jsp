@@ -13,7 +13,7 @@
 	<div class="smlnav ">
 		<!--pt-2 pt-lg-4-->
 		<div class="row ">
-			<div class="col-lg-4 justify-content-center align-items-center">
+			<div class="col-lg-7 justify-content-center align-items-center">
 				<%
 				String userName = (String) session.getAttribute("userName");
 
@@ -40,7 +40,7 @@
 				%>
 
 			</div>
-			<div class="col-lg-3"></div>
+			
 			<div class="col-lg-5 col-sm-12">
 				<ul class="x ">
 					<li><a href="#" class="mr-2">Call Us at: 01831553096 | </a></li>
