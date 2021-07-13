@@ -152,6 +152,7 @@
 									<label id="passlbl" for="pwd">Password</label> <input type="password"
 										class="form-control" placeholder="Password" id="password" name="password"
 										required>
+										<div class="valid-feedback">Valid.</div>
 									<div class="invalid-feedback">Atleast 6 charecter.</div>
 								</div>
 

@@ -137,7 +137,7 @@
 				</div>
 				      <div class="col-lg-3" style="text-align: center;">
         <div class="card">
-          <a href="workers info.html" class="mt-4">
+          <a href="corporateSignup.jsp" class="mt-4">
             <i class="fas fa-user-plus fa-5x is ml-4"></i>
             <h5 style="color: black;">Signup</h5>
           </a>

@@ -74,10 +74,6 @@
 								</div>
 								<div class="fpsu cnt">
 									<a href="">forgot password?</a>
-									<p class="fc">Or</p>
-									<h6>
-										<a href="corporateSignup.jsp">Sign Up</a>
-									</h6>
 								</div>
 							</form>
 
