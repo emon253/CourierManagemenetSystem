@@ -76,7 +76,7 @@
 				class="nav-link text-center text-md-left" href="home.jsp">HOME</a></li>
 
 			<li class="nav-item"><a
-				class="nav-link text-center text-md-left" href="#feedback">FEEDBACK</a>
+				class="nav-link text-center text-md-left" href="Feedback.jsp">FEEDBACK</a>
 			</li>
 			<li class="nav-item"><a
 				class="nav-link text-center text-md-left" href="ContactUs.jsp">CONTACT</a>
