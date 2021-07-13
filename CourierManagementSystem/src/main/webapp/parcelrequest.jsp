@@ -268,6 +268,7 @@
         </div>
         
         <button type="submit" class="btn btn-info m-3">Submit</button>
+        <button type="submit" class="btn btn-info m-3">Cancel</button>
         
       </form>
 
