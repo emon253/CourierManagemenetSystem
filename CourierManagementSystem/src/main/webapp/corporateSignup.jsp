@@ -97,8 +97,8 @@
 					class="nav-link dropdown-toggle text-center text-md-left" href="#"
 					id="navbardrop" data-toggle="dropdown"> HOME </a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="admin panel.html">ADMIN</a> <a
-							class="dropdown-item" href="home.html">HOME</a>
+						<a class="dropdown-item" href="adminpanel.jsp">ADMIN</a> <a
+							class="dropdown-item" href="home.jsp">HOME</a>
 					</div></li>
 			</ul>
 
