@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="domain.User"%>
 
 <section>
 	<div class="smlnav ">
@@ -7,15 +8,15 @@
 		<div class="row ">
 			<div class="col-lg-7 justify-content-center align-items-center">
 				<%
-				String userName = (String) session.getAttribute("userName");
+					User user = (User) session.getAttribute("user");
 
-				if (userName != null) {
-				%>
-				<ul class="x xx">
-					<li>   <a href="#">  <i class="fas fa-user-circle fa-1x"></i> <%=userName%></a></li>
-					<li class="ml-4"><a
-						href="<%=request.getContextPath()%>/logout?u=user">Logout</a></li>
-				</ul>
+					if (user != null) {
+					%>
+					<ul class="x xx">
+						<li><a href="UserPanel.jsp"><%= user.getName() %></a></li>
+						<li class="ml-4"><a
+							href="<%=request.getContextPath()%>/logout?u=user">Logout</a></li>
+					</ul>
 				<%
 				} else {
 				%>

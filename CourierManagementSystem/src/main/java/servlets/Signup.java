@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import domain.User;
+import dto.LoginDTO;
 import dto.UserDTO;
 import repository.UserRepositoryImpl;
 import service.UserService;
@@ -21,7 +23,6 @@ import service.ValidationUtil;
 @WebServlet("/signup")
 public class Signup extends HttpServlet {
 	private UserService userService = new UserServiceImpl(new UserRepositoryImpl());
-
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -53,11 +54,11 @@ public class Signup extends HttpServlet {
 		if (errors.isEmpty()) {
 
 			// session.setAttribute("loginStates", "success");
-			session.setAttribute("userName", userDto.getUserName());
 			try {
 				userService.saveUser(userDto);
-
 				response.sendRedirect("home.jsp");
+				session.setAttribute("user", copyUser(userDto));
+
 			} catch (NoSuchAlgorithmException | ClassNotFoundException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -67,6 +68,16 @@ public class Signup extends HttpServlet {
 			request.setAttribute("errors", errors);
 			request.getRequestDispatcher("signup.jsp").forward(request, response);
 		}
+	}
+
+	User copyUser(UserDTO userDto) {
+		User user = new User();
+		user.setName(userDto.getName());
+		user.setUserName(userDto.getUserName());
+		user.setEmail(userDto.getEmail());
+		user.setPhone(userDto.getPhone());
+		user.setAddress(userDto.getAddress());
+		return user;
 	}
 
 }

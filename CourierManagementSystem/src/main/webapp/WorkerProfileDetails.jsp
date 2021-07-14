@@ -1,3 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@page import="domain.User"%>
+<%@ page isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -17,10 +23,7 @@
           <div class="row ">
             <div class="col-lg-4 justify-content-center align-items-center">
       
-              <ul class="x xx">
-                <li><a href="#" >log out |</a></li>
-                <li class="ml-4"><a href="signup.html">Create Account</a></li>
-              </ul>
+					<%@include file="includes/admin_securePage_controller.jsp"%>
       
             </div>
             <div class="col-lg-3">
@@ -106,32 +109,32 @@
         <tbody>
           <tr>
             <th scope="row">Name</th>
-            <td>Abdulla Al Mued</td>
+            <td><c:out value="${sessionScope.admin.name}"></c:out></td>
 
           </tr>
           <tr>
-            <th scope="row">username</th>
+            <th scope="row">ID</th>
             <td>Muid101</td>
 
           </tr>
           <tr>
             <th scope="row">Designation</th>
-            <td>Manager</td>
+            <td><c:out value="${sessionScope.admin.id}"></c:out></td>
 
           </tr>
           <tr>
             <th scope="row">Email Address</th>
-            <td >abdullaalmuid101@gmail.com</td>
+            <td><c:out value="${sessionScope.admin.email}"></c:out></td>
 
           </tr>
           <tr>
               <th scope="row">Phone</th>
-              <td>01831553096</td>
+            <td><c:out value="${sessionScope.admin.phone}"></c:out></td>
 
           </tr>
           <tr>
             <th scope="row">Address</th>
-            <td>Dhaka , Faridpur , Madhukhali</td>
+            <td><c:out value="${sessionScope.admin.address	}"></c:out></td>
             
         </tr>
         </tbody>

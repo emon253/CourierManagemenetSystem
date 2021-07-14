@@ -136,18 +136,18 @@
 
 		<div class="bg ">
 			<table class="table mb-0">
-			
-					<thead class="thead-dark">
-						<tr>
-							<th scope="col">ID</th>
-							<th scope="col">Name</th>
-							<th scope="col">Email</th>
-							<th scope="col">Phone</th>
-							<th scope="col">Designation</th>
-							<th scope="col">Address</th>
-						</tr>
-					</thead>
-			
+
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">ID</th>
+						<th scope="col">Name</th>
+						<th scope="col">Email</th>
+						<th scope="col">Phone</th>
+						<th scope="col">Designation</th>
+						<th scope="col">Address</th>
+					</tr>
+				</thead>
+
 			</table>
 			<div class="table-wrapper-scroll-y my-custom-scrollbar card  mb-5">
 
@@ -175,40 +175,43 @@
 	</div>
 
 	<script type="text/javascript">
-		$("#designation").click(function() {
-			let val = $('#designation').val();
-		 	if(val == 'ALL'){
-				location.reload();
-				return;
-			} 
-			$.ajax({
-				type : 'POST',
-				url : 'employeeViewer',
-				data : {
-					designationKey : val
-				},
-				success : function(resp) {
+		$("#designation").click(
+				function() {
+					let val = $('#designation').val();
 					$('#tableBody').empty();
 
-					const employee = JSON.parse(resp);
-					for (i = 0; i < employee.length; i++) {
+					if (val == 'ALL') {
+						location.reload();
+						return;
+					}
+					$.ajax({
+						type : 'POST',
+						url : 'employeeViewer',
+						data : {
+							designationKey : val
+						},
+						success : function(resp) {
 
-						$('table').append(
-								'<tr>' + '<th scope="row">'
-										+ employee[i].id + '</th>'
-										+ '<td>' + employee[i].name
-										+ '</td>' + '<td>'
-										+ employee[i].email + '</td>'
-										+ '<td>' + employee[i].phone
-										+ '</td>' + '<td>'
-										+ employee[i].designation
-										+ '</td>' + '<td>'
-										+ employee[i].address + '</td>'
-										+ '<tr/>');
-					}				}
-			});
+							const employee = JSON.parse(resp);
+							for (i = 0; i < employee.length; i++) {
 
-		});
+								$('#tableBody').append(
+										'<tr>' + '<th scope="row">'
+												+ employee[i].id + '</th>'
+												+ '<td>' + employee[i].name
+												+ '</td>' + '<td>'
+												+ employee[i].email + '</td>'
+												+ '<td>' + employee[i].phone
+												+ '</td>' + '<td>'
+												+ employee[i].designation
+												+ '</td>' + '<td>'
+												+ employee[i].address + '</td>'
+												+ '<tr/>');
+							}
+						}
+					});
+
+				});
 
 		$("#searchField").keyup(
 				function() {
@@ -217,7 +220,7 @@
 						url : 'employeeViewer',
 						data : {
 							searchKey : $('#searchField').val(),
-							designationKey :  $('#designation').val()
+							designationKey : $('#designation').val()
 
 						},
 						success : function(resp) {
@@ -226,7 +229,7 @@
 							const employee = JSON.parse(resp);
 							for (i = 0; i < employee.length; i++) {
 
-								$('table').append(
+								$('#tableBody').append(
 										'<tr>' + '<th scope="row">'
 												+ employee[i].id + '</th>'
 												+ '<td>' + employee[i].name
@@ -266,7 +269,9 @@
 
 	<!-- Latest compiled JavaScript -->
 	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js">
+		
+	</script>
 
 </body>
 </html>

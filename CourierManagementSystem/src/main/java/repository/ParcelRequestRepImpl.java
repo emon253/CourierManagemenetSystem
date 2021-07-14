@@ -157,8 +157,8 @@ public class ParcelRequestRepImpl implements ParcelRequestRep {
 		request.setParcelWeight(rs.getInt("parcelWeight"));
 		request.setPickupAddress(rs.getString("pSubDistrict") + "," + rs.getString("pDistrict") + ", "
 				+ rs.getString("pDivision") + "\n" + rs.getString("pFullAddress"));
-		request.setDeliveryAddress(rs.getString("pSubDistrict") + "," + rs.getString("pDistrict") + ", "
-				+ rs.getString("pDivision") + "\n" + rs.getString("pFullAddress"));
+		request.setDeliveryAddress(rs.getString("dSubDistrict") + "," + rs.getString("dDistrict") + ", "
+				+ rs.getString("dDivision") + "\n" + rs.getString("dFullAddress"));
 
 		return request;
 	}
