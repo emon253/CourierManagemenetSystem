@@ -1,0 +1,196 @@
+html{
+    scroll-behavior: smooth;
+
+}
+
+
+.smlnav{
+    padding:1% 10%;
+    height:min-content;
+    background: #00656D;
+    color: rgb(255, 207, 144);
+}
+.is{
+ 
+    
+}
+.x{
+    list-style-type:none;
+    margin-left: 80px;
+    overflow: hidden;
+}
+.xx{
+    list-style-type:circle;
+    
+}
+.x li{
+    float: left;
+    
+}
+.x li a{
+
+    display:block;
+    color: rgb(255, 207, 144);
+    
+
+   /* padding: 8px;*/
+}
+.x li a:hover{
+    text-decoration: none;
+    color: bisque;
+}
+
+
+
+@media (max-width:767px)
+{
+    .nav-link{
+        background: #17A2B8;
+        margin: 10px;
+        color: white;
+    }
+    .thm1{
+        visibility: hidden;
+        align-content: center;
+        justify-content: center;
+        text-align: center;
+        background-color: #00656D;
+        color: rgb(255, 207, 144);
+        padding: 22px;
+        align-items: center;
+    }
+    
+
+
+
+
+
+    
+}
+
+body{
+
+}
+h1,h2,h3,h4,h5,h6{
+
+
+}
+
+
+
+.nav-icon{
+    color: orange;
+}
+
+.navbar{
+    padding:1% 10%;
+    /*background-color: rgba(0,0,0,0.3);*/
+    /*background: tomato;*/
+    background: white;
+
+}
+.nav-link{
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    transition:.4s;
+}
+.nav-link:hover{
+    background:tomato;
+    transform: scale(1.1);
+    color: white;
+}
+
+.icon-style{
+    background:#F8A555;
+    color:white;
+    margin-left: 20px;
+    margin-right: 10px;
+
+}
+
+.thm{
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #00656D;
+    color: rgb(255, 207, 144);
+    padding: 22px;
+}
+
+.bg{
+    background-color: rgba(218, 216, 216, 0.781);
+    margin-top: 10px;
+    padding-top: 0.09px;
+    box-shadow: 0px 0.1px 5px rgba(0, 0, 0, 0.664);
+    margin-top: 100px;
+}
+.card{
+    margin: 10px;
+    padding: 10px;
+    background-color: rgb(255, 255, 255);
+    margin-top: 10px;
+    padding-top: 0.09px;
+    /*box-shadow: 1px 0px 1px rgb(255, 255, 255);*/
+    transition: .4s;
+
+}
+.card:hover{
+    transform: scale(1.04);
+
+}
+.bg1{
+    background-color: rgba(218, 216, 216, 0.781);
+    margin-top: 10px;
+    padding-top: 0.09px;
+    padding: 0px 10px;
+    padding-top: 5px;
+    
+}
+
+a:hover{
+    text-decoration: none;
+
+}
+.is{
+    margin-bottom: 10px;
+    color: #056168;
+}
+
+@media (min-width:1250px)
+{
+    .smlnav{
+        height: 1%;
+
+    }
+    .sg{
+        height: 80px;
+    }
+    .thm{
+        visibility:hidden;
+        display: none;
+        width:0rem;
+    }
+    .thm1{
+
+        background-color: #00656D;
+        color: rgb(255, 207, 144);
+        padding: 22px;
+        
+    }
+
+
+
+
+}
+@media (min-width:1250px)
+{
+    .smlnav{
+        height: 50px;
+
+    }
+    .sg{
+        height:80px;
+    }
+
+}
