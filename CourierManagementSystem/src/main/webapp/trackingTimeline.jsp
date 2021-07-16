@@ -69,7 +69,7 @@
 									<b>Sender:</b> ${parcel.name}
 								</p>
 								<p>
-									<b>Phone:</b> ${parcel.name}
+									<b>Phone:</b> ${parcel.phone}
 								</p>
 
 								<p>${parcel.pickupAddress}</p>

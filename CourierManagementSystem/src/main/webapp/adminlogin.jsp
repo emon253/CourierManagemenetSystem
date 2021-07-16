@@ -28,7 +28,7 @@
 				<div class="contain2 mx-auto">
 					<div class="row">
 						<div class="col-12 hi mt-3 mb-3">
-							<button class="ml-3 bs">
+							<button class="ml-3 bs" onclick="location.href='home.jsp'">
 								<i class="fas fa-house-user fa-2x icon"></i>
 							</button>
 							<div class="cnt">

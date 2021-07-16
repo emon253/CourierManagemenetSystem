@@ -51,13 +51,12 @@ public class LoginServlet extends HttpServlet {
 	private void login(LoginDTO loginDto, HttpServletRequest request)
 			throws NoSuchAlgorithmException, ClassNotFoundException, UserPrincipalNotFoundException, SQLException {
 		User user = userService.verifyUser(loginDto);
-
 		HttpSession oldSession = request.getSession(false);
 		if (oldSession != null) {
 			oldSession.invalidate();
 		}
 		HttpSession session = request.getSession(true);
-		session.setAttribute("userName", user.getUserName());
+		session.setAttribute("user", user);
 	}
 
 }

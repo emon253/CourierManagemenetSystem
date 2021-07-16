@@ -66,10 +66,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		List<Employee> list = repository.findAllEmployee();
 		List<Employee> newList = new ArrayList<>();
 		Gson json = new Gson();
-
-		
-		
-		
+						
 		for (Employee employee : list) {
 			if (skey != null) {
 				if (employee.getDesignation().equals(dkey) && (employee.getId().contains(skey)

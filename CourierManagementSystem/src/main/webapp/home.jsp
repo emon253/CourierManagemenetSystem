@@ -69,7 +69,7 @@
 						</div>
 					</div>
 					<%
-					if (userName != null) {
+					if (user != null) {
 					%>
 					<a href="parcelrequest.jsp"
 						class="ml-5 mt-2 btn btn-lg btn-outline-primary mr-1"> Send

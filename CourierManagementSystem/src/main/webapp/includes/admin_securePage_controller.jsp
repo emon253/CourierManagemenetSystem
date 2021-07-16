@@ -8,7 +8,7 @@
 	Employee employee = (Employee) session.getAttribute("admin");
 	if (employee != null) {
 	%>
-	<li class=""><a href="#">[<%=employee.getName()%>]
+	<li class=""><a href="WorkerProfileDetails.jsp">[<%=employee.getName()%>]
 	</a></li>
 
 	<li class="ml-4"><a href="<%=request.getContextPath()%>/logout?u=admin">log out </a></li>

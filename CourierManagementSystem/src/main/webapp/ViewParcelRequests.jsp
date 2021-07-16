@@ -15,13 +15,14 @@
 <link rel="stylesheet" href="View request.css">
 <title>CMS Courier</title>
 
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-	<!-- Popper JS -->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js">
-	</script>
+<!-- Popper JS -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js">
+	
+</script>
 </head>
 <body>
 
@@ -32,8 +33,8 @@
 			<div class="row ">
 				<div class="col-lg-4 justify-content-center align-items-center">
 
- 					<%@include file="includes/admin_securePage_controller.jsp"%>
- 
+					<%@include file="includes/admin_securePage_controller.jsp"%>
+
 
 				</div>
 				<div class="col-lg-3"></div>
@@ -114,59 +115,67 @@
 
 	<div class="container">
 		<div class="">
-			    <form action="">
+			<form action="">
 
 
-      <div class="form-group mt-5" style="width: 35%;">
-        <label for="division">Select Type:</label>
-        <select name="pDivision" id="pDivision" class="form-control">
-          <option value="default" disabled selected>Select</option>
-  
-        </select>
-      </div>
-  
-      <label for="division">Location</label>
-      <div class="input-group mb-3" style="width: 42%;">
-        
-        <input type="text" class="form-control"  placeholder="Enter Order Location " aria-label="Recipient's username" aria-describedby="basic-addon2">
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button">Search</button>
-        </div>
-      </div>
+				<div class="form-group mt-5" style="width: 35%;">
+					<label for="division">Select Type:</label> <select id="sOption"
+						name="sOption" id="pDivision" class="form-control">
+						<option value="default" disabled selected>Select</option>
+						<option value="byID">Search by ID</option>
 
-      <label for="division">View Parcel Details</label>
-      <div class="input-group mb-3" style="width: 42%;">
-        
-        <input type="text" class="form-control"  placeholder="Enter Order Id " aria-label="Recipient's username" aria-describedby="basic-addon2">
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button">Search</button>
-        </div>
-      </div>
+						<option value="pickup">Search by Pickup location</option>
+						<option value="delivery">Search by delivery location</option>
+
+					</select>
+				</div>
+
+				<label id="label" for="division">Location</label>
+				<div class="input-group mb-3" style="width: 42%;">
+
+					<input name="locationSearch" id="locationSearch"
+						id="locationSearch" type="text" class="form-control"
+						placeholder="Enter Order Location "
+						aria-label="Recipient's username" aria-describedby="basic-addon2">
+
+				</div>
+
+				<div class="input-group mb-3" style="width: 42%;">
+
+					<input name="searchField" id="searchField" type="text"
+						class="form-control" placeholder="Enter Order Id "
+						aria-label="Recipient's username" aria-describedby="basic-addon2">
+					<div class="input-group-append">
+						<button name="searchButton" id="searchButton"
+							class="btn btn-outline-secondary" type="button">Search</button>
+					</div>
+				</div>
 
 
-    </form>
-    
-    	    <table class="table  mb-0">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Name</th>
-          <th scope="col">Email</th>
-          <th scope="col">Phone</th>
-          <th scope="col">Weight(kg)</th>
-          <th scope="col">Picup Address</th>
-          <th scope="col">Delivery Addreress</th>
-        </tr>
-      </thead>
-     </table>
-		
-		
+			</form>
 
-			<div class="table-wrapper-scroll-y my-custom-scrollbar card mb-5" style="height: 400px;">
+			<table class="table  mb-0">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">ID</th>
+						<th scope="col">Name</th>
+						<th scope="col">Email</th>
+						<th scope="col">Phone</th>
+						<th scope="col">Weight(kg)</th>
+						<th scope="col">Picup Address</th>
+						<th scope="col">Delivery Addreress</th>
+					</tr>
+				</thead>
+			</table>
+
+
+
+			<div class="table-wrapper-scroll-y my-custom-scrollbar card mb-5"
+				style="height: 400px;">
 
 				<table class="table  mb-0">
 
-					<tbody>
+					<tbody id="tableBody">
 						<c:forEach items="${parcel}" var="parcel">
 							<tr>
 								<th scope="row"><c:out value="${parcel.parcelID}" /></th>
@@ -187,19 +196,127 @@
 		</div>
 	</div>
 
-<script type="text/javascript">
-/* $(document).ready(function () {
-   
-    $.ajax({
-        type:'GET',
-        url:'viewParcel',
-        success:function(resp){
-           // window.location.href = "ViewParcelRequests.jsp";
-        }
-    });
-});
- */
-</script>
+	<script type="text/javascript">
+		/* $(document).ready(function () {
+		
+		 $.ajax({
+		 type:'GET',
+		 url:'viewParcel',
+		 success:function(resp){
+		 // window.location.href = "ViewParcelRequests.jsp";
+		 }
+		 });
+		 });
+		 */
+		$(document).ready(function() {
+			$('#searchField').hide();
+			$('#searchButton').hide();
+			$('#locationSearch').hide();
+			$("#label").hide();
+			$('#sOption').change(function() {
+				var sp = $('#sOption').val();
+
+				if (sp == 'pickup') {
+					$('#searchField').hide();
+					$('#searchButton').hide();
+					$('#locationSearch').show();
+					$("#label").show();
+					$("#label").text('Enter pickup location')
+				}
+				if (sp == 'delivery') {
+					$('#searchField').hide();
+					$('#searchButton').hide();
+					
+					$("#label").show();
+					$('#locationSearch').show();
+					$("#label").text('Enter delivery location')
+				}
+				if (sp == 'byID') {
+					$('#locationSearch').hide();
+					$("#label").hide();
+					$('#searchField').show();
+					$('#searchButton').show();
+
+				}
+
+			});
+
+		});
+
+		$("#locationSearch").keyup(
+				function() {
+
+					$.ajax({
+						type : 'POST',
+						url : 'viewParcel',
+						data : {
+							key : $('#locationSearch').val(),
+							type : $('#sOption').val()
+						},
+						success : function(resp) {
+							$('#tableBody').empty();
+
+							const parcel = JSON.parse(resp);
+							for (i = 0; i < parcel.length; i++) {
+
+								$('#tableBody').append(
+										'<tr>' + '<th scope="row">'
+												+ parcel[i].parcelID + '</th>'
+												+ '<td>' + parcel[i].name
+												+ '</td>' + '<td>'
+												+ parcel[i].email + '</td>'
+												+ '<td>' + parcel[i].phone
+												+ '</td>' + '<td>'
+												+ parcel[i].parcelWeight
+												+ '</td>' + '<td>'
+												+ parcel[i].pickupAddress
+												+ '</td>' + '<td>'
+												+ parcel[i].deliveryAddress
+												+ '</td>'
+
+												+ '<tr/>');
+							}
+						}
+					})
+				});
+
+		$("#searchButton").click(
+				function() {
+
+					$.ajax({
+						type : 'POST',
+						url : 'viewParcel',
+						data : {
+							key : $('#searchField').val(),
+							type : $('#sOption').val()
+						},
+						success : function(resp) {
+							$('#tableBody').empty();
+
+							const parcel = JSON.parse(resp);
+							for (i = 0; i < parcel.length; i++) {
+
+								$('#tableBody').append(
+										'<tr>' + '<th scope="row">'
+												+ parcel[i].parcelID + '</th>'
+												+ '<td>' + parcel[i].name
+												+ '</td>' + '<td>'
+												+ parcel[i].email + '</td>'
+												+ '<td>' + parcel[i].phone
+												+ '</td>' + '<td>'
+												+ parcel[i].parcelWeight
+												+ '</td>' + '<td>'
+												+ parcel[i].pickupAddress
+												+ '</td>' + '<td>'
+												+ parcel[i].deliveryAddress
+												+ '</td>'
+
+												+ '<tr/>');
+							}
+						}
+					})
+				});
+	</script>
 
 
 

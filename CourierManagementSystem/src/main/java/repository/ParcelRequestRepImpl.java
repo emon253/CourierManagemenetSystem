@@ -66,6 +66,7 @@ public class ParcelRequestRepImpl implements ParcelRequestRep {
 		if (rs.next()) {
 			pr.setParcelID(rs.getString("pid"));
 			pr.setName(rs.getString("name"));
+			pr.setPhone(rs.getLong("phone"));
 			pr.setPickupAddress(rs.getString("pSubDistrict") + ", " + rs.getString("pDistrict") + ", "
 					+ rs.getString("pDivision") + "\n" + rs.getString("pFullAddress"));
 			pr.setDeliveryAddress(rs.getString("dSubDistrict") + ", " + rs.getString("dDistrict") + ", "
@@ -157,8 +158,8 @@ public class ParcelRequestRepImpl implements ParcelRequestRep {
 		request.setParcelWeight(rs.getInt("parcelWeight"));
 		request.setPickupAddress(rs.getString("pSubDistrict") + "," + rs.getString("pDistrict") + ", "
 				+ rs.getString("pDivision") + "\n" + rs.getString("pFullAddress"));
-		request.setDeliveryAddress(rs.getString("pSubDistrict") + "," + rs.getString("pDistrict") + ", "
-				+ rs.getString("pDivision") + "\n" + rs.getString("pFullAddress"));
+		request.setDeliveryAddress(rs.getString("dSubDistrict") + "," + rs.getString("dDistrict") + ", "
+				+ rs.getString("dDivision") + "\n" + rs.getString("dFullAddress"));
 
 		return request;
 	}
