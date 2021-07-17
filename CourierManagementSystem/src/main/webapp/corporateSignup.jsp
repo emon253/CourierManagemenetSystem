@@ -146,11 +146,34 @@
 
 
 							</div>
+							
+							          <div class="col-lg-5 ">
+
+            <div class="form-group">
+              <label for="designation">Designation</label>
+              <select id="designation" name="designation" class="form-control">
+										<option value="default" disabled selected>Select</option>
+										<option value="Manager">Manager</option>
+										<option value="DeliveryMan">Delivery Man</option>
+                  
+                </select>
+                <div class="" style="visibility:hidden">Valid.</div>
+                
+            </div>
+            <div class="form-group was-validated">
+              <label for="phone">Phone:</label>
+              <input type="number" class="form-control" placeholder="Phone" name="phone" required>
+              <div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+
+          </div>
+							
 							<div class="col-lg-5">
 
-								<div class="form-group was-validated">
+								<div class="form-group was-validated" id="password">
 									<label id="passlbl" for="pwd">Password</label> <input type="password"
-										class="form-control" placeholder="Password" id="password" name="password"
+										class="form-control" placeholder="Password"  name="password"
 										required>
 										<div class="valid-feedback">Valid.</div>
 									<div class="invalid-feedback">Atleast 6 charecter.</div>
@@ -165,7 +188,7 @@
 
 								</div>
 
-								<div class="form-group">
+								<!-- div class="form-group">
 									<label for="designation">Designation</label> <select
 										id="designation" name="designation" class="form-control">
 										<option value="default" disabled selected>Select</option>
@@ -173,18 +196,18 @@
 										<option value="DeliveryMan">Delivery Man</option>
 
 									</select>
-								</div>
+								</div-->
 
 
 							</div>
-							<div class="col-lg-5 mx-auto was-validated">
+							<div class="col-lg-5 was-validated">
 
-								<div class="form-group">
+								<!--div class="form-group">
 									<label for="phone">Phone:</label> <input type="number"
 										class="form-control" placeholder="Phone" name="phone" required>
 									<div class="valid-feedback">Valid.</div>
 									<div class="invalid-feedback">Please fill out this field.</div>
-								</div>
+								</div-->
 								<div class="form-group">
 									<label id="cidlbl" for="pwd">Corporate ID</label> <input type="text"
 										class="form-control" placeholder="Corporate ID" id="id" name="id"
