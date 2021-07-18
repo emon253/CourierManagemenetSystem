@@ -4,7 +4,10 @@ import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
+import javax.mail.MessagingException;
+
 import domain.User;
+import dto.Feedback;
 import dto.LoginDTO;
 import dto.UserDTO;
 import repository.UserRepository;
@@ -16,6 +19,8 @@ public interface UserService {
 
 	boolean isEmailExist(String email) throws ClassNotFoundException, SQLException;
 
-	User verifyUser(LoginDTO userDto) throws NoSuchAlgorithmException, ClassNotFoundException, SQLException, UserPrincipalNotFoundException;
+	User verifyUser(LoginDTO userDto)
+			throws NoSuchAlgorithmException, ClassNotFoundException, SQLException, UserPrincipalNotFoundException;
 
+	void processFeedback(Feedback feedback) throws MessagingException, ClassNotFoundException, SQLException;
 }

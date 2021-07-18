@@ -24,7 +24,7 @@ public class ParcelRequestRepImpl implements ParcelRequestRep {
 
 	@Override
 	public boolean save(ParcelRequestDTO pr) throws ClassNotFoundException, SQLException {
-		String sql = "INSERT INTO tbl_parcel_request  (`pid`,`name`,`email`,`phone`,`receiverName`,`receiverEmail`,`receiverPhone`,`parcelWeight`,`pDivision`,`pDistrict`,`pSubDistrict`,`dDivision`,`dDistrict`,`dSubDistrict`,`pFullAddress`,`dFullAddress`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO tbl_parcel_request  (`pid`,`name`,`email`,`phone`,`receiverName`,`receiverEmail`,`receiverPhone`,`parcelWeight`,`pDivision`,`pDistrict`,`pSubDistrict`,`dDivision`,`dDistrict`,`dSubDistrict`,`pFullAddress`,`dFullAddress`, `requestedTime`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		Connection connection = DBConnection.getConnection();
 		PreparedStatement statement = connection.prepareStatement(sql);
 
@@ -44,6 +44,7 @@ public class ParcelRequestRepImpl implements ParcelRequestRep {
 		statement.setString(14, pr.getParcelReceiverDto().getdSubDistrict());
 		statement.setString(15, pr.getParcelSenderDto().getpFullAddress());
 		statement.setString(16, pr.getParcelReceiverDto().getdFullAddress());
+		statement.setString(17,DateTimeFormatter.ofPattern("yyyy-MM-dd h:mm a").format(LocalDateTime.now()));
 
 		if (statement.executeUpdate() > 0) {
 			connection.close();
@@ -71,7 +72,7 @@ public class ParcelRequestRepImpl implements ParcelRequestRep {
 					+ rs.getString("pDivision") + "\n" + rs.getString("pFullAddress"));
 			pr.setDeliveryAddress(rs.getString("dSubDistrict") + ", " + rs.getString("dDistrict") + ", "
 					+ rs.getString("dDivision") + "\n" + rs.getString("dFullAddress"));
-			pr.setRequestedTime(new SimpleDateFormat("dd-MM-yyyy K:mm aa").format(rs.getTimestamp("requestedTime")));
+			pr.setRequestedTime(rs.getString("requestedTime"));
 			pr.setReceiverName(rs.getString("receiverName"));
 			pr.setReceiverEmail(rs.getString("receiverEmail"));
 			pr.setReceiverPhone(rs.getLong("receiverPhone"));
@@ -85,7 +86,7 @@ public class ParcelRequestRepImpl implements ParcelRequestRep {
 	@Override
 	public void saveSession(TrackControlDto tc) throws ClassNotFoundException, SQLException {
 		String sql1 = "SELECT `pid` FROM tbl_parcel_request WHERE `pDivision` = ? AND `pDistrict` = ? AND `pSubDistrict` = ? AND `dDivision` = ? AND `dDistrict`= ? AND `dSubDistrict` = ?;";
-		String sql2 = "INSERT INTO tbl_parcel_tracking(`pid`,`currentSession`) VALUES(?,?);";
+		String sql2 = "INSERT INTO tbl_parcel_tracking(`pid`,`currentSession`, `sessionTime`) VALUES(?,?,?);";
 		String sql3 = "UPDATE `tbl_parcel_request` SET `states` = ? WHERE `tbl_parcel_request`.`pid` = ?";
 		Connection connection = DBConnection.getConnection();
 		PreparedStatement statement1 = connection.prepareStatement(sql1);
@@ -100,11 +101,13 @@ public class ParcelRequestRepImpl implements ParcelRequestRep {
 
 		PreparedStatement statement3 = connection.prepareStatement(sql3);
 		ResultSet rs = statement1.executeQuery();
-		while (rs.next()) {
 
+		String time = DateTimeFormatter.ofPattern("yyyy-MM-dd h:mm a").format(LocalDateTime.now());
+		while (rs.next()) {
 			String pid = rs.getString("pid");
 			statement2.setString(1, pid);
 			statement2.setString(2, tc.getSessionMsg());
+			statement2.setString(3, time);
 
 			statement3.setString(1, tc.getStates());
 			statement3.setString(2, pid);
@@ -125,7 +128,7 @@ public class ParcelRequestRepImpl implements ParcelRequestRep {
 
 		while (rs.next()) {
 			ParcelTracking pt = new ParcelTracking(rs.getString("pid"), rs.getString("currentSession"),
-					new SimpleDateFormat("dd-MM-yyyy K:mm aa").format(rs.getTimestamp("sessionTime")));
+					rs.getString("sessionTime"));
 			list.add(pt);
 		}
 		return list;
@@ -282,7 +285,6 @@ public class ParcelRequestRepImpl implements ParcelRequestRep {
 		statement1.setString(5, tc.getdDistrict());
 		statement1.setString(6, tc.getdSubDistrict());
 		ResultSet rs = statement1.executeQuery();
-		System.out.println(statement1);
 		while (rs.next()) {
 			total = rs.getInt("count(*)");
 			System.out.println(total);

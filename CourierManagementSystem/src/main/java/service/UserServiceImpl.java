@@ -4,8 +4,13 @@ import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import javax.mail.MessagingException;
 
 import domain.User;
+import dto.Feedback;
 import dto.LoginDTO;
 import dto.UserDTO;
 import repository.UserRepository;
@@ -84,6 +89,17 @@ public class UserServiceImpl implements UserService {
 			}
 		}
 		return hexString.toString();
+	}
+
+	@Override
+	public void processFeedback(Feedback feedback) throws MessagingException, ClassNotFoundException, SQLException {
+		String time = DateTimeFormatter.ofPattern("yyyy-MM-dd h:mm a").format(LocalDateTime.now());
+
+		feedback.setTime(time);
+		
+		Email.getInstance().sendEmail("Your feedback has successfully submited", feedback.getSubject(), feedback.getEmail());
+		userRepository.saveFeedback(feedback);
+		
 	}
 
 }

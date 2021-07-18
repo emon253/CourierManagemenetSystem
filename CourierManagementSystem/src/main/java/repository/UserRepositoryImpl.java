@@ -2,10 +2,9 @@ package repository;
 
 import java.sql.*;
 
-import com.mysql.cj.jdbc.PreparedStatement;
-
 import dbconnection.DBConnection;
 import domain.User;
+import dto.Feedback;
 
 public class UserRepositoryImpl implements UserRepository {
 	private Connection connection;
@@ -29,11 +28,11 @@ public class UserRepositoryImpl implements UserRepository {
 	@Override
 	public User findUserbyEmail(String email) throws ClassNotFoundException, SQLException {
 		connection = DBConnection.getConnection();
-		String sql = " SELECT * FROM tbl_user WHERE email =  '"+email+"'";
+		String sql = " SELECT * FROM tbl_user WHERE email =  '" + email + "'";
 		java.sql.PreparedStatement statement = connection.prepareStatement(sql);
 		User user = new User();
 		ResultSet rs = statement.executeQuery();
-		while(rs.next()) {
+		while (rs.next()) {
 			user.setName(rs.getString("name"));
 			user.setUserName(rs.getString("userName"));
 			user.setAddress(rs.getString("address"));
@@ -51,10 +50,10 @@ public class UserRepositoryImpl implements UserRepository {
 		String sql = " SELECT * FROM tbl_user WHERE userName = ? ";
 		java.sql.PreparedStatement statement = connection.prepareStatement(sql);
 		statement.setString(1, userName);
-		
+
 		User user = new User();
 		ResultSet rs = statement.executeQuery();
-		while(rs.next()) {
+		while (rs.next()) {
 			user.setName(rs.getString("name"));
 			user.setUserName(rs.getString("userName"));
 			user.setAddress(rs.getString("address"));
@@ -66,6 +65,25 @@ public class UserRepositoryImpl implements UserRepository {
 
 		connection.close();
 		return user;
+	}
+
+	@Override
+	public void saveFeedback(Feedback feedback) throws ClassNotFoundException, SQLException {
+		connection = DBConnection.getConnection();
+		String sql = "INSERT INTO tbl_feedback (`name`,`email`,`feedbackMsg`,`time`) VALUES(?,?,?,?);";
+		PreparedStatement statement = connection.prepareStatement(sql);
+		if(feedback.getUser() != null) {
+			statement.setString(1, feedback.getUser().getName());
+
+		}else {
+			statement.setString(1, "GUEST");
+
+		}
+		statement.setString(2, feedback.getEmail());
+		statement.setString(3, feedback.getMessage());
+		statement.setString(4, feedback.getTime());
+		statement.executeUpdate();
+		connection.close();
 	}
 
 }

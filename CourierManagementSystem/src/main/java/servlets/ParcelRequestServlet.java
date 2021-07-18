@@ -102,10 +102,7 @@ public class ParcelRequestServlet extends HttpServlet {
 		pr.setParcelWeight(Double.parseDouble(request.getParameter("parcelWeight")));
 		pr.setParcelReceiverDto(prd);
 		pr.setParcelSenderDto(psd);
-		System.out.println(prd);
-		System.out.println(psd);
-
-		System.out.println(pr);
+		
 
 		return pr;
 	}
