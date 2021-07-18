@@ -6,6 +6,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import javax.mail.MessagingException;
 
@@ -100,6 +101,12 @@ public class UserServiceImpl implements UserService {
 		Email.getInstance().sendEmail("Your feedback has successfully submited", feedback.getSubject(), feedback.getEmail());
 		userRepository.saveFeedback(feedback);
 		
+	}
+
+	@Override
+	public List<Feedback> findAllFeedback() throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return userRepository.fetchAllFeedback();
 	}
 
 }

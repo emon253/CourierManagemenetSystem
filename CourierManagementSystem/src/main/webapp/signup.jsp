@@ -13,6 +13,13 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/signup.css">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <title>CMS Courier</title>
 </head>
 <body>
@@ -25,7 +32,7 @@
 				<div class=" row contain2 mx-auto pr-5 pl-5">
 
 
-					<form action="signup" method="post" >
+					<form action="signup" method="post">
 						<div class="row">
 							<div class="col-12 mt-4 mb-5">
 								<div class="bgst">
@@ -119,8 +126,8 @@
 									<c:if test="${errors.userName != null }">
 										<small class="text-danger">${errors.userName}</small>
 									</c:if>
-									
-										<c:if test="${errors.userExistance != null }">
+
+									<c:if test="${errors.userExistance != null }">
 										<small class="text-danger">${errors.userExistance}</small>
 									</c:if>
 								</div>
@@ -140,9 +147,20 @@
 
 
 						</div>
+						<input type="text" class="" placeholder="Enter otp"
+							name="otpField">
+						<button type="button" id="otpBtn"
+							class="btn btn-success btn-sm m-3 " onclick="sendOTP()">Send
+							OTP</button>
+						<label id="label"></label> <br> <label id="label2"></label> <br>
 
+						<c:if test="${errors.otpMsg != null }">
+							<small class="text-danger">${errors.otpMsg}</small>
+						</c:if>
+						<br>
 						<button type="submit" class="btn btn-info m-3 ">Submit</button>
-						<button type="submit" class="btn btn-info m-3 " onclick="location.href='home.jsp'">Cancel</button>
+						<button type="submit" class="btn btn-danger m-3 "
+							onclick="location.href='home.jsp'">Cancel</button>
 
 					</form>
 					<div class="col-12">
@@ -165,6 +183,68 @@
 	</div>
 	<footer>
 		<%@include file="/includes/footer.jsp"%></footer>
+	<script type="text/javascript">
+		function count() {
+			var counter = 60;
+			setInterval(function() {
+				counter--;
+				if (counter >= 0) {
+					console.log(counter)
+					//$("#label2").remove();
+					$("#label2").html("<small class='text-danger'> Send again "+counter+"</small>");
+
+				}
+				// Display 'counter' wherever you want to display it.
+				if (counter === 0) {
+					clearInterval(counter);
+					$("#otpBtn").html("Send Again");
+					$("#otpBtn").show();
+					$("#label").hide();
+					$("#label2").hide();
+
+				}
+
+			}, 1000);
+
+		}
+
+		function sendOtpRequest(email) {
+
+			$.ajax({
+				type : 'GET',
+				url : 'signup?otp=true',
+				data : {
+					email : email
+				},
+				success : function(resp) {
+
+					console.log("success")
+					count();
+
+				}
+			});
+
+		}
+
+		function sendOTP() {
+			$("#label").html("<small class='text-danger'></small>");
+			$("#label2").html("<small class='text-danger'></small>");
+
+			$("#label").show();
+			$("#label2").show();
+			const email = $('#email').val();
+			if (email != null) {
+				$("#label")
+						.append(
+								"<small class='text-danger'>An otp has been sent to your email</small>")
+				sendOtpRequest(email);
+				$("#otpBtn").hide();
+
+			} else {
+
+			}
+		}
+	</script>
 
 </body>
 </html>

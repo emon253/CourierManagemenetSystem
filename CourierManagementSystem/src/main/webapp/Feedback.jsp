@@ -39,16 +39,20 @@
 				<c:if test="${success != null }">
 					<div class="alert  alert-success" role="alert">${success}</div>
 				</c:if>
+				<c:if test="${error != null }">
+					<div class="alert  alert-warning" role="alert">${error}</div>
+				</c:if>
 			</header>
 			<div class="row">
 				<div class="col-lg-6 col-sm-12">
-					<form action="feedback" method="post" class="feedback_form mb-5">
+					<form action="feedback?feedback=submit" method="post" class="feedback_form mb-5">
 						<div class="form_group">
 							<input type="email" class="form_control" name="email" id="email"
 								placeholder="Enter your Email">
 							<c:if test="${errors.email != null }">
 								<small class="text-danger">${errors.email}</small>
 							</c:if>
+							
 						</div>
 						<div class="form_group">
 							<input type="text" name="subject" id="subject"

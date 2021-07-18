@@ -1,6 +1,8 @@
 package repository;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import dbconnection.DBConnection;
 import domain.User;
@@ -72,10 +74,10 @@ public class UserRepositoryImpl implements UserRepository {
 		connection = DBConnection.getConnection();
 		String sql = "INSERT INTO tbl_feedback (`name`,`email`,`feedbackMsg`,`time`) VALUES(?,?,?,?);";
 		PreparedStatement statement = connection.prepareStatement(sql);
-		if(feedback.getUser() != null) {
+		if (feedback.getUser() != null) {
 			statement.setString(1, feedback.getUser().getName());
 
-		}else {
+		} else {
 			statement.setString(1, "GUEST");
 
 		}
@@ -84,6 +86,24 @@ public class UserRepositoryImpl implements UserRepository {
 		statement.setString(4, feedback.getTime());
 		statement.executeUpdate();
 		connection.close();
+	}
+
+	@Override
+	public List<Feedback> fetchAllFeedback() throws ClassNotFoundException, SQLException {
+		connection = DBConnection.getConnection();
+		String sql = " SELECT * FROM tbl_feedback";
+		java.sql.PreparedStatement statement = connection.prepareStatement(sql);
+		ResultSet rs = statement.executeQuery();
+		List<Feedback> list = new ArrayList<Feedback>();
+		while (rs.next()) {
+			Feedback feedback = new Feedback(rs.getString("name"), rs.getString("email"), rs.getString("feedbackMsg"));
+			feedback.setTime(rs.getString("time"));
+			list.add(feedback);
+		}
+
+		connection.close();
+
+		return list;
 	}
 
 }

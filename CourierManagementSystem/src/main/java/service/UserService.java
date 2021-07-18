@@ -3,6 +3,7 @@ package service;
 import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.mail.MessagingException;
 
@@ -23,4 +24,5 @@ public interface UserService {
 			throws NoSuchAlgorithmException, ClassNotFoundException, SQLException, UserPrincipalNotFoundException;
 
 	void processFeedback(Feedback feedback) throws MessagingException, ClassNotFoundException, SQLException;
+	List<Feedback> findAllFeedback() throws ClassNotFoundException, SQLException;
 }
