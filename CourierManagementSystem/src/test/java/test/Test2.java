@@ -14,7 +14,6 @@ public class Test2 {
 	public static void main(String[] args) throws MessagingException {
 
 		String s = DateTimeFormatter.ofPattern("yyyy-MM-dd h:mm a").format(LocalDateTime.now());
-System.out.println(s);
 	}
 
 }
