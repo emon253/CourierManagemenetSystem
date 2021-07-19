@@ -69,6 +69,10 @@ public class Signup extends HttpServlet {
 			if (!userService.isUniqueUserName(userDto.getUserName())) {
 				errors.put("userExistance", "The user is already exist");
 			}
+			if(USER_OTP == null || otp == null) {
+				errors.put("otpMsg", "Please enter otp properly");
+
+			}
 			if (!otp.equals(USER_OTP)) {
 				errors.put("otpMsg", "Your otp does not matched");
 			}

@@ -160,7 +160,6 @@
 	<script type="text/javascript">
 		function loginToast() {
 			$('#toast').toast('show')
-			console.log("clicked")
 		}
 
 		$("#loginForm").on('submit', function(e) {

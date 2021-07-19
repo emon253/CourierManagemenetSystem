@@ -20,6 +20,8 @@
 <!-- Popper JS -->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <title>CMS Courier</title>
 </head>
 <body>
@@ -147,6 +149,14 @@
 
 
 						</div>
+						<div id="toast" class="toast" role="alert" data-animation="true"
+							
+							aria-live="polite" aria-atomic="true" data-delay="3000">
+							<div class="toast-body">
+								<div id="toastMsg" class="text-center ">Please enter email first</div>
+							</div>
+						</div>
+
 						<input type="text" class="" placeholder="Enter otp"
 							name="otpField">
 						<button type="button" id="otpBtn"
@@ -191,7 +201,9 @@
 				if (counter >= 0) {
 					console.log(counter)
 					//$("#label2").remove();
-					$("#label2").html("<small class='text-danger'> Send again "+counter+"</small>");
+					$("#label2").html(
+							"<small class='text-danger'> Send again " + counter
+									+ "</small>");
 
 				}
 				// Display 'counter' wherever you want to display it.
@@ -225,7 +237,7 @@
 			});
 
 		}
-
+	
 		function sendOTP() {
 			$("#label").html("<small class='text-danger'></small>");
 			$("#label2").html("<small class='text-danger'></small>");
@@ -233,7 +245,8 @@
 			$("#label").show();
 			$("#label2").show();
 			const email = $('#email').val();
-			if (email != null) {
+
+			if (email != "") {
 				$("#label")
 						.append(
 								"<small class='text-danger'>An otp has been sent to your email</small>")
@@ -241,6 +254,7 @@
 				$("#otpBtn").hide();
 
 			} else {
+				$('#toast').toast('show');
 
 			}
 		}
