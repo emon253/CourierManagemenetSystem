@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,6 +25,7 @@ import dto.ParcelRequestDTO;
 import dto.ParcelSenderDTO;
 import repository.ParcelRequestRep;
 import repository.ParcelRequestRepImpl;
+import service.Email;
 import service.OTPGenerator;
 import service.ValidationUtil;
 
@@ -38,15 +40,17 @@ public class ParcelRequestServlet extends HttpServlet {
 
 		try {
 			ParcelRequestDTO pr = (ParcelRequestDTO) session.getAttribute("parcelRequest");
-
+			final String mail = "You have successfully sent a parcel, you can track your parcel using the tracking id "
+					+ pr.getParcelID();
 			if (prr.save(pr)) {
+				Email.getInstance().sendEmail(mail, "CMS Courier", pr.getParcelSenderDto().getEmail());
 				session.setAttribute("msg", "success");
 				response.sendRedirect("home.jsp");
 			} else {
 
 				request.getRequestDispatcher("parcelrequest.jsp").forward(request, response);
 			}
-		} catch (ClassNotFoundException | SQLException | IOException | ServletException e) {
+		} catch (ClassNotFoundException | SQLException | IOException | ServletException | MessagingException e) {
 			e.printStackTrace();
 		}
 
@@ -82,7 +86,7 @@ public class ParcelRequestServlet extends HttpServlet {
 		var pr = new ParcelRequestDTO();
 		ParcelSenderDTO psd = new ParcelSenderDTO();
 		ParcelReceiverDTO prd = new ParcelReceiverDTO();
-		
+
 		psd.setName(request.getParameter("name"));
 		psd.setEmail(request.getParameter("email"));
 		psd.setPhone(Long.parseLong(request.getParameter("phone")));
@@ -90,7 +94,7 @@ public class ParcelRequestServlet extends HttpServlet {
 		psd.setpDistrict(request.getParameter("pDistrict"));
 		psd.setpSubDistrict(request.getParameter("pSubDistrict"));
 		psd.setpFullAddress(request.getParameter("pFullAddress"));
-		
+
 		prd.setName(request.getParameter("rname"));
 		prd.setEmail(request.getParameter("remail"));
 		prd.setPhone(Long.parseLong(request.getParameter("rphone")));
@@ -98,11 +102,10 @@ public class ParcelRequestServlet extends HttpServlet {
 		prd.setdDivision(request.getParameter("dDivision"));
 		prd.setdDistrict(request.getParameter("dDistrict"));
 		prd.setdSubDistrict(request.getParameter("dSubDistrict"));
-		
+
 		pr.setParcelWeight(Double.parseDouble(request.getParameter("parcelWeight")));
 		pr.setParcelReceiverDto(prd);
 		pr.setParcelSenderDto(psd);
-		
 
 		return pr;
 	}
