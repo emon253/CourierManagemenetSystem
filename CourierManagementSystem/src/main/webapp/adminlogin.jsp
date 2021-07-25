@@ -72,9 +72,9 @@
 								<div class="cnt mx-auto bgc">
 									<button type="submit" class="btn btn-default ">Log In</button>
 								</div>
-								<div class="fpsu cnt">
+								<!-- div class="fpsu cnt">
 									<a href="">forgot password?</a>
-								</div>
+								</div-->
 							</form>
 
 

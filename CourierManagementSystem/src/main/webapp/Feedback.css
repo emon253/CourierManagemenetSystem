@@ -53,13 +53,40 @@ html{
     .banner-container h1{
         font-size: 2.5rem;
     }
+  
+}
 
 
 
-
-
+/*footer*/
+footer{
+    background-image: url("https://images.pexels.com/photos/1421903/pexels-photo-1421903.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    /*background-position: center;*/
+    /*background-attachment: fixed;*/
+    background-repeat: no-repeat;
+    background-size: cover;
     
 }
+.bg{
+    background-color: #ff8f8f1e;
+}
+.lst li{
+
+    color:cornsilk; 
+    font-size: larger; 
+    line-height: 50px;
+
+}
+.lst li :hover {
+    color: navy;
+    
+
+}
+
+/*footer ends*/
+
+
+
 
 body{
 

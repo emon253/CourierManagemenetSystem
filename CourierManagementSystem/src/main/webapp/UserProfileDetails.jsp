@@ -55,7 +55,7 @@
         </tr>
         </tbody>
       </table>
-      <button type="button" class="btn btn-info">Update Status</button>
+      <!--button type="button" class="btn btn-info">Update Status</button-->
   </div>
 </div>
 

@@ -60,13 +60,39 @@ html{
     }
     /*body item 1 ends*/
     
+   
+}
 
 
-
-
-
+/*footer*/
+footer{
+    background-image: url("https://images.pexels.com/photos/1421903/pexels-photo-1421903.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    /*background-position: center;*/
+    /*background-attachment: fixed;*/
+    background-repeat: no-repeat;
+    background-size: cover;
     
 }
+.bg{
+    background-color: #ff8f8f1e;
+}
+.lst li{
+
+    color:cornsilk; 
+    font-size: larger; 
+    line-height: 50px;
+
+}
+.lst li :hover {
+    color: navy;
+    
+
+}
+
+/*footer ends*/
+
+
+
 
 body{
 
@@ -118,7 +144,7 @@ h1,h2,h3,h4,h5,h6{
     padding: 22px;
 }
 
-.bg{
+.bg2{
     background-color: rgba(218, 216, 216, 0.781);
     margin-top: 10px;
     padding-top: 0.09px;

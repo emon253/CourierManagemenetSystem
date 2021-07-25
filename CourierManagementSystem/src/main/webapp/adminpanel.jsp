@@ -104,7 +104,7 @@
 
 
 	<div class="container">
-		<div class="bg ">
+		<div class="bg2 ">
 			<div class="row">
 
 				<div class="col-lg-3" style="text-align: center;">

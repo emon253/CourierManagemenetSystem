@@ -23,8 +23,8 @@
 <!--navbar ends-->
 
 
-<div class="container">
-  <div class="bg ">
+<div class="container mb-5">
+  <div class="bg2 ">
     <div class="row">
 
       <div class="col-4 col-md-4 col-sm-12" style="text-align: center;">
